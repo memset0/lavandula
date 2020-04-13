@@ -1,5 +1,7 @@
 <p align="center"><img src="./icon/icon.png" width="125px"></p>
-<h2 align="center">lavandula</h2>
+<h3 align="center">lavandula</h3>
+
+<br><br>
 
 呐呐呐，看过来了的欧尼酱你好哇qwq。
 
@@ -23,6 +25,8 @@ mem0 想了想，呐，如果用点方法把这些都打包成一个文件不就
 
 「那就再拉个 nodemon 吧 qwq」
 
+<br>
+
 ## mem0 你又开坑啦，这玩意儿有个卵用啊
 
 这项目是 mem0 的 Toy Project 大集合，所以 mem0 也不知道有什么用。
@@ -34,6 +38,8 @@ mem0 这么想着，于是 `README.md` 多了下面几行
 - 博客阅读器
   - CSDN 博客（blog.csdn.net）
   - yhx-12243 的博客（yhx-12243.github.io）
+  
+<br>
 
 ## 呐呐呐，你讲了这么多，我可咋安装啊
 
