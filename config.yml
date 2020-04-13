@@ -10,4 +10,5 @@ tampermonkey:
   require:
     - https://code.jquery.com/jquery-3.4.1.min.js
     - https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/core.min.js
+    - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/highlight.min.js
   grant: none

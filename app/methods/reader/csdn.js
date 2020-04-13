@@ -8,8 +8,17 @@ class CsdnReader extends BaseReader {
 		super.render($e)
 		$e.find('.prettyprint .pre-numbering').remove()
 		$e.find('.prettyprint .hljs-button.signin').remove()
-		$e.find('pre').attr('class', '').attr('style', '')
-		$e.find('code').attr('class', '').attr('style', '').attr('onclick', '')
+		$e.find('code')
+			.attr('style', '')
+			.attr('class', '')
+			.attr('onclick', '')
+			.each(function () {
+				$(this).html($('<div/>').text($(this).text()).html())
+			})
+		$e.find('pre')
+			.attr('style', '')
+			.attr('class', 'hljs lavandula-hljs')
+		hljs.initHighlightingOnLoad();
 	}
 	constructor() {
 		super()

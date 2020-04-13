@@ -6,10 +6,14 @@ class Yhx12243Reader extends BaseReader {
 	}
 	render($e) {
 		super.render($e)
-		$e.find('.prettyprint .pre-numbering').remove()
-		$e.find('.prettyprint .hljs-button.signin').remove()
-		$e.find('pre').attr('class', '').attr('style', '')
-		$e.find('code').attr('class', '').attr('style', '').attr('onclick', '')
+		$e.find('pre')
+			.attr('class', 'hljs lavandula-hljs')
+		$e.find('code')
+			.attr('class', '')
+			.each(function () {
+				$(this).html($('<div/>').text($(this).text()).html())
+			})
+		hljs.initHighlightingOnLoad();
 	}
 	constructor() {
 		super()
