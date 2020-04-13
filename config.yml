@@ -8,7 +8,7 @@ tampermonkey:
     - https://blog.csdn.net/*
     - https://yhx-12243.github.io/*
   require:
-    - https://code.jquery.com/jquery-3.4.1.min.js
-    - https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/core.min.js
+    - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/jquery.min.js
+    - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/lodash.min.js
     - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/highlight.min.js
   grant: none
