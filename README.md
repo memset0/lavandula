@@ -3,7 +3,7 @@
 <p align="center"><img src="./icon/icon.png" width="125px"></p>
 <h3 align="center">lavandula</h3>
 
-<br>
+<br><br>
 
 呐呐呐，看过来了的欧尼酱你好哇qwq。
 
@@ -39,6 +39,7 @@ mem0 这么想着，于是 `README.md` 多了下面几行
 
 - 博客阅读器
   - CSDN 博客（blog.csdn.net）
+  - cnblogs 博客（www.cnblogs.com）
   - yhx-12243 的博客（yhx-12243.github.io）
   
 <br>

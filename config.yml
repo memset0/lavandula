@@ -6,6 +6,7 @@ tampermonkey:
   namespace: lavandula
   match:
     - https://blog.csdn.net/*
+    - https://www.cnblogs.com/*
     - https://yhx-12243.github.io/*
   require:
     - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/jquery.min.js
