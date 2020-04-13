@@ -1,0 +1,104 @@
+@import "mdui.less";
+
+@theme-font: Lato,
+    -apple-system,
+    'PingFang SC',/* Apple */
+    'Source Han Sans SC',
+    'Noto Sans CJK SC', /* Google */
+    'Microsoft Yahei',
+    'Lantinghei SC',
+    'Hiragino Sans GB',
+    'Microsoft Sans Serif', /* M$ */
+    'WenQuanYi Micro Hei', /* *nix */
+    sans-serif;
+@theme-background: linear-gradient(to top, #b3bcff 0%, #fbc2eb 100%);
+
+@panel-width: 300px;
+
+.lavandula-base-style {
+	z-index: 114514;
+	&, * {
+		box-sizing: border-box;
+	}
+	&, div, p, h1, h2, h3, h4, h5, h6 {
+		font-family: @theme-font;
+	}
+}
+
+#lavandula-toggle-button {
+	.lavandula-base-style();
+	@padding: 32px;
+	@width: 32px;
+	position: fixed;
+	bottom: @padding;
+	left: @padding;
+	width: @width;
+	height: @width;
+	border-radius: @width / 4;
+	background-image: @theme-background;
+}
+
+#lavandula-panel {
+	.lavandula-base-style();
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: @panel-width;
+	height: 100%;
+	transition: 0.25s ease-out;
+	background: #fafafa;
+	padding: 20px;
+	overflow: scroll;
+	.lavandula-shadow-6();
+	&.lavandula-hide{
+		left: (@panel-width + 25px) * -1;
+	}
+	#lavandula-panel-info {
+		&.lavandula-card {
+			.lavandula-card-primary {
+				padding: 12px;
+				.lavandula-card-primary-title {
+					font-size: 16px;
+					line-height: 24px;
+				}
+			}
+		}
+	}
+}
+
+#lavandula-reader {
+	.lavandula-base-style();
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	padding-left: @panel-width;
+	background: #fff;
+	overflow: scroll;
+	transition: opacity 0.5s ease-out;
+	opacity: 1;
+	&.lavandula-hide {
+		pointer-events: none;
+		opacity: 0;
+	}
+	.lavandula-container {
+		padding-top: 40px;
+		padding-bottom: 40px;
+		.lavandula-title {
+			width: 100%;
+			text-align: center;
+			font-size: 32px;
+			line-height: 40px;
+		}
+		.lavandula-typo {
+			width: 75%;
+			margin-left: auto;
+			margin-right: auto;
+			pre code {
+				line-height: 20px;
+				font-size: 14px;
+			}
+		}
+	}
+}

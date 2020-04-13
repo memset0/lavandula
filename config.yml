@@ -1,0 +1,13 @@
+tampermonkey:
+  name: lavandula
+  description: 咕咕咕
+  version: 0.0.1
+  author: memset0
+  namespace: lavandula
+  match:
+    - https://blog.csdn.net/*
+    - https://yhx-12243.github.io/*
+  require:
+    - https://code.jquery.com/jquery-3.4.1.min.js
+    - https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/core.min.js
+  grant: none
