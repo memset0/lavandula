@@ -1,7 +1,7 @@
 tampermonkey:
   name: lavandula
   description: 咕咕咕
-  version: 0.0.1
+  version: 1.0.0
   author: memset0
   namespace: lavandula
   match:
