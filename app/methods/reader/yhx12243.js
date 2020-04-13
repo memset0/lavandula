@@ -13,7 +13,7 @@ class Yhx12243Reader extends BaseReader {
 			.each(function () {
 				$(this).html($('<div/>').text($(this).text()).html())
 			})
-		hljs.initHighlightingOnLoad();
+		super.render_highlight($e)
 	}
 	constructor() {
 		super()
