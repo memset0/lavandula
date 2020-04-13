@@ -1,4 +1,5 @@
-# lavandula
+<p align="center"><img src="./icon/icon.png" width="125px"></p>
+<h2 align="center">lavandula</h2>
 
 呐呐呐，看过来了的欧尼酱你好哇qwq。
 
