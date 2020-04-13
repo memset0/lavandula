@@ -27,8 +27,8 @@ class Reader {
 	constructor() {
 		this.loaded = false
 		this.readerLib = {
-			csdn: require('./reader/methods/csdn.js'),
-			yhx12243: require('./reader/methods/yhx12243.js'),
+			csdn: require('./methods/reader/csdn.js'),
+			yhx12243: require('./methods/reader/yhx12243.js'),
 		}
 	}
 }
