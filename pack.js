@@ -1,6 +1,6 @@
 const _ = require('lodash')
 const fs = require('fs')
-const YAML = require('YAML')
+const YAML = require('yaml')
 
 config = YAML.parse(fs.readFileSync('config.yml').toString())
 
