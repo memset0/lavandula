@@ -1,5 +1,5 @@
 const BaseTool = require('./base.js')
-const { createLinksPanelElement } = require('../utils.js')
+const { createLinksPanelElement } = require('../../utils.js')
 
 function matchUrl() {
 	const regExpGroup = [

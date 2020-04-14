@@ -1,5 +1,5 @@
 const BaseTool = require('./base.js')
-const { createElement } = require('../utils.js')
+const { createElement } = require('../../utils.js')
 
 const availableUrlList = [ // unused
 	'uoj.ac',

@@ -10,8 +10,8 @@ class Tools {
 	}
 	constructor() {
 		this.toolLib = {
-			stringify_latex: require('./tools/stringify_latex.js'),
-			codeforces_links: require('./tools/codeforces_links.js'),
+			stringify_latex: require('./methods/tools/stringify_latex.js'),
+			codeforces_links: require('./methods/tools/codeforces_links.js'),
 		}
 	}
 }
