@@ -50,7 +50,7 @@ mem0 这么想着，于是 `README.md` 多了下面几行
 
 ## 呐呐呐，你讲了这么多，我可咋安装啊
 
-由于 mem0 还在写，所以还不提供打包好的文件，欧尼酱可以手动打包嘤。
+由于 mem0 还在写，所以还没把 userjs 发布到 Greasy Fork 上。欧尼酱可以在 [Github Action](./actions) 里下载自动构建的版本，或者按照下面的方法手动打包 qwq~
 
 欧尼酱要装好 npm & webpack & nodemon 并配置路径，把这个仓库 git clone 到本地，依次运行这些命令就好啦。
 
@@ -61,3 +61,5 @@ npm run build
 ```
 
 打包好的文件位于 `dist/user.js`，接下来把这个文件的内容拷贝到 Tamper Monkey 中就行呐。
+
+估计再写点功能后 mem0 就会发布到 Greasy Fork 上（就可以自动更新啦 qwq。
