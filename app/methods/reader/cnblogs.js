@@ -6,6 +6,8 @@ class CnblogsReader extends BaseReader {
 	}
 	render($e) {
 		super.render($e)
+		$e.find('div.cnblogs_Highlighter')
+			.attr('class', '')
 		$e.find('pre code')
 			.attr('style', '')
 			.attr('class', '')
