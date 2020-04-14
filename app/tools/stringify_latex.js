@@ -20,6 +20,7 @@ const availableUrlList = [ // unused
 ]
 
 function stringifyLatex($e) {
+	console.log('[lavandula] stringify latex', $e)
 	// MathJax
 	$e.find(".MathJax").remove()
 	$e.find(".MathJax_SVG").remove()
@@ -39,11 +40,37 @@ function stringifyLatex($e) {
 			'$$</span> '
 	})
 	// KaTeX
+	$e.find("span.katex-display").each(function () {
+		let data = btoa(encodeURIComponent(this.outerHTML))
+		let text = $(this).find('.katex-mathml annotation').text().trim()
+		this.outerHTML = createElement('span', {
+			class: "lavandula-katex-display",
+			"lavandula-latex-data": data
+		},{
+			text: '$$' + text + '$$'
+		}).prop("outerHTML")
+	})
 	$e.find("span.katex").each(function () {
-		this.outerHTML =
-			' <span>$' +
-			$(this).find('.katex-mathml annotation').text().trim() +
-			'</span>$ '
+		let data = btoa(encodeURIComponent(this.outerHTML))
+		let text = $(this).find('.katex-mathml annotation').text().trim()
+		this.outerHTML = createElement('span', {
+			class: "lavandula-katex",
+			"lavandula-latex-data": data
+		},{
+			text: '$' + text + '$'
+		}).prop("outerHTML")
+	})
+}
+
+function parseLatex($e) {
+	const selectors = [
+		'.lavandula-katex',
+		'.lavandula-katex-display',
+	]
+	console.log('[lavandula] parse latex', $e)
+	$e.find(selectors.join(', ')).each(function () {
+		let data = decodeURIComponent(atob($(this).attr('lavandula-latex-data')))
+		this.outerHTML = data
 	})
 }
 
@@ -57,12 +84,18 @@ class StringifyLatex extends BaseTool {
 	// 	return flag
 	// }
 	click() {
-		stringifyLatex($('body'))
+		if (this.enable) {
+			this.enable = false
+			parseLatex($('body'))
+		} else {
+			this.enable = true
+			stringifyLatex($('body'))
+		}
 	}
 	create() {
 		this.button = createElement('button', {
 			class: 'lavandula-btn lavandula-btn-block'
-		},{
+		}, {
 			text: '文本化 LaTeX 公式'
 		})
 		this.ele = createElement('div', {
@@ -74,6 +107,7 @@ class StringifyLatex extends BaseTool {
 	}
 	constructor() {
 		super()
+		this.enable = false
 	}
 }
 
