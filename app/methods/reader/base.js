@@ -24,9 +24,9 @@ class BaseReader {
 					href: this.data.author_link,
 					target: '_blank',
 				}).appendTo($e.find('.lavandula-subtitle'))
-					.html(createChipElement('person', this.data.author))
+					.html(createChipElement(this.data.author, 'person'))
 			} else {
-				createChipElement('person', this.data.author)
+				createChipElement(this.data.author, 'person')
 					.appendTo($e.find('.lavandula-subtitle'))
 			}
 		}

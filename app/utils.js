@@ -2,12 +2,17 @@ function createElement(tag, attr = {}) {
 	return $(`<${tag}/>`).attr(attr)
 }
 
-function createChipElement(icon, text) {
-	return createElement('div', { class: 'lavandula-chip' })
-		.html(`
-			<span class="lavandula-chip-icon"><i class="lavandula-icon material-icons">${icon}</i></span>
-			<span class="lavandula-chip-title">${text}</span>
-		`)
+function createChipElement(text, icon = '') {
+	let chip = createElement('div', { class: 'lavandula-chip' })
+	if (icon) {
+		createElement('span', { class: 'lavandula-chip-icon' })
+			.appendTo(chip)
+			.html(`<i class="lavandula-icon material-icons">${icon}</i>`)
+	}
+	createElement('span', { class: 'lavandula-chip-title' })
+		.appendTo(chip)
+		.text(text)
+	return chip
 }
 
 function createLinksPanelElement(title, links) {
@@ -19,14 +24,14 @@ function createLinksPanelElement(title, links) {
 			.appendTo(content)
 			.append(a)
 	})
-	let element = createElement('div', { class: 'lavandula-panel-card' })
+	let panel = createElement('div', { class: 'lavandula-panel-card' })
 	createElement('div', { class: 'lavandula-panel-card-title' })
-		.appendTo(element)
+		.appendTo(panel)
 		.text(title)
 	createElement('div', { class: 'lavandula-panel-card-content' })
-		.appendTo(element)
+		.appendTo(panel)
 		.append(content)
-	return element
+	return panel
 }
 
 module.exports = {
