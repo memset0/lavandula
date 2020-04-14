@@ -1,40 +1,19 @@
-.hljs {
+.lavandula-hljs {
 	display: block !important;
 	overflow-x: auto !important;
 	padding: 0.5em !important;
 	background: #fcfaf5 !important;
 	color: #657b83 !important;
-
 	white-space: pre-wrap;
-
-	ul {
-		list-style: decimal !important;
-		margin: 0 0 0 40px !important;
-		padding: 0 !important;
-	}
-
-	ul li {
-		// list-style: decimal-leading-zero !important;
-		border-left: 2px solid #ddd !important;
-		margin: 0 !important;
-		padding: 0 0 0 10px !important;
-		word-break: break-all !important;
-		word-wrap: break-word !important;
-	}
-
 	.hljs-comment,
 	.hljs-quote {
 		color: #93a1a1 !important;
 	}
-
-	/* Solarized Green */
 	.hljs-keyword,
 	.hljs-selector-tag,
 	.hljs-addition {
 		color: #859900 !important;
 	}
-
-	/* Solarized Cyan */
 	.hljs-number,
 	.hljs-string,
 	.hljs-meta .hljs-meta-string,
@@ -43,8 +22,6 @@
 	.hljs-regexp {
 		color: #2aa198 !important;
 	}
-
-	/* Solarized Blue */
 	.hljs-title,
 	.hljs-section,
 	.hljs-name,
@@ -52,8 +29,6 @@
 	.hljs-selector-class {
 		color: #268bd2 !important;
 	}
-
-	/* Solarized Yellow */
 	.hljs-attribute,
 	.hljs-attr,
 	.hljs-variable,
@@ -62,8 +37,6 @@
 	.hljs-type {
 		color: #b58900 !important;
 	}
-
-	/* Solarized Orange */
 	.hljs-symbol,
 	.hljs-bullet,
 	.hljs-subst,
@@ -74,23 +47,39 @@
 	.hljs-link {
 		color: #cb4b16 !important;
 	}
-
-	/* Solarized Red */
 	.hljs-built_in,
 	.hljs-deletion {
 		color: #dc322f !important;
 	}
-
 	.hljs-formula {
 		background: #eee8d5 !important;
 	}
-
 	.hljs-emphasis {
 		font-style: italic !important;
 	}
-
 	.hljs-strong {
 		font-weight: bold !important;
 	}
 
+	ul {
+		list-style: decimal !important;
+		margin: 0 0 0 40px !important;
+		padding: 0 !important;
+	}
+	ul li {
+		border-left: 2px solid #ddd !important;
+		margin: 0 !important;
+		padding: 0 0 0 10px !important;
+		word-break: break-all !important;
+		word-wrap: break-word !important;
+	}
+	code {
+		line-height: 20px !important;
+		font-size: 14px !important;
+		span, li {
+			line-height: 20px !important;
+			font-size: 14px !important;
+			font-family: Consolas, Courier, 'Courier New', monospace;
+		}
+	}
 }
