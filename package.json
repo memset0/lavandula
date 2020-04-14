@@ -1,6 +1,6 @@
 {
   "name": "lavandula",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "mem0 在浏览器上装的小玩具 qwq",
   "main": "index.js",
   "scripts": {
