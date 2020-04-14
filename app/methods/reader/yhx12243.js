@@ -1,7 +1,7 @@
 const BaseReader = require('./base.js')
 
 class Yhx12243Reader extends BaseReader {
-	static checkAvailableUrl() {
+	static isAvailable() {
 		return /^https:\/\/yhx-12243\.github\.io\/OI\-transit\/records\//.exec(location.href)
 	}
 	render($e) {

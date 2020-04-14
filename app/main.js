@@ -6,7 +6,7 @@ window.lavandula = {
 	button: new (require('./button.js'))(),
 }
 
-$('body').ready(function () {
+$(document).ready(function () {
 	if (lavandula.reader.load()) {
 		$('body').append(lavandula.reader.create())
 	}

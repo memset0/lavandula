@@ -1,4 +1,4 @@
-const { createElement } = require('./untils.js')
+const { createElement } = require('./utils.js')
 
 class Button {
 	create() {

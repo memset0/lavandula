@@ -1,7 +1,7 @@
 const BaseReader = require('./base.js')
 
 class CnblogsReader extends BaseReader {
-	static checkAvailableUrl() {
+	static isAvailable() {
 		return /^https:\/\/www\.cnblogs\.com\/[a-zA-Z0-9_]+\/p/.exec(location.href)
 	}
 	render($e) {

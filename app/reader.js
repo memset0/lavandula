@@ -1,4 +1,4 @@
-const { createElement } = require('./untils.js')
+const { createElement } = require('./utils.js')
 
 class Reader {
 	toggle() {
@@ -9,7 +9,7 @@ class Reader {
 	load() {
 		this.loaded = false
 		Object.values(this.readerLib).forEach(Reader => {
-			if (Reader.checkAvailableUrl()) {
+			if (Reader.isAvailable()) {
 				this.reader = new Reader()
 				this.loaded = true
 			}

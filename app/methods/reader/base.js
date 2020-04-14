@@ -1,5 +1,5 @@
 class BaseReader {
-	static checkAvailableUrl() {
+	static isAvailable() {
 		return false
 	}
 	render($e) {

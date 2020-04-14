@@ -1,7 +1,7 @@
 const BaseReader = require('./base.js')
 
 class ZyblogReader extends BaseReader {
-	static checkAvailableUrl() {
+	static isAvailable() {
 		return /^https:\/\/www\.zybuluo\.com\/[a-zA-Z0-9_]+\/note/.exec(location.href)
 	}
 	render($e) {
