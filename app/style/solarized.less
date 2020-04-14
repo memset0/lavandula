@@ -60,26 +60,30 @@
 	.hljs-strong {
 		font-weight: bold !important;
 	}
-
-	ul {
-		list-style: decimal !important;
-		margin: 0 0 0 40px !important;
-		padding: 0 !important;
-	}
-	ul li {
-		border-left: 2px solid #ddd !important;
-		margin: 0 !important;
-		padding: 0 0 0 10px !important;
-		word-break: break-all !important;
-		word-wrap: break-word !important;
-	}
+	@line-height: 20px !important;
 	code {
-		line-height: 20px !important;
+		line-height: @line-height;
 		font-size: 14px !important;
-		span, li {
-			line-height: 20px !important;
+		span {
+			line-height: @line-height;
 			font-size: 14px !important;
 			font-family: Consolas, Courier, 'Courier New', monospace;
 		}
+	}
+	.lavandula-line {
+		display: inline-block !important;
+		line-height: @line-height;
+		height: @line-height;
+		width: 100%;
+		&:hover {
+			background: #f0e7d4 !important;
+		}
+	}
+	.lavandula-line-number {
+		width: 48px !important;
+		padding-right: 16px !important;
+		text-align: right !important;
+		display: inline-block !important;
+		color: #967734 !important
 	}
 }

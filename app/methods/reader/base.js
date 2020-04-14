@@ -20,7 +20,18 @@ class BaseReader {
 	render_highlight($e) {
 		$e.find("pre.lavandula-hljs code").each(function () {
 			hljs.highlightBlock(this)
-			$(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
+			let array = new Array
+			let counter = 0
+			$(this).html().split('\n').forEach((value) => {
+				array.push('<span class="lavandula-line">' +
+					'<span class="lavandula-line-number">' +
+					(++counter) +
+					'</span>' +
+					value +
+					'</span>'
+				)
+			})
+			$(this).html(array.join('\n'));
 		});
 	}
 	constructor() {
