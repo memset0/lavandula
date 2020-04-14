@@ -35,9 +35,8 @@ function stringifyLatex($e) {
 		this.outerHTML = createElement('span', {
 			class: "lavandula-mathjax-display",
 			"lavandula-latex-data": data
-		},{
-			text: '$$' + text + '$$'
-		}).prop("outerHTML")
+		}).text('$$' + text + '$$')
+			.prop("outerHTML")
 	})
 	$e.find("script[type='math/tex']").each(function () {
 		let frame = $(`#${$(this).attr('id')}-Frame`).remove().prop('outerHTML')
@@ -46,9 +45,8 @@ function stringifyLatex($e) {
 		this.outerHTML = createElement('span', {
 			class: "lavandula-mathjax",
 			"lavandula-latex-data": data
-		},{
-			text: '$' + text + '$'
-		}).prop("outerHTML")
+		}).text('$' + text + '$')
+			.prop("outerHTML")
 	})
 	// KaTeX
 	$e.find("span.katex-display").each(function () {
@@ -57,9 +55,8 @@ function stringifyLatex($e) {
 		this.outerHTML = createElement('span', {
 			class: "lavandula-katex-display",
 			"lavandula-latex-data": data
-		},{
-			text: '$$' + text + '$$'
-		}).prop("outerHTML")
+		}).text('$$' + text + '$$')
+			.prop("outerHTML")
 	})
 	$e.find("span.katex").each(function () {
 		let data = btoa(encodeURIComponent(this.outerHTML))
@@ -67,9 +64,8 @@ function stringifyLatex($e) {
 		this.outerHTML = createElement('span', {
 			class: "lavandula-katex",
 			"lavandula-latex-data": data
-		},{
-			text: '$' + text + '$'
-		}).prop("outerHTML")
+		}).text('$' + text + '$')
+			.prop("outerHTML")
 	})
 }
 
@@ -108,9 +104,7 @@ class StringifyLatex extends BaseTool {
 	create() {
 		this.button = createElement('button', {
 			class: 'lavandula-btn lavandula-btn-block'
-		}, {
-			text: '文本化 LaTeX 公式'
-		})
+		}).text('文本化 LaTeX 公式')
 		this.ele = createElement('div', {
 			id: 'lavandula-tools-stringify-latex',
 			class: 'lavandula-panel-card'

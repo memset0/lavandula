@@ -22,6 +22,6 @@ tampermonkey:
     - https://codeforces.com/gym/*
   require:
     - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/jquery.min.js
-    - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/lodash.min.js
+    # - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/lodash.min.js
     - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/highlight.min.js
   grant: none
