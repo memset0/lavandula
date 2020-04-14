@@ -4,7 +4,7 @@ notes:
 tampermonkey:
   name: lavandula
   description: memset0 的 Toy Project 整合包（雾
-  version: 1.1.1
+  version: 1.2.0
   author: memset0
   namespace: lavandula
   match:
