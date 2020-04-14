@@ -37,7 +37,9 @@ mem0 想了想，呐，如果用点方法把这些都打包成一个文件不就
 
 mem0 这么想着，于是 `README.md` 多了下面几行
 
-- 文本化 LaTeX 公式：把 LaTeX 公式反向解析成文本方便复制
+- 文本化 LaTeX 公式
+  - 把 LaTeX 公式反向解析成文本
+  - 再次点击可以变回 LaTeX 公式
 - 博客阅读器
   - CSDN 博客（blog.csdn.net）
   - cnblogs 博客（www.cnblogs.com）
