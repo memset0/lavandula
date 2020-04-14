@@ -18,17 +18,30 @@ class BaseReader {
 				</div>
 			</div>
 		`).appendTo($e)
+		let $subtitle = $e.find('.lavandula-subtitle')
 		if (this.data.author) {
 			if (this.data.author_link) {
 				createElement('a', {
 					href: this.data.author_link,
 					target: '_blank',
-				}).appendTo($e.find('.lavandula-subtitle'))
+				}).appendTo($subtitle)
 					.html(createChipElement(this.data.author, 'person'))
 			} else {
 				createChipElement(this.data.author, 'person')
-					.appendTo($e.find('.lavandula-subtitle'))
+					.appendTo($subtitle)
 			}
+		}
+		if (this.data.tag) {
+			this.data.tag.forEach(tag => {
+				createChipElement(tag)
+					.appendTo($subtitle)
+			})
+		}
+		if (this.data.icon_tag) {
+			this.data.icon_tag.forEach(tag => {
+				createChipElement(tag.text, tag.icon)
+					.appendTo($subtitle)
+			})
 		}
 	}
 	renderPanel($e) {
