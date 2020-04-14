@@ -3,9 +3,8 @@ notes:
   - "Github Repo => https://github.com/memset0/lavandula"
 tampermonkey:
   name: lavandula
-  description: memset0 的 Toy Project 整合包（雾
-  version: 1.2.0
   author: memset0
+  description: memset0 的 Toy Project 整合包（雾
   namespace: lavandula
   match:
     - https://blog.csdn.net/*

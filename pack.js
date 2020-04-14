@@ -2,7 +2,12 @@ const _ = require('lodash')
 const fs = require('fs')
 const YAML = require('yaml')
 
-config = YAML.parse(fs.readFileSync('config.yml').toString())
+let config = YAML.parse(fs.readFileSync('config.yml').toString());
+let npmConfig = JSON.parse(fs.readFileSync('package.json').toString());
+
+['version', 'license'].forEach(key => {
+	config.tampermonkey[key] = npmConfig[key]
+})
 
 fs.writeFileSync('dist/user.js', (() => {
 	let result = ''
