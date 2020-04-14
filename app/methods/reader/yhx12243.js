@@ -1,5 +1,5 @@
 const BaseReader = require('./base.js')
-const { createLinksCardElement } = require('../../utils.js')
+const { createLinksPanelElement } = require('../../utils.js')
 
 const links = [
 	{ text: '做题记录', href: 'https://yhx-12243.github.io/OI-transit/index.html' },
@@ -41,10 +41,10 @@ class Yhx12243Reader extends BaseReader {
 		super.renderHighlight($e)
 	}
 	panelLinks() {
-		return createLinksCardElement('链接', links)
+		return createLinksPanelElement('链接', links)
 	}
 	panelOJ() {
-		return createLinksCardElement('OJ', OJLinks)
+		return createLinksPanelElement('OJ', OJLinks)
 	}
 	renderPanel($e) {
 		super.renderPanel($e)

@@ -10,30 +10,27 @@ function createChipElement(icon, text) {
 		`)
 }
 
-function createLinksCardElement(title, links) {
+function createLinksPanelElement(title, links) {
 	let content = createElement('ul')
 	links.forEach(link => {
+		let a = createElement('a', { href: link.href, target: '_blank' })
+			.text(link.text)
 		createElement('li')
 			.appendTo(content)
-			.append(
-				createElement('a', { href: link.href, target: '_blank' })
-					.text(link.text)
-			)
+			.append(a)
 	})
 	let element = createElement('div', { class: 'lavandula-panel-card' })
-		.append(
-			createElement('div', { class: 'lavandula-panel-card-title' })
-				.text(title)
-		)
-		.append(
-			createElement('div', { class: 'lavandula-panel-card-content' })
-				.append(content)
-		)
+	createElement('div', { class: 'lavandula-panel-card-title' })
+		.appendTo(element)
+		.text(title)
+	createElement('div', { class: 'lavandula-panel-card-content' })
+		.appendTo(element)
+		.append(content)
 	return element
 }
 
 module.exports = {
 	createElement: createElement,
 	createChipElement: createChipElement,
-	createLinksCardElement: createLinksCardElement,
+	createLinksPanelElement: createLinksPanelElement,
 }
