@@ -1,4 +1,29 @@
 const BaseReader = require('./base.js')
+const { createLinksCardElement } = require('../../utils.js')
+
+const links = [
+	{ text: '做题记录', href: 'https://yhx-12243.github.io/OI-transit/index.html' },
+	{ text: '小工具', href: 'https://yhx-12243.github.io/OI-transit/tools.html' },
+	{ text: '模板', href: 'https://yhx-12243.github.io/OI-transit/templates.html' },
+	{ text: '便笺', href: 'https://yhx-12243.github.io/OI-transit/memos.html' },
+]
+
+const OJLinks = [
+	{ text: 'Lydsy', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=Lydsy' },
+	{ text: '洛谷', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=Luogu' },
+	{ text: 'Vijos', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=Vijos' },
+	{ text: 'HDU', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=HDU' },
+	{ text: 'POJ', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=POJ' },
+	{ text: 'UOJ', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=UOJ' },
+	{ text: 'LibreOJ', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=LibreOJ' },
+	{ text: 'SimpleOJ/StupidOJ', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=SOJ' },
+	{ text: 'Codeforces', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=Codeforces' },
+	{ text: 'Codechef', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=Codechef' },
+	{ text: 'AtCoder', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=AtCoder' },
+	{ text: 'SPOJ', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=SPOJ' },
+	{ text: '本地', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=Local' },
+	{ text: '其它 OJ', href: 'https://yhx-12243.github.io/OI-transit/index.html?curLoc=Unknown' },
+]
 
 class Yhx12243Reader extends BaseReader {
 	static isAvailable() {
@@ -14,6 +39,17 @@ class Yhx12243Reader extends BaseReader {
 				$(this).html($('<div/>').text($(this).text()).html())
 			})
 		super.renderHighlight($e)
+	}
+	panelLinks() {
+		return createLinksCardElement('链接', links)
+	}
+	panelOJ() {
+		return createLinksCardElement('OJ', OJLinks)
+	}
+	renderPanel($e) {
+		super.renderPanel($e)
+		$e.append(this.panelLinks())
+		$e.append(this.panelOJ())
 	}
 	constructor() {
 		super()
