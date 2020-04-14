@@ -29,6 +29,7 @@ class Reader {
 		this.readerLib = {
 			csdn: require('./methods/reader/csdn.js'),
 			cnblogs: require('./methods/reader/cnblogs.js'),
+			zybuluo: require('./methods/reader/zybuluo.js'),
 			yhx12243: require('./methods/reader/yhx12243.js'),
 		}
 	}

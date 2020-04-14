@@ -6,12 +6,13 @@ window.lavandula = {
 	button: new (require('./button.js'))(),
 }
 
-if (lavandula.reader.load()) {
-	$('body').append(lavandula.reader.create())
-}
-$('body').append(lavandula.panel.create())
-$('body').append(lavandula.button.create())
-
-if (lavandula.reader.load()) {
-	$('#lavandula-toggle-button').click()
-}
+$('body').ready(function () {
+	if (lavandula.reader.load()) {
+		$('body').append(lavandula.reader.create())
+	}
+	$('body').append(lavandula.panel.create())
+	$('body').append(lavandula.button.create())
+	if (lavandula.reader.load()) {
+		$('#lavandula-toggle-button').click()
+	}
+})

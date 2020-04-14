@@ -8,7 +8,7 @@ class CsdnReader extends BaseReader {
 		super.render($e)
 		$e.find('.prettyprint .pre-numbering').remove()
 		$e.find('.prettyprint .hljs-button.signin').remove()
-		$e.find('code')
+		$e.find('pre code')
 			.attr('style', '')
 			.attr('class', '')
 			.attr('onclick', '')
