@@ -22,7 +22,7 @@ class BaseReader {
 			hljs.highlightBlock(this)
 			let array = new Array
 			let counter = 0
-			$(this).html().split('\n').forEach((value) => {
+			$(this).html().trim().split('\n').forEach((value) => {
 				array.push('<span class="lavandula-line">' +
 					'<span class="lavandula-line-number">' +
 					(++counter) +
