@@ -24,7 +24,9 @@ class Panel {
 		createElement('div', { id: 'lavandula-panel-reader' })
 			.appendTo(this.ele)
 			.each(function () {
-				lavandula.reader.reader.renderPanel($(this))
+				if (lavandula.reader.reader) {
+					lavandula.reader.reader.renderPanel($(this))
+				}
 			})
 		return this.ele
 	}
