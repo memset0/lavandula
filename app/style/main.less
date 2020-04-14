@@ -52,6 +52,35 @@
 	margin-bottom: 20px;
 }
 
+.lavandula-codeforces {
+	.lavandula-codeforces-input,
+	.lavandula-codeforces-output {
+		.lavandula-card();
+		margin-bottom: 20px;
+		@line-height: 20px;
+		@padding: 12px;
+		.title {
+			background: @theme-color;
+			color: #fff;
+			padding: @padding;
+			font-weight: 500;
+			font-size: 16px;
+			line-height: @line-height;
+		}
+		pre {
+			margin-bottom: 0px;
+			border: none;
+		}
+		.lavandula-codeforces-copier {
+			.lavandula-btn();
+			color: #fff !important;
+			margin: @padding * -1;
+			height: @line-height + @padding * 2;
+			line-height: @line-height + @padding * 2;
+		}
+	}
+}
+
 #lavandula-toggle-button {
 	.lavandula-base-style();
 	@padding: 32px;
