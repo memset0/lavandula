@@ -8,6 +8,10 @@ class CnblogsReader extends BaseReader {
 		super.render($e)
 		$e.find('div.cnblogs_Highlighter')
 			.attr('class', '')
+			.each(function () {
+				let code = $('<div/>').text($(this).find('pre').text()).html()
+				$(this).html(`<pre><code>${code}</code></pre>`)
+			})
 		$e.find('pre code')
 			.attr('style', '')
 			.attr('class', '')
@@ -16,7 +20,7 @@ class CnblogsReader extends BaseReader {
 			})
 		$e.find('pre')
 			.attr('style', '')
-			.attr('class', 'hljs lavandula-hljs')
+			.attr('class', 'lavandula-hljs')
 		super.render_highlight($e)
 	}
 	constructor() {

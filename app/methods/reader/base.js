@@ -18,10 +18,10 @@ class BaseReader {
 		`)
 	}
 	render_highlight($e) {
-		$e.find("pre.lavandula-hljs code").each(function(){
-			$(this).html("<ul><li>" + $(this).html().replace(/\n/g,"\n</li><li>") +"\n</li></ul>");
+		$e.find("pre.lavandula-hljs code").each(function () {
+			hljs.highlightBlock(this)
+			$(this).html("<ul><li>" + $(this).html().replace(/\n/g, "\n</li><li>") + "\n</li></ul>");
 		});
-		hljs.initHighlightingOnLoad();
 	}
 	constructor() {
 	}

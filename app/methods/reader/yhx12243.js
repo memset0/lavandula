@@ -7,7 +7,7 @@ class Yhx12243Reader extends BaseReader {
 	render($e) {
 		super.render($e)
 		$e.find('pre')
-			.attr('class', 'hljs lavandula-hljs')
+			.attr('class', 'lavandula-hljs')
 		$e.find('pre code')
 			.attr('class', '')
 			.each(function () {

@@ -17,7 +17,7 @@ class CsdnReader extends BaseReader {
 			})
 		$e.find('pre')
 			.attr('style', '')
-			.attr('class', 'hljs lavandula-hljs')
+			.attr('class', 'lavandula-hljs')
 		super.render_highlight($e)
 	}
 	constructor() {

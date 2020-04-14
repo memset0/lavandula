@@ -7,7 +7,7 @@ class ZyblogReader extends BaseReader {
 	render($e) {
 		super.render($e)
 		$e.find('pre')
-			.attr('class', 'hljs lavandula-hljs')
+			.attr('class', 'lavandula-hljs')
 			.each(function () {
 				let code = ''
 				$(this).find('code').each(function() {
