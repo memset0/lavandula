@@ -10,7 +10,7 @@ class Panel {
 			class: 'lavandula-hide'
 		})
 		this.eleInfo = $(`
-			<div id="lavandula-panel-info" class="lavandula-card">
+			<div id="lavandula-panel-info" class="lavandula-panel-card">
 				<div class="lavandula-card-primary">
 					<div class="lavandula-card-primary-title">${$('title').first().html()}</div>
 				</div>
@@ -23,6 +23,9 @@ class Panel {
 			})
 		createElement('div', { id: 'lavandula-panel-reader' })
 			.appendTo(this.ele)
+			.each(function () {
+				lavandula.reader.reader.renderPanel($(this))
+			})
 		return this.ele
 	}
 	remove() {

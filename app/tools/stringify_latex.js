@@ -113,7 +113,7 @@ class StringifyLatex extends BaseTool {
 		})
 		this.ele = createElement('div', {
 			id: 'lavandula-tools-stringify-latex',
-			class: 'lavandula-card lavandula-card-with-button'
+			class: 'lavandula-panel-card'
 		}).append(this.button)
 		this.button.click(this.click)
 		return this.ele

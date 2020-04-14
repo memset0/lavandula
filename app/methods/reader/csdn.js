@@ -1,4 +1,5 @@
 const BaseReader = require('./base.js')
+const { createLinksCardElement } = require('../../utils.js')
 
 class CsdnReader extends BaseReader {
 	static isAvailable() {
@@ -19,6 +20,33 @@ class CsdnReader extends BaseReader {
 			.attr('style', '')
 			.attr('class', 'lavandula-hljs')
 		super.renderHighlight($e)
+	}
+	panelCategory() {
+		let links = new Array()
+		$('div#asideCategory div.aside-content ul li a').each(function () {
+			links.push({
+				href: $(this).attr('href'),
+				text: $(this).find('.title.oneline').text().trim(),
+			})
+		})
+		return createLinksCardElement('分类', links)
+	}
+	panelArchive() {
+		let links = new Array()
+		$('div#asideArchive ul.archive-list li a').each(function () {
+			let $e = $(this).clone()
+			$e.find('span').remove()
+			links.push({
+				href: $e.attr('href'),
+				text: $e.text().trim(),
+			})
+		})
+		return createLinksCardElement('归档', links)
+	}
+	renderPanel($e) {
+		super.renderPanel($e)
+		$e.append(this.panelCategory())
+		$e.append(this.panelArchive())
 	}
 	constructor() {
 		super()

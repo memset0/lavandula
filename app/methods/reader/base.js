@@ -31,7 +31,7 @@ class BaseReader {
 			}
 		}
 	}
-	renderPenal($e) {
+	renderPanel($e) {
 	}
 	renderHighlight($e) {
 		$e.find("pre.lavandula-hljs code").each(function () {

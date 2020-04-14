@@ -1,6 +1,7 @@
 @import "mdui.less";
 @import 'solarized.less';
 
+@theme-color: #3f51b5;
 @theme-font: Lato,
 	-apple-system,
 	'PingFang SC',/* Apple */
@@ -81,7 +82,7 @@
 		left: (@panel-width + 25px) * -1;
 	}
 	#lavandula-panel-info {
-		&.lavandula-card {
+		&.lavandula-panel-card {
 			.lavandula-card-primary {
 				padding: 12px;
 				.lavandula-card-primary-title {
@@ -91,9 +92,21 @@
 			}
 		}
 	}
-	.lavandula-card {
+	.lavandula-panel-card {
+		.lavandula-card();
 		margin-bottom: 20px;
-		&.lavandula-card-btn {
+		.lavandula-panel-card-title {
+			background: @theme-color;
+			color: #fff;
+			padding: 12px;
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 24px;
+		}
+		.lavandula-panel-card-content {
+			padding: 12px;
+			font-size: 14px;
+			line-height: 22px;
 		}
 	}
 	.lavandula-btn {
