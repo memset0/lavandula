@@ -18,11 +18,27 @@
 
 .lavandula-base-style {
 	z-index: 114514;
-	&, * {
+	&, *, &:after, *:after, &:before, *:before {
 		box-sizing: border-box;
 	}
 	&, div, p, h1, h2, h3, h4, h5, h6 {
 		font-family: @theme-font;
+	}
+	::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 5px;
+		height: 10px;
+	}
+	::-webkit-scrollbar-thumb {
+		cursor: pointer;
+		border-radius: 5px;
+		background: rgba(0, 0, 0, 0.25);
+		-webkit-transition: color 0.2s ease;
+		transition: color 0.2s ease;
+	}
+	::-webkit-scrollbar-track {
+		background: rgba(0, 0, 0, 0.1);
+		border-radius: 0px;
 	}
 }
 
@@ -37,6 +53,7 @@
 	height: @width;
 	border-radius: @width / 4;
 	background-image: @theme-background;
+	.lavandula-shadow-2();
 }
 
 #lavandula-panel {
@@ -49,7 +66,7 @@
 	transition: 0.25s ease-out;
 	background: #fafafa;
 	padding: 20px;
-	overflow: scroll;
+	overflow-y: scroll;
 	.lavandula-shadow-6();
 	&.lavandula-hide{
 		left: (@panel-width + 25px) * -1;
@@ -76,7 +93,7 @@
 	width: 100%;
 	padding-left: @panel-width;
 	background: #fff;
-	overflow: scroll;
+	overflow-y: scroll;
 	transition: opacity 0.5s ease-out;
 	opacity: 1;
 	&.lavandula-hide {
