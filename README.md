@@ -50,7 +50,7 @@ mem0 这么想着，于是 `README.md` 多了下面几行
 
 ## 呐呐呐，你讲了这么多，我可咋安装啊
 
-由于 mem0 还在写，所以还没把 userjs 发布到 Greasy Fork 上。欧尼酱可以在 [Github Action](https://github.com/memset0/lavandula/actions) 里下载自动构建的版本，或者按照下面的方法手动打包 qwq~
+由于 mem0 还在写，所以还没把 userjs 发布到 Greasy Fork 上。欧尼酱可以在 [Github Actions](https://github.com/memset0/lavandula/actions) 中 commit 对应的运行记录里找到 "Artifacts" 来下载自动构建的版本，或者按照下面的方法手动打包 qwq~
 
 欧尼酱要装好 npm & webpack & nodemon 并配置路径，把这个仓库 git clone 到本地，依次运行这些命令就好啦。
 
