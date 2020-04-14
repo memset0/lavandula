@@ -22,22 +22,33 @@ const availableUrlList = [ // unused
 function stringifyLatex($e) {
 	console.log('[lavandula] stringify latex', $e)
 	// MathJax
-	$e.find(".MathJax").remove()
-	$e.find(".MathJax_SVG").remove()
-	$e.find(".MathJax_CHTML").remove()
-	$e.find(".MathJax_Display").remove()
-	$e.find(".MathJax_Preview").remove()
-	$e.find("script[type='math/tex']").each(function () {
-		this.outerHTML =
-			' <span>$' +
-			$.trim(this.innerHTML) +
-			'$</span> '
-	})
+	// $e.find("script[type='math/tex; mode=display']").each(function () {
+	// 	this.outerHTML =
+	// 		' <span style="display:block;margin:auto;width:80%;padding:20px">$$' +
+	// 		$.trim(this.innerHTML) +
+	// 		'$$</span> '
+	// })
 	$e.find("script[type='math/tex; mode=display']").each(function () {
-		this.outerHTML =
-			' <span style="display:block;margin:auto;width:80%;padding:20px">$$' +
-			$.trim(this.innerHTML) +
-			'$$</span> '
+		let frame = $(`#${$(this).attr('id')}-Frame`).parent().remove().prop('outerHTML')
+		let data = btoa(encodeURIComponent(frame + this.outerHTML))
+		let text = $.trim(this.innerHTML)
+		this.outerHTML = createElement('span', {
+			class: "lavandula-mathjax-display",
+			"lavandula-latex-data": data
+		},{
+			text: '$$' + text + '$$'
+		}).prop("outerHTML")
+	})
+	$e.find("script[type='math/tex']").each(function () {
+		let frame = $(`#${$(this).attr('id')}-Frame`).remove().prop('outerHTML')
+		let data = btoa(encodeURIComponent(frame + this.outerHTML))
+		let text = $.trim(this.innerHTML)
+		this.outerHTML = createElement('span', {
+			class: "lavandula-mathjax",
+			"lavandula-latex-data": data
+		},{
+			text: '$' + text + '$'
+		}).prop("outerHTML")
 	})
 	// KaTeX
 	$e.find("span.katex-display").each(function () {
@@ -64,6 +75,8 @@ function stringifyLatex($e) {
 
 function parseLatex($e) {
 	const selectors = [
+		'.lavandula-mathjax',
+		'.lavandula-mathjax-display',
 		'.lavandula-katex',
 		'.lavandula-katex-display',
 	]
