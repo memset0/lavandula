@@ -10,14 +10,12 @@ function matchUrl() {
 	let matchResult = null
 	regExpGroup.forEach(regExp => {
 		matchResult = matchResult || regExp.exec(location.href)
-		console.log(regExp.exec(location.href))
 	})
 	return matchResult
 }
 
 class CodeforcesLinks extends BaseTool {
 	static isAvailable() {
-		console.log(matchUrl())
 		return matchUrl()
 	}
 	match() {
