@@ -1,4 +1,4 @@
-import css from './style.less'
+import css from './style/main.less'
 
 $(document).ready(function () {
 	window.lavandula = {
