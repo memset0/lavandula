@@ -8,14 +8,15 @@ class Panel {
 		this.ele = createElement('div', {
 			id: 'lavandula-panel',
 			class: 'lavandula-hide'
-		})
-		this.ele.append($(`
+		}).append($(`
 			<div id="lavandula-panel-info" class="lavandula-card">
 				<div class="lavandula-card-primary">
 					<div class="lavandula-card-primary-title">${$('title').get(0).innerHTML}</div>
 				</div>
 			</div>
-		`))
+		`)).append(
+			window.lavandula.tools.create()
+		)
 		return this.ele
 	}
 	remove() {

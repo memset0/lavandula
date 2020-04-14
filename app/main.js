@@ -1,18 +1,18 @@
 import css from './style.less'
 
-window.lavandula = {
-	panel: new (require('./panel.js'))(),
-	reader: new (require('./reader.js'))(),
-	button: new (require('./button.js'))(),
-}
-
 $(document).ready(function () {
-	if (lavandula.reader.load()) {
+	window.lavandula = {
+		tools: new (require('./tools.js'))(),
+		panel: new (require('./panel.js'))(),
+		reader: new (require('./reader.js'))(),
+		button: new (require('./button.js'))(),
+	}
+	if (lavandula.reader.loaded) {
 		$('body').append(lavandula.reader.create())
 	}
 	$('body').append(lavandula.panel.create())
 	$('body').append(lavandula.button.create())
-	if (lavandula.reader.load()) {
+	if (lavandula.reader.loaded) {
 		$('#lavandula-toggle-button').click()
 	}
 })
