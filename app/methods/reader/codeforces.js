@@ -5,6 +5,10 @@ function matchUrl() {
 	const regExpGroup = [
 		/^https\:\/\/codeforces\.com\/contest\/(?<round>[0-9]+)\/problem\/(?<problem>[A-Z]+[0-9]*)$/,
 		/^https\:\/\/codeforces\.com\/problemset\/problem\/(?<round>[0-9]+)\/(?<problem>[A-Z]+[0-9]*)$/,
+		/^https\:\/\/codeforces\.ml\/contest\/(?<round>[0-9]+)\/problem\/(?<problem>[A-Z]+[0-9]*)$/,
+		/^https\:\/\/codeforces\.ml\/problemset\/problem\/(?<round>[0-9]+)\/(?<problem>[A-Z]+[0-9]*)$/,
+		/^https\:\/\/codeforc\.es\/contest\/(?<round>[0-9]+)\/problem\/(?<problem>[A-Z]+[0-9]*)$/,
+		/^https\:\/\/codeforc\.es\/problemset\/problem\/(?<round>[0-9]+)\/(?<problem>[A-Z]+[0-9]*)$/,
 	]
 	let matchResult = null
 	regExpGroup.forEach(regExp => {
