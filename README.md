@@ -40,6 +40,8 @@ mem0 这么想着，于是 `README.md` 多了下面几行
   - cnblogs 博客（www.cnblogs.com）
   - 作业部落（www.zybuluo.com）
   - yhx-12243 的博客（yhx-12243.github.io）
+- CodeForces 小助手
+  - 帮你在 CodeForces 的各个页面中快速跳转
   
 <br>
 
