@@ -18,8 +18,15 @@ tampermonkey:
     - https://loj.ac/problem/*
     - https://duck.ac/problem/*
     - https://floj.tech/problem/*
+    - https://codeforces.com/problemset/*
     - https://codeforces.com/contest/*
     - https://codeforces.com/gym/*
+    - https://codeforces.ml/problemset/*
+    - https://codeforces.ml/contest/*
+    - https://codeforces.ml/gym/*
+    - https://codeforc.es/problemset/*
+    - https://codeforc.es/contest/*
+    - https://codeforc.es/gym/*
   require:
     - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/jquery.min.js
     # - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/lodash.min.js
