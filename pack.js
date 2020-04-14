@@ -17,6 +17,11 @@ fs.writeFileSync('dist/user.js', (() => {
 		}
 	})
 	result += '// ==/UserScript==\n'
+	result += '// ==Notes==\n'
+	_.each(config.notes, (val) => {
+		result += `// ${val}\n`
+	})
+	result += '// ==/Notes==\n'
 	result += fs.readFileSync('dist/bundle.js').toString()
 	return result
 })())
