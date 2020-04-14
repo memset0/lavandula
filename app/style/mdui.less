@@ -1,3 +1,8 @@
+// fix
+a.lavandula-chip {
+	color: #333 !important;
+}
+
 // 深色颜色的不透明度
 @opacity-black-text: 0.87;
 @opacity-black-secondary: 0.54;
@@ -406,6 +411,77 @@
 	img {
 		max-width: 100%;
 	}
+}
+
+// 纸片
+@chip-height: 32px;
+.lavandula-chip {
+  box-sizing: border-box;
+  display: inline-block;
+  height: @chip-height;
+  border-radius: @chip-height / 2;
+  white-space: nowrap;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  user-select: none;
+	margin: 2px 0;
+	transition: box-shadow .25s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .25s cubic-bezier(.4,0,.2,1);
+	&:hover{
+		.lavandula-shadow-2();
+	}
+  &:active {
+    background-color: #d6d6d6;
+  }
+}
+.lavandula-chip-icon {
+  position: relative;
+  height: @chip-height;
+  width: @chip-height;
+  border-radius: 50%;
+  margin-right: -4px;
+  font-size: 18px;
+  line-height: @chip-height;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  text-align: center;
+  background-color: #989898;
+  color: #ffffff;
+  .lavandula-icon {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    color: #ffffff;
+  }
+}
+.lavandula-chip-title {
+  height: @chip-height;
+  line-height: @chip-height;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 14px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.lavandula-chip-delete {
+  height: 24px;
+  width: 24px;
+  opacity: .54;
+  cursor: pointer;
+  margin-left: -8px;
+  margin-right: 4px;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 50%;
+  will-change: opacity;
+  transition: opacity .25s cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    opacity: .87;
+  }
 }
 
 // 按钮

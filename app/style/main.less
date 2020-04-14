@@ -111,29 +111,39 @@
 	height: 100%;
 	width: 100%;
 	padding-left: @panel-width;
-	background: #fff;
 	overflow-y: scroll;
 	transition: opacity 0.5s ease-out;
 	opacity: 1;
+	background: #fff;
 	&.lavandula-hide {
 		pointer-events: none;
 		opacity: 0;
 	}
 	.lavandula-container {
-		padding-top: 40px;
-		padding-bottom: 40px;
-		.lavandula-title {
-			width: 100%;
-			text-align: center;
-			font-size: 32px;
-			line-height: 40px;
-		}
-		.lavandula-typo {
+		padding: 80px 0;
+		.lavandula-content {
 			width: 75%;
 			margin-left: auto;
 			margin-right: auto;
-			&, p, a, blockquote li {
-				font-size: 16px;
+			// .lavandula-shadow-6();
+			.lavandula-title {
+				width: 100%;
+				text-align: center;
+				font-size: 28px;
+				line-height: 40px;
+				letter-spacing: 0.5px;
+				margin: 20px 0;
+			}
+			.lavandula-subtitle {
+				text-align: center;
+				margin: 20px 0;
+			}
+			.lavandula-typo {
+				margin-left: auto;
+				margin-right: auto;
+				&, p, a, blockquote li {
+					font-size: 16px;
+				}
 			}
 		}
 	}
