@@ -20,7 +20,9 @@ class Reader {
 			id: 'lavandula-reader',
 			class: 'lavandula-hide',
 		})
+		this.elePanel = $('lavandula-panel-reader')
 		this.reader.render(this.ele)
+		this.reader.renderPenal(this.elePanel)
 		return this.ele
 	}
 	constructor() {

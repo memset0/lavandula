@@ -16,7 +16,7 @@ class ZyblogReader extends BaseReader {
 				code = $('<div/>').text(code).html()
 				$(this).html(`<code>${code}</code>`)
 			})
-		super.render_highlight($e)
+		super.renderHighlight($e)
 	}
 	constructor() {
 		super()

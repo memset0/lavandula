@@ -1,29 +1,39 @@
+const { createElement, createChipElement } = require('../../utils.js')
+
 class BaseReader {
 	static isAvailable() {
 		return false
 	}
 	render($e) {
-		console.log(this.data, $e)
-		$e.append(`
+		$(`
 			<div class="lavandula-container">
 				<div class="lavandula-content">
 					<div class="lavandula-title">
 						${this.data.title}
 					</div>
-					<div class="lavandula-subtitle">
-						<a class="lavandula-chip" href="${this.data.author_link || '#'}">
-							<span class="lavandula-chip-icon"><i class="lavandula-icon material-icons">person</i></span>
-							<span class="lavandula-chip-title">${this.data.author}</span>
-						</a>
-					</div>
+					<div class="lavandula-subtitle"></div>
 					<div class="lavandula-typo">
 						${this.data.content}
 					</div>
 				</div>
 			</div>
-		`)
+		`).appendTo($e)
+		if (this.data.author) {
+			if (this.data.author_link) {
+				createElement('a', {
+					href: this.data.author_link,
+					target: '_blank',
+				}).appendTo($e.find('.lavandula-subtitle'))
+					.html(createChipElement('person', this.data.author))
+			} else {
+				createChipElement('person', this.data.author)
+					.appendTo($e.find('.lavandula-subtitle'))
+			}
+		}
 	}
-	render_highlight($e) {
+	renderPenal($e) {
+	}
+	renderHighlight($e) {
 		$e.find("pre.lavandula-hljs code").each(function () {
 			hljs.highlightBlock(this)
 			let array = new Array

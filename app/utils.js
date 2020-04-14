@@ -9,6 +9,16 @@ function createElement(tag, attrs = {}, extend = {}) {
 	return ele
 }
 
+function createChipElement(icon, text) {
+	return createElement('div', {
+		class: 'lavandula-chip'
+	}).html(`
+		<span class="lavandula-chip-icon"><i class="lavandula-icon material-icons">${icon}</i></span>
+		<span class="lavandula-chip-title">${text}</span>
+	`)
+}
+
 module.exports = {
 	createElement: createElement,
+	createChipElement: createChipElement,
 }
