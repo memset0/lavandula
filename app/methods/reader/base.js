@@ -31,6 +31,10 @@ class BaseReader {
 					.appendTo($subtitle)
 			}
 		}
+		if (this.data.time) {
+			createChipElement(this.data.time, 'date_range')
+				.appendTo($subtitle)
+		}
 		if (this.data.tag) {
 			this.data.tag.forEach(tag => {
 				createChipElement(tag)
