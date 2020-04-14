@@ -5,20 +5,17 @@ class BaseReader {
 		return false
 	}
 	render($e) {
-		$(`
-			<div class="lavandula-container">
-				<div class="lavandula-content">
-					<div class="lavandula-title">
-						${this.data.title}
-					</div>
-					<div class="lavandula-subtitle"></div>
-					<div class="lavandula-typo">
-						${this.data.content}
-					</div>
-				</div>
-			</div>
-		`).appendTo($e)
-		let $subtitle = $e.find('.lavandula-subtitle')
+		let $container = createElement('div', { class: 'lavandula-container' })
+			.appendTo($e)
+		let $content = createElement('div', { class: 'lavandula-content' })
+			.appendTo($container)
+		let $title = createElement('div', { class: 'lavandula-title' })
+			.appendTo($content)
+		if (this.data.title) {
+			$title.text(this.data.title)
+		}
+		let $subtitle = createElement('div', { class: 'lavandula-subtitle' })
+			.appendTo($content)
 		if (this.data.author) {
 			if (this.data.author_link) {
 				createElement('a', {
@@ -46,6 +43,11 @@ class BaseReader {
 				createChipElement(tag.text, tag.icon)
 					.appendTo($subtitle)
 			})
+		}
+		let $typo = createElement('div', { class: 'lavandula-typo' })
+			.appendTo($content)
+		if (this.data.content) {
+			$typo.html(this.data.content)
 		}
 	}
 	renderPanel($e) {
