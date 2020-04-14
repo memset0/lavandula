@@ -32,14 +32,16 @@ mem0 想了想，呐，如果用点方法把这些都打包成一个文件不就
 
 mem0 这么想着，于是 `README.md` 多了下面几行
 
-- 文本化 LaTeX 公式
-  - 把 LaTeX 公式反向解析成文本
-  - 再次点击可以变回 LaTeX 公式
+- 题面阅读器
+  - CodeForces（codeforces.com）
 - 博客阅读器
   - CSDN 博客（blog.csdn.net）
   - cnblogs 博客（www.cnblogs.com）
   - 作业部落（www.zybuluo.com）
   - yhx-12243 的博客（yhx-12243.github.io）
+- 文本化 LaTeX 公式
+  - 把 LaTeX 公式反向解析成文本
+  - 再次点击可以变回 LaTeX 公式
 - CodeForces 小助手
   - 帮你在 CodeForces 的各个页面中快速跳转
   
