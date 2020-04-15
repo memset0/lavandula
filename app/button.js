@@ -4,6 +4,7 @@ class Button {
 	create() {
 		this.ele = createElement('div', {
 			id: 'lavandula-toggle-button',
+			class: 'lavandula-body',
 			onclick: 'lavandula.panel.toggle(); lavandula.reader.toggle()',
 		})
 		this.ele.append(this.ele)

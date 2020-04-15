@@ -18,7 +18,7 @@ class Reader {
 	create() {
 		this.ele = createElement('div', {
 			id: 'lavandula-reader',
-			class: 'lavandula-hide',
+			class: 'lavandula-body lavandula-hide',
 		})
 		this.reader.render(this.ele)
 		return this.ele

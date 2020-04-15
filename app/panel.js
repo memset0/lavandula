@@ -7,7 +7,7 @@ class Panel {
 	create() {
 		this.ele = createElement('div', {
 			id: 'lavandula-panel',
-			class: 'lavandula-hide'
+			class: 'lavandula-body lavandula-hide'
 		})
 		this.eleInfo = $(`
 			<div id="lavandula-panel-info" class="lavandula-panel-card">
