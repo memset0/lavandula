@@ -1,6 +1,6 @@
 class BaseTool {
 	static isAvailable() {
-		return true
+		return false
 	}
 	constructor() {
 	}

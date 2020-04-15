@@ -92,6 +92,9 @@ class StringifyLatex extends BaseTool {
 	// 	})
 	// 	return flag
 	// }
+	static isAvailable() {
+		return true
+	}
 	click() {
 		if (this.enable) {
 			this.enable = false
