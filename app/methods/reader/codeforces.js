@@ -50,6 +50,7 @@ class CodeforcesReader extends BaseReader {
 							$(this).find('.sample-test .output')
 								.addClass('lavandula-codeforces-output')
 							$(this).find('.sample-test .input-output-copier')
+								.addClass('lavandula-btn')
 								.addClass('lavandula-codeforces-copier')
 						}
 					})

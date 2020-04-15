@@ -1,14 +1,16 @@
 import css from './style/main.less'
 
+GM_addStyle(GM_getResourceText('mdui-css'))
+
 $(document).ready(function () {
-	const mode = 'development'
 	unsafeWindow.lavandula = {
+		mode: 'development',
 		tools: new (require('./tools.js'))(),
 		panel: new (require('./panel.js'))(),
 		reader: new (require('./reader.js'))(),
 		button: new (require('./button.js'))(),
 	}
-	if (mode == 'development') {
+	if (lavandula.mode == 'development') {
 		unsafeWindow.lavandula = Object.assign(unsafeWindow.lavandula, {
 			GM_getValue: GM.getValue,
 			GM_setValue: GM.setValue,
@@ -21,7 +23,7 @@ $(document).ready(function () {
 	}
 	$('body').append(lavandula.panel.create())
 	$('body').append(lavandula.button.create())
-	if (mode == 'development') {
+	if (lavandula.mode == 'development') {
 		if (lavandula.reader.loaded) {
 			$('#lavandula-toggle-button').click()
 		}

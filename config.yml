@@ -33,9 +33,13 @@ tampermonkey:
     - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/low.min.js
     - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/highlight.min.js
     - https://cdn.jsdelivr.net/gh/memset0/lowdb-adapter-greasemonkey/GreasemonkeyAsync.js
+  resource:
+    - mdui-css https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/mdui/mdui.min.js
   grant:
     - unsafeWindow
     - GM.setValue
     - GM.getValue
     - GM.listValue
     - GM.deleteValue
+    - GM_addStyle
+    - GM_getResourceText
