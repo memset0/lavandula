@@ -101,16 +101,16 @@ class StringifyLatex extends BaseTool {
 			stringifyLatex($('body'))
 		}
 	}
-	create() {
-		this.button = createElement('button', {
-			class: 'lavandula-btn lavandula-btn-block'
-		}).text('文本化 LaTeX 公式')
+	create($e) {
 		this.ele = createElement('div', {
 			id: 'lavandula-tools-stringify-latex',
 			class: 'lavandula-panel-card'
-		}).append(this.button)
+		}).appendTo($e)
+		this.button = createElement('button', {
+			class: 'lavandula-btn lavandula-btn-block'
+		}).text('文本化 LaTeX 公式')
+			.appendTo(this.ele)
 		this.button.click(this.click)
-		return this.ele
 	}
 	constructor() {
 		super()

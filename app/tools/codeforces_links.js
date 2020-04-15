@@ -42,9 +42,10 @@ class CodeforcesLinks extends BaseTool {
 			{ text: '注册这场比赛的 Virtual participation', href: `https://codeforces.com/contestRegistration/${round}/virtual/true` },
 		]
 	}
-	create() {
+	create($e) {
 		[this.round, this.problem] = this.match()
-		return this.ele = createLinksPanelElement('CodeForces Links', this.links(this.round, this.problem))
+		this.ele = createLinksPanelElement('CodeForces Links', this.links(this.round, this.problem))
+			.appendTo($e)
 	}
 	constructor() {
 		super()

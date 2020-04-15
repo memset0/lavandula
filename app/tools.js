@@ -4,7 +4,7 @@ class Tools {
 	render($e) {
 		Object.values(this.toolLib).forEach(Tool => {
 			if (Tool.isAvailable()) {
-				$e.append((new Tool()).create())
+				(new Tool()).create($e)
 			}
 		})
 	}
