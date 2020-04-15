@@ -34,5 +34,8 @@ tampermonkey:
     - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/highlight.min.js
     - https://cdn.jsdelivr.net/gh/memset0/lowdb-adapter-greasemonkey/GreasemonkeyAsync.js
   grant:
+    - unsafeWindow
     - GM.setValue
     - GM.getValue
+    - GM.listValue
+    - GM.deleteValue
