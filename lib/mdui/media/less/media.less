@@ -1,0 +1,39 @@
+/**
+ * =============================================================================
+ * ************   Media 媒体工具   ************
+ * =============================================================================
+ */
+
+/* 响应式图片和视频 */
+.lavandula-img-fluid,
+.lavandula-video-fluid {
+  .lavandula-img-fluid();
+}
+
+/* 圆角图片 */
+.lavandula-img-rounded {
+  border-radius: 2px;
+}
+
+/* 圆形图片 */
+.lavandula-img-circle {
+  border-radius: 50%;
+}
+
+// embed
+.lavandula-video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+
+  iframe,
+  object,
+  embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+  }
+}

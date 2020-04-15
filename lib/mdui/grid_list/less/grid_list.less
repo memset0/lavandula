@@ -1,0 +1,127 @@
+/**
+ * =============================================================================
+ * ************   Grid List 网格列表   ************
+ * =============================================================================
+ */
+
+/* 调整网格边距 */
+.lavandula-grid-list {
+  margin: 0 -@grid-list-gutter / 2;
+
+  .lavandula-col,
+  [class*="lavandula-col-xs-"],
+  [class*="lavandula-col-sm-"],
+  [class*="lavandula-col-md-"],
+  [class*="lavandula-col-lg-"],
+  [class*="lavandula-col-xl-"] {
+    padding-left: @grid-list-gutter / 2;
+    padding-right: @grid-list-gutter / 2;
+  }
+}
+
+/* 单元格 */
+.lavandula-grid-tile {
+  box-sizing: border-box;
+  margin-bottom: @grid-list-gutter;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+}
+
+/* 操作栏 */
+.lavandula-grid-tile-actions {
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 48px;
+  max-height: 68px;
+  padding: 16px;
+  box-sizing: border-box;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.2);
+
+  .lavandula-icon {
+    color: #fff;
+  }
+}
+
+/* 操作栏内的文本 */
+.lavandula-grid-tile-text {
+  overflow: hidden;
+  flex: 1;
+}
+
+/* 标题 */
+.lavandula-grid-tile-title {
+  font-size: 16px;
+  height: 16px;
+  line-height: 16px;
+  .lavandula-text-truncate();
+
+  .lavandula-icon {
+    margin-right: 8px;
+  }
+}
+
+/* 副标题 */
+.lavandula-grid-tile-subtitle {
+  margin-top: 4px;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px;
+  .lavandula-text-truncate();
+
+  .lavandula-icon {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+}
+
+/* 操作栏内的按钮 */
+.lavandula-grid-tile-buttons {
+  white-space: nowrap;
+  margin: -8px;
+  flex: none;
+
+  .lavandula-btn {
+    margin-left: 8px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+.lavandula-grid-tile-text + .lavandula-grid-tile-buttons {
+  margin-left: 8px;
+}
+.lavandula-grid-tile-buttons + .lavandula-grid-tile-text {
+  margin-left: 16px;
+}
+
+/* 操作栏位于顶部 */
+.lavandula-grid-tile-actions-top {
+  bottom: auto;
+  top: 0;
+}
+
+/* 操作栏背景透明 */
+.lavandula-grid-tile-actions-transparent {
+  background: transparent;
+}
+
+/* 操作栏背景渐变 */
+.lavandula-grid-tile-actions-gradient {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0));
+
+  &.lavandula-grid-tile-actions-top {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0));
+  }
+}

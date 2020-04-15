@@ -1,0 +1,409 @@
+/**
+ * =============================================================================
+ * ************   Text Field 文本框   ************
+ * =============================================================================
+ */
+
+/* 文本框外层 */
+.lavandula-textfield {
+  position: relative;
+  padding-top: 16px;
+  padding-bottom: 8px;
+  overflow: hidden;
+}
+
+.lavandula-textfield-has-bottom {
+  padding-bottom: 28px;
+}
+
+/* 输入框 */
+.lavandula-textfield-input {
+  width: 100%;
+  overflow: hidden;
+  padding: 8px 0;
+  appearance: none;
+  box-sizing: border-box;
+  border: none;
+  background: none;
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+  margin: 0;
+  height: 36px;
+  line-height: 20px;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  resize: none;
+  transition-property: border-bottom-color, padding-right, box-shadow;
+  transition-duration: .2s;
+  transition-timing-function: @animation-curve-default;
+  border-bottom: 1px solid rgba(0, 0, 0, .42);
+
+  &::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 0.42;
+  }
+
+  &:not([disabled]):hover {
+    border-bottom: 1px solid rgba(0, 0, 0, .87);
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .87);
+    cursor: pointer;
+  }
+
+  &[rows] {
+    height: auto !important;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* 文本框 label */
+.lavandula-textfield-label {
+  pointer-events: none;
+  display: block;
+  font-size: 16px;
+  width: 100%;
+  transform-origin: left;
+  color: rgba(0, 0, 0, 0.54);
+  transition: all .2s;
+  transform: scale(0.75) translateY(0);
+}
+
+/* 表单验证错误提示、帮助文本提示 */
+.lavandula-textfield-error,
+.lavandula-textfield-helper {
+  position: absolute;
+  bottom: 8px;
+  font-size: 12px;
+  .lavandula-text-truncate();
+  height: 12px;
+  line-height: 12px;
+}
+
+.lavandula-textfield-error {
+  color: rgba(red(@color-red-a400), green(@color-red-a400), blue(@color-red-a400), .87);
+  visibility: hidden;
+}
+
+.lavandula-textfield-helper {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+
+/* 表单中的图标
+   ========== */
+.lavandula-textfield {
+  .lavandula-icon {
+    position: absolute;
+    bottom: 8px;
+    color: @color-black-icon;
+    padding: 6px;
+
+    ~ .lavandula-textfield-label,
+    ~ .lavandula-textfield-input,
+    ~ .lavandula-textfield-error,
+    ~ .lavandula-textfield-helper,
+    ~ .lavandula-textfield-flex-wrap {
+      margin-left: 56px;
+      width: calc(~"100% - 56px");
+    }
+  }
+}
+
+.lavandula-textfield-has-bottom {
+  .lavandula-icon {
+    bottom: 28px;
+  }
+}
+
+/* 聚焦状态的文本框
+   ============= */
+.lavandula-textfield-focus {
+
+  .lavandula-textfield-input,
+  .lavandula-textfield-input:hover {
+    border-bottom-color: @color-default-a700;
+    box-shadow: 0 1px 0 0 @color-default-a700;
+  }
+
+  .lavandula-textfield-label,
+  .lavandula-icon {
+    color: rgba(red(@color-default-a700), green(@color-default-a700), blue(@color-default-a700), .87);
+  }
+}
+
+/* 含有浮动标签的文本框
+   ================ */
+.lavandula-textfield-floating-label {
+
+  .lavandula-textfield-label {
+    transform: scale(1) translateY(27px);
+    color: rgba(0, 0, 0, 0.35);
+  }
+
+  &.lavandula-textfield-focus,
+  &.lavandula-textfield-not-empty {
+    .lavandula-textfield-label {
+      transform: scale(0.75) translateY(0);
+      color: rgba(0, 0, 0, 0.65);
+    }
+  }
+  &.lavandula-textfield-focus {
+    .lavandula-textfield-label {
+      .lavandula-text-color(@color-accent-default-name);
+    }
+  }
+}
+
+/* 可展开文本框，默认向右展开
+   ========== */
+.lavandula-textfield-expandable {
+  width: 36px;
+  padding: 1px 0;
+  min-height: 36px;
+  transition: width .3s @animation-curve-default;
+
+  .lavandula-icon {
+    bottom: 0;
+    padding: 0;
+  }
+
+  .lavandula-textfield-input {
+    margin-left: 36px;
+    width: calc(~"100% - 36px");
+    padding-right: 0;
+  }
+
+  .lavandula-textfield-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .lavandula-textfield-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(0);
+  }
+
+  &.lavandula-textfield-expanded {
+    width: 100%;
+
+    .lavandula-textfield-input {
+      padding-right: 36px;
+    }
+
+    .lavandula-textfield-close {
+      transform: scale(1);
+    }
+  }
+}
+
+/* 表单验证不通过
+   =========== */
+.lavandula-textfield-invalid,
+.lavandula-textfield-invalid-html5 {
+
+  .lavandula-textfield-input,
+  &.lavandula-textfield-focus .lavandula-textfield-input {
+    border-bottom-color: @color-red-a400 !important;
+    box-shadow: 0 1px 0 0 @color-red-a400 !important;
+  }
+
+  .lavandula-textfield-label {
+    color: @color-red-a400 !important;
+  }
+
+  &.lavandula-textfield-floating-label {
+    .lavandula-textfield-label {
+      color: rgba(red(@color-red-a400), green(@color-red-a400), blue(@color-red-a400), 0.35) !important;
+    }
+
+    &.lavandula-textfield-focus,
+    &.lavandula-textfield-not-empty {
+      .lavandula-textfield-label {
+        color: @color-red-a400 !important;
+      }
+    }
+  }
+
+  .lavandula-textfield-error {
+    visibility: visible;
+
+    &+.lavandula-textfield-helper {
+      visibility: hidden;
+    }
+  }
+}
+
+/* 禁用表单
+   ====== */
+.lavandula-textfield-disabled {
+  .lavandula-textfield-label,
+  .lavandula-textfield-input::-webkit-input-placeholder {
+    color: @color-black-disabled;
+  }
+
+  .lavandula-textfield-input {
+    color: rgba(0, 0, 0, .42);
+    cursor: default;
+  }
+
+  .lavandula-textfield-input {
+    border-bottom: 1px dashed rgba(0, 0, 0, .42);
+  }
+}
+
+/* 字数统计
+   ====== */
+.lavandula-textfield-counter {
+  position: absolute;
+  right: 8px;
+  font-size: 12px;
+  bottom: 8px;
+  color: @color-black-secondary;
+  height: 12px;
+  line-height: 12px;
+}
+
+
+/**
+ * =============================================================================
+ * ************   Textfield dark   ************
+ * =============================================================================
+ */
+.lavandula-theme-layout-dark when (@globalLayoutDark = true) {
+
+  // 输入框颜色
+  .lavandula-textfield-input {
+    color: #fff;
+    border-bottom-color: rgba(255, 255, 255, .7);
+
+    &::-webkit-input-placeholder {
+      color: rgba(255, 255, 255, .5);
+    }
+
+    &:not([disabled]):hover {
+      border-bottom-color: rgba(255, 255, 255, 1);
+      box-shadow: 0 1px 0 0 rgba(255, 255, 255, 1);
+    }
+  }
+
+  // 图标颜色
+  .lavandula-textfield {
+    .lavandula-icon {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  // 标签颜色
+  .lavandula-textfield-label {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .lavandula-textfield-floating-label {
+    .lavandula-textfield-label {
+      color: rgba(255, 255, 255, 0.35);
+    }
+  }
+
+  // 错误文本颜色
+  .lavandula-textfield-error {
+    color: @color-red-a400;
+  }
+
+  // 帮助文本颜色
+  .lavandula-textfield-helper {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  // 字数统计颜色
+  .lavandula-textfield-counter {
+    color: @color-white-secondary;
+  }
+
+  // 聚焦状态
+  .lavandula-textfield-focus {
+
+    .lavandula-textfield-input,
+    .lavandula-textfield-input:hover {
+      border-bottom-color: @color-default-a200;
+      box-shadow: 0 1px 0 0 @color-default-a200;
+    }
+
+    .lavandula-textfield-label {
+      color: @color-default-a200;
+    }
+  }
+
+  // 禁用状态
+  .lavandula-textfield-disabled {
+    .lavandula-textfield-label,
+    .lavandula-textfield-input::-webkit-input-placeholder {
+      color: @color-white-disabled;
+    }
+
+    .lavandula-textfield-input {
+      color: @color-white-disabled;
+    }
+
+    .lavandula-textfield-input {
+      border-bottom-color: rgba(255, 255, 255, .7);
+    }
+  }
+}
+
+
+/**
+ * =============================================================================
+ * ************   Textfield 强调色   ************
+ * =============================================================================
+ */
+& {
+  .loop-accent-theme(@counter-color) when (@counter-color > 0) {
+    .loop-accent-theme((@counter-color - 1));
+    @colorName: extract(@globalAccentColors, @counter-color);
+
+    .lavandula-theme-accent-@{colorName} {
+
+      @colorA700: 'color-@{colorName}-a700';
+      @colorA200: 'color-@{colorName}-a200';
+
+      .lavandula-textfield-focus {
+
+        .lavandula-textfield-input {
+          border-bottom-color: @@colorA700;
+          box-shadow: 0 1px 0 0 @@colorA700;
+        }
+
+        .lavandula-textfield-label,
+        .lavandula-textfield-floating-label.lavandula-textfield-focus .lavandula-textfield-label,
+        .lavandula-icon {
+          color: rgba(red(@@colorA700), green(@@colorA700), blue(@@colorA700), .87);
+        }
+      }
+
+      // 暗色主题
+      &.lavandula-theme-layout-dark when (@globalLayoutDark = true) {
+        .lavandula-textfield-focus {
+
+          .lavandula-textfield-input {
+            border-bottom-color: @@colorA200;
+            box-shadow: 0 1px 0 0 @@colorA200;
+          }
+
+          .lavandula-textfield-label,
+          .lavandula-textfield-floating-label.lavandula-textfield-focus .lavandula-textfield-label,
+          .lavandula-icon {
+            color: @@colorA200;
+          }
+        }
+      }
+    }
+
+  }
+  .loop-accent-theme(length(@globalAccentColors));
+}

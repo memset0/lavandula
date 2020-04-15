@@ -1,0 +1,150 @@
+/**
+ * =============================================================================
+ * ************   Dialog 提示框   ************
+ * =============================================================================
+ */
+
+.lavandula-dialog {
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  right: 0;
+  color: #000;
+  background-color: #fff;
+  max-height: 90%;
+  width: 92%;
+  max-width: 728px;
+  min-width: 180px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 2px;
+  display: none;
+  z-index: @z-index-dialog;
+  will-change: top, opacity, transform;
+  opacity: 0;
+  transform: scale(0.95);
+
+  transition-property: transform, opacity, visibility;
+  transition-duration: .3s;
+
+  @media (min-width: @screen-sm-min) {
+    max-height: 85%;
+    width: 85%;
+  }
+  @media (min-width: @screen-md-min) {
+    max-height: 80%;
+    width: 80%;
+  }
+
+  .lavandula-shadow(24);
+}
+
+/* 打开提示框 */
+.lavandula-dialog-open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 提示框标题 */
+.lavandula-dialog-title {
+  box-sizing: border-box;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 500;
+  text-align: left;
+}
+/* 标题固定在顶部 */
+.lavandula-dialog>.lavandula-dialog-title {
+  padding: 24px 24px 20px 24px;
+}
+
+/* 提示框内容 */
+.lavandula-dialog-content {
+  box-sizing: border-box;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.7);
+  padding: 24px;
+  line-height: 1.5;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+/* 标题随内容滚动 */
+.lavandula-dialog-content>.lavandula-dialog-title {
+  padding-bottom: 20px;
+}
+
+.lavandula-dialog-title + .lavandula-dialog-content {
+  padding-top: 0;
+}
+
+/* 提示框底部按钮 */
+.lavandula-dialog-actions {
+  box-sizing: border-box;
+  padding: 8px;
+  text-align: right;
+  .lavandula-btn {
+    min-width: 64px;
+    margin-left: 8px;
+    .lavandula-text-color(@color-accent-default-name);
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+/* 底部按钮滚随内容动 */
+.lavandula-dialog-content>.lavandula-dialog-actions {
+  margin: 0 -24px -24px -24px;
+  padding-top: 32px;
+}
+
+/* 使提示框底部按钮竖排 */
+.lavandula-dialog-actions-stacked {
+  padding: 8px 0 8px 0;
+  .lavandula-btn {
+    height: 48px;
+    line-height: 48px !important;
+    margin: 0;
+    width: 100%;
+    text-align: right;
+    border-radius: 0;
+  }
+}
+
+
+/**
+ * =============================================================================
+ * ************   Dialog 强调色   ************
+ * =============================================================================
+ */
+& {
+  .loop-accent-theme(@counter-color) when (@counter-color > 0) {
+    .loop-accent-theme((@counter-color - 1));
+    @colorName: extract(@globalAccentColors, @counter-color);
+
+    .lavandula-theme-accent-@{colorName} {
+      .lavandula-dialog-actions {
+        .lavandula-btn {
+          .lavandula-text-color(@colorName);
+        }
+      }
+    }
+
+  }
+  .loop-accent-theme(length(@globalAccentColors));
+}
+
+
+/**
+ * =============================================================================
+ * ************   Dialog dark   ************
+ * =============================================================================
+ */
+.lavandula-theme-layout-dark when (@globalLayoutDark = true) {
+  .lavandula-dialog {
+    background-color: @layout-dark-color-4;
+    color: #fff;
+  }
+  .lavandula-dialog-content {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}

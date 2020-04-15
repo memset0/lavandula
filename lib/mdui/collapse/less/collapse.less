@@ -1,0 +1,44 @@
+/**
+ * =============================================================================
+ * ************   Collapse 折叠插件   ************
+ * =============================================================================
+ */
+
+.lavandula-collapse-item-header {
+  // 图标，打开时翻转 180 度
+  .lavandula-collapse-item-arrow,
+  &.lavandula-collapse-item-arrow {
+    will-change: transform;
+    transform: rotate(0);
+    transition: transform .3s @animation-curve-default;
+  }
+}
+
+.lavandula-collapse-item-body {
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+  will-change: height;
+  transition: all .3s @animation-curve-default;
+
+  // 使子列表缩进
+  .lavandula-list-item {
+    padding-left: 72px;
+  }
+}
+
+.lavandula-collapse-item-open {
+  &>.lavandula-collapse-item-header {
+    .lavandula-collapse-item-arrow,
+    &.lavandula-collapse-item-arrow {
+      transform: rotate(180deg);
+    }
+  }
+
+  &>.lavandula-collapse-item-body {
+    height: auto;
+  }
+}

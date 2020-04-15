@@ -1,0 +1,41 @@
+/**
+ * =============================================================================
+ * ************   Divider 分割线   ************
+ * =============================================================================
+ */
+
+.lavandula-divider,
+.lavandula-divider-light,
+.lavandula-divider-dark,
+.lavandula-divider-inset,
+.lavandula-divider-inset-light,
+.lavandula-divider-inset-dark {
+  margin: -1px 0 0 0;
+  height: 1px;
+  border: none;
+}
+
+.lavandula-divider-inset,
+.lavandula-divider-inset-light,
+.lavandula-divider-inset-dark {
+  margin-left: 72px;
+}
+
+.lavandula-divider,
+.lavandula-divider-inset {
+  background-color: @color-black-divider;
+
+  .lavandula-theme-layout-dark & {
+    background-color: @color-white-divider;
+  }
+}
+
+.lavandula-divider-light,
+.lavandula-divider-inset-light {
+  background-color: @color-white-divider;
+}
+
+.lavandula-divider-dark,
+.lavandula-divider-inset-dark {
+  background-color: @color-black-divider;
+}

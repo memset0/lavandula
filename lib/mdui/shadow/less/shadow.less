@@ -1,0 +1,20 @@
+/**
+ * =============================================================================
+ * ************   Shadow 阴影   ************
+ * =============================================================================
+ */
+
+._md_shadow(@shadow) when (@shadow > -1) {
+  ._md_shadow(@shadow - 1);
+
+  .lavandula-shadow-@{shadow} {
+    .lavandula-shadow(@shadow);
+  }
+}
+
+._md_shadow(24);
+
+/* 鼠标悬浮时加深阴影 */
+.lavandula-hoverable {
+  .lavandula-hoverable(8);
+}

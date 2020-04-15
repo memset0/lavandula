@@ -1,0 +1,392 @@
+/**
+ * =============================================================================
+ * ************   Color 颜色   ************
+ * =============================================================================
+ */
+
+@global-primary-color-degrees-length: length(@globalPrimaryColorDegrees);
+@global-primary-colors-length: length(@globalPrimaryColors);
+@global-accent-color-degrees-length: length(@globalAccentColorDegrees);
+@global-accent-colors-length: length(@globalAccentColors);
+
+
+/**
+ * .lavandula-theme-primary-[color] .lavandula-color-theme
+ * .lavandula-theme-primary-[color] .lavandula-color-theme-[degree]
+ */
+
+& {
+  .loop-primary-theme(@counter-color) when (@counter-color > 0) {
+    .loop-primary-theme((@counter-color - 1));
+
+    @colorName: extract(@globalPrimaryColors, @counter-color);
+
+    .lavandula-theme-primary-@{colorName} {
+
+      // .lavandula-theme-primary-[color] .lavandula-color-theme
+      .lavandula-color-theme {
+        .lavandula-color(@colorName) !important;
+      }
+
+      .loop-primary-degree-theme(@counter-degree) when (@counter-degree > 0) {
+        .loop-primary-degree-theme((@counter-degree - 1));
+
+        @degree: extract(@globalPrimaryColorDegrees, @counter-degree);
+
+        // .lavandula-theme-primary-[color] .lavandula-color-theme-[degree]
+        .lavandula-color-theme-@{degree} {
+          .lavandula-color(@colorName, @degree) !important;
+        }
+      }
+      .loop-primary-degree-theme(@global-primary-color-degrees-length);
+    }
+  }
+  .loop-primary-theme(@global-primary-colors-length);
+}
+
+
+/**
+ * .lavandula-theme-accent-[color] .lavandula-color-theme-accent
+ * .lavandula-theme-accent-[color] .lavandula-color-theme-[degree]
+ */
+
+& {
+  .loop-accent-theme(@counter-color) when (@counter-color > 0) {
+    .loop-accent-theme((@counter-color - 1));
+
+    @colorName: extract(@globalAccentColors, @counter-color);
+
+    .lavandula-theme-accent-@{colorName} {
+
+      // .lavandula-theme-accent-[color] .lavandula-color-theme-accent
+      .lavandula-color-theme-accent {
+        .lavandula-color(@colorName, a200) !important;
+      }
+
+      .loop-accent-degree-theme(@counter-degree) when (@counter-degree > 0) {
+        .loop-accent-degree-theme((@counter-degree - 1));
+
+        @degree: extract(@globalAccentColorDegrees, @counter-degree);
+
+        // .lavandula-theme-accent-[color] .lavandula-color-theme-[degree]
+        .lavandula-color-theme-@{degree} {
+          .lavandula-color(@colorName, @degree) !important;
+        }
+      }
+      .loop-accent-degree-theme(@global-accent-color-degrees-length);
+    }
+  }
+  .loop-accent-theme(@global-accent-colors-length);
+}
+
+
+/**
+ * .lavandula-color-[color]
+ * .lavandula-color-[color]-[degree]
+ */
+
+& {
+  .loop-primary-theme(@counter-color) when (@counter-color > 0) {
+    .loop-primary-theme((@counter-color - 1));
+
+    @colorName: extract(@globalPrimaryColors, @counter-color);
+
+    & {
+      // .lavandula-color-[color]
+      .lavandula-color-@{colorName} {
+        .lavandula-color(@colorName) !important;
+      }
+
+      .loop-primary-degree-theme(@counter-degree) when (@counter-degree > 0) {
+        .loop-primary-degree-theme((@counter-degree - 1));
+
+        @degree: extract(@globalPrimaryColorDegrees, @counter-degree);
+
+        // .lavandula-color-[color]-[degree]
+        .lavandula-color-@{colorName}-@{degree} {
+          .lavandula-color(@colorName, @degree) !important;
+        }
+      }
+      .loop-primary-degree-theme(@global-primary-color-degrees-length);
+    }
+  }
+  .loop-primary-theme(@global-primary-colors-length);
+}
+
+
+/**
+ * .lavandula-color-[color]-accent
+ * .lavandula-color-[color]-[degree]
+ */
+
+& {
+  .loop-accent-theme(@counter-color) when (@counter-color > 0) {
+    .loop-accent-theme((@counter-color - 1));
+
+    @colorName: extract(@globalAccentColors, @counter-color);
+
+    &{
+      // .lavandula-color-[color]-accent
+      .lavandula-color-@{colorName}-accent {
+        .lavandula-color(@colorName, a200) !important;
+      }
+
+      .loop-accent-degree-theme(@counter-degree) when (@counter-degree > 0) {
+        .loop-accent-degree-theme((@counter-degree - 1));
+
+        @degree: extract(@globalAccentColorDegrees, @counter-degree);
+
+        // .lavandula-color-[color]-[degree]
+        .lavandula-color-@{colorName}-@{degree} {
+          .lavandula-color(@colorName, @degree) !important;
+        }
+      }
+      .loop-accent-degree-theme(@global-accent-color-degrees-length);
+    }
+  }
+  .loop-accent-theme(@global-accent-colors-length);
+}
+
+
+/**
+ * .lavandula-color-black
+ * .lavandula-color-white
+ * .lavandula-color-transparent
+ */
+
+.lavandula-color-black {
+  background-color: @color-black !important;
+  color: @color-white-text !important;
+}
+
+.lavandula-color-white {
+  background-color: @color-white !important;
+  color: @color-black-text !important;
+}
+
+.lavandula-color-transparent {
+  background-color: @color-transparent !important;
+}
+
+
+/**
+ * .lavandula-theme-primary-[color] .lavandula-text-color-theme
+ * .lavandula-theme-primary-[color] .lavandula-text-color-theme-[degree]
+ */
+
+& {
+  .loop-primary-theme(@counter-color) when (@counter-color > 0) {
+    .loop-primary-theme((@counter-color - 1));
+
+    @colorName: extract(@globalPrimaryColors, @counter-color);
+
+    .lavandula-theme-primary-@{colorName} {
+
+      // .lavandula-theme-primary-[color] .lavandula-text-color-theme
+      .lavandula-text-color-theme {
+        .lavandula-text-color(@colorName) !important;
+      }
+
+      .loop-primary-degree-theme(@counter-degree) when (@counter-degree > 0) {
+        .loop-primary-degree-theme((@counter-degree - 1));
+
+        @degree: extract(@globalPrimaryColorDegrees, @counter-degree);
+
+        // .lavandula-theme-primary-[color] .lavandula-text-color-theme-[degree]
+        .lavandula-text-color-theme-@{degree} {
+          .lavandula-text-color(@colorName, @degree) !important;
+        }
+      }
+      .loop-primary-degree-theme(@global-primary-color-degrees-length);
+    }
+  }
+  .loop-primary-theme(@global-primary-colors-length);
+}
+
+
+/**
+ * .lavandula-theme-accent-[color] .lavandula-text-color-theme-accent
+ * .lavandula-theme-accent-[color] .lavandula-text-color-theme-[degree]
+ */
+
+& {
+  .loop-accent-theme(@counter-color) when (@counter-color > 0) {
+    .loop-accent-theme((@counter-color - 1));
+
+    @colorName: extract(@globalAccentColors, @counter-color);
+
+    .lavandula-theme-accent-@{colorName} {
+
+      // .lavandula-theme-accent-[color] .lavandula-text-color-theme-accent
+      .lavandula-text-color-theme-accent {
+        .lavandula-text-color(@colorName, a200) !important;
+      }
+
+      .loop-accent-degree-theme(@counter-degree) when (@counter-degree > 0) {
+        .loop-accent-degree-theme((@counter-degree - 1));
+
+        @degree: extract(@globalAccentColorDegrees, @counter-degree);
+
+        // .lavandula-theme-accent-[color] .lavandula-text-color-theme-[degree]
+        .lavandula-text-color-theme-@{degree} {
+          .lavandula-text-color(@colorName, @degree) !important;
+        }
+      }
+      .loop-accent-degree-theme(@global-accent-color-degrees-length);
+    }
+  }
+  .loop-accent-theme(@global-accent-colors-length);
+}
+
+
+/**
+ * .lavandula-text-color-[color]
+ * .lavandula-text-color-[color]-[degree]
+ */
+
+& {
+  .loop-primary-theme(@counter-color) when (@counter-color > 0) {
+    .loop-primary-theme((@counter-color - 1));
+
+    @colorName: extract(@globalPrimaryColors, @counter-color);
+
+    &{
+      // .lavandula-text-color-[color]
+      .lavandula-text-color-@{colorName} {
+        .lavandula-text-color(@colorName) !important;
+      }
+
+      .loop-primary-degree-theme(@counter-degree) when (@counter-degree > 0) {
+        .loop-primary-degree-theme((@counter-degree - 1));
+
+        @degree: extract(@globalPrimaryColorDegrees, @counter-degree);
+
+        // .lavandula-text-color-[color]-[degree]
+        .lavandula-text-color-@{colorName}-@{degree} {
+          .lavandula-text-color(@colorName, @degree) !important;
+        }
+      }
+      .loop-primary-degree-theme(@global-primary-color-degrees-length);
+    }
+  }
+  .loop-primary-theme(@global-primary-colors-length);
+}
+
+
+/**
+ * .lavandula-text-color-[color]-accent
+ * .lavandula-text-color-[color]-[degree]
+ */
+
+& {
+  .loop-accent-theme(@counter-color) when (@counter-color > 0) {
+    .loop-accent-theme((@counter-color - 1));
+
+    @colorName: extract(@globalAccentColors, @counter-color);
+
+    &{
+      // .lavandula-text-color-[color]-accent
+      .lavandula-text-color-@{colorName}-accent {
+        .lavandula-text-color(@colorName, a200) !important;
+      }
+
+      .loop-accent-degree-theme(@counter-degree) when (@counter-degree > 0) {
+        .loop-accent-degree-theme((@counter-degree - 1));
+
+        @degree: extract(@globalAccentColorDegrees, @counter-degree);
+
+        // .lavandula-text-color-[color]-[degree]
+        .lavandula-text-color-@{colorName}-@{degree} {
+          .lavandula-text-color(@colorName, @degree) !important;
+        }
+      }
+      .loop-accent-degree-theme(@global-accent-color-degrees-length);
+    }
+  }
+  .loop-accent-theme(@global-accent-colors-length);
+}
+
+
+/**
+ * .lavandula-text-color-black
+ * .lavandula-text-color-black-[]
+ * .lavandula-text-color-theme-[]
+ */
+
+.lavandula-text-color-black {
+  color: @color-black !important;
+}
+.lavandula-text-color-black-text,
+.lavandula-text-color-theme-text {
+  color: @color-black-text !important;
+}
+.lavandula-text-color-black-secondary,
+.lavandula-text-color-theme-secondary {
+  color: @color-black-secondary !important;
+}
+.lavandula-text-color-black-disabled,
+.lavandula-text-color-theme-disabled {
+  color: @color-black-disabled !important;
+}
+.lavandula-text-color-black-divider,
+.lavandula-text-color-theme-divider {
+  color: @color-black-divider !important;
+}
+.lavandula-text-color-black-icon,
+.lavandula-text-color-theme-icon {
+  color: @color-black-icon !important;
+}
+.lavandula-text-color-black-icon-disabled,
+.lavandula-text-color-theme-icon-disabled {
+  color: @color-black-icon-disabled !important;
+}
+
+/**
+ * .lavandula-text-color-white
+ * .lavandula-text-color-white-[]
+ */
+.lavandula-text-color-white {
+  color: @color-white !important;
+}
+.lavandula-text-color-white-text {
+  color: @color-white-text !important;
+}
+.lavandula-text-color-white-secondary {
+  color: @color-white-secondary !important;
+}
+.lavandula-text-color-white-disabled {
+  color: @color-white-disabled !important;
+}
+.lavandula-text-color-white-divider {
+  color: @color-white-divider !important;
+}
+.lavandula-text-color-white-icon {
+  color: @color-white-icon !important;
+}
+.lavandula-text-color-white-icon-disabled {
+  color: @color-white-icon-disabled !important;
+}
+
+/**
+ * .lavandula-text-color-theme-[] 深色主题
+ */
+.lavandula-theme-layout-dark when (@globalLayoutDark = true) {
+  .lavandula-text-color-theme-text {
+    color: @color-white-text !important;
+  }
+  .lavandula-text-color-theme-secondary {
+    color: @color-white-secondary !important;
+  }
+  .lavandula-text-color-theme-disabled {
+    color: @color-white-disabled !important;
+  }
+  .lavandula-text-color-theme-divider {
+    color: @color-white-divider !important;
+  }
+  .lavandula-text-color-theme-icon {
+    color: @color-white-icon !important;
+  }
+  .lavandula-text-color-theme-icon-disabled {
+    color: @color-white-icon-disabled !important;
+  }
+}

@@ -1,0 +1,233 @@
+/**
+ * =============================================================================
+ * ************   Helper 辅助类   ************
+ * =============================================================================
+ */
+
+/**
+ * =================== 边距
+ */
+._spacing_margin_mixin(@spacing) when (@spacing > -1) {
+  ._spacing_margin_mixin(@spacing - 1);
+
+  .lavandula-m-a-@{spacing} {
+    .lavandula-m-a(@spacing) !important;
+  }
+  .lavandula-m-t-@{spacing} {
+    .lavandula-m-t(@spacing) !important;
+  }
+  .lavandula-m-r-@{spacing} {
+    .lavandula-m-r(@spacing) !important;
+  }
+  .lavandula-m-b-@{spacing} {
+    .lavandula-m-b(@spacing) !important;
+  }
+  .lavandula-m-l-@{spacing} {
+    .lavandula-m-l(@spacing) !important;
+  }
+  .lavandula-m-x-@{spacing} {
+    .lavandula-m-x(@spacing) !important;
+  }
+  .lavandula-m-y-@{spacing} {
+    .lavandula-m-y(@spacing) !important;
+  }
+
+  .lavandula-p-a-@{spacing} {
+    .lavandula-p-a(@spacing) !important;
+  }
+  .lavandula-p-t-@{spacing} {
+    .lavandula-p-t(@spacing) !important;
+  }
+  .lavandula-p-r-@{spacing} {
+    .lavandula-p-r(@spacing) !important;
+  }
+  .lavandula-p-b-@{spacing} {
+    .lavandula-p-b(@spacing) !important;
+  }
+  .lavandula-p-l-@{spacing} {
+    .lavandula-p-l(@spacing) !important;
+  }
+  .lavandula-p-x-@{spacing} {
+    .lavandula-p-x(@spacing) !important;
+  }
+  .lavandula-p-y-@{spacing} {
+    .lavandula-p-y(@spacing) !important;
+  }
+}
+
+._spacing_margin_mixin(5);
+
+
+/**
+ * ======================== 快速浮动
+ */
+
+/* 向左浮动 */
+.lavandula-float-left {
+  float: left !important;
+}
+
+/* 向右浮动 */
+.lavandula-float-right {
+  float: right !important;
+}
+
+/**
+ * ========================= 水平居中
+ */
+/* 水平居中 */
+.lavandula-center {
+  .lavandula-center() !important;
+}
+
+/**
+ * ========================= 垂直居中
+ */
+/* 垂直居中 */
+.lavandula-valign {
+  .lavandula-valign() !important;
+}
+
+/**
+ * ========================= 文本对齐方式
+ */
+/* 文本左对齐 */
+.lavandula-text-left {
+  text-align: left !important;
+}
+
+/* 文本居中对齐 */
+.lavandula-text-center {
+  text-align: center !important;
+}
+
+/* 文本向右对齐 */
+.lavandula-text-right {
+  text-align: right !important;
+}
+
+/**
+ * ========================= 文本大小写转换
+ */
+/* 文本转为小写 */
+.lavandula-text-lowercase {
+  text-transform: lowercase !important;
+}
+/* 文本转为大写 */
+.lavandula-text-uppercase {
+  text-transform: uppercase !important;
+}
+/* 文本转为单词的首字母大写 */
+.lavandula-text-capitalize {
+  text-transform: capitalize !important;
+}
+
+/**
+ * ======================== 文本截断
+ */
+/* 文本截断 */
+.lavandula-text-truncate {
+  .lavandula-text-truncate();
+}
+
+/**
+ * ========================= 清除浮动
+ */
+/* 清除浮动 */
+.lavandula-clearfix {
+  .lavandula-clearfix();
+}
+
+/**
+ * ========================= 隐藏内容
+ */
+/* 隐藏元素 */
+.lavandula-hidden,
+[hidden] {
+  display: none !important;
+}
+
+/* 使元素不可见 */
+.lavandula-invisible {
+  visibility: hidden;
+}
+
+/* Responsive utilities 响应式工具
+   ========================================================================== */
+
+/* 在特定屏幕的特备上隐藏 */
+@media (max-width: @screen-xs-max) {
+  .lavandula-hidden-xs {
+    display: none !important;
+  }
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+  .lavandula-hidden-sm {
+    display: none !important;
+  }
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-md-max) {
+  .lavandula-hidden-md {
+    display: none !important;
+  }
+}
+@media (min-width: @screen-lg-min) and (max-width: @screen-lg-max) {
+  .lavandula-hidden-lg {
+    display: none !important;
+  }
+}
+@media (min-width: @screen-xl-min) {
+  .lavandula-hidden-xl {
+    display: none !important;
+  }
+}
+
+/* 在比特定屏幕小的设备上隐藏 */
+@media (max-width: @screen-xs-max) {
+  .lavandula-hidden-xs-down {
+    display: none !important;
+  }
+}
+@media (max-width: @screen-sm-max) {
+  .lavandula-hidden-sm-down {
+    display: none !important;
+  }
+}
+@media (max-width: @screen-md-max) {
+  .lavandula-hidden-md-down {
+    display: none !important;
+  }
+}
+@media (max-width: @screen-lg-max) {
+  .lavandula-hidden-lg-down {
+    display: none !important;
+  }
+}
+.lavandula-hidden-xl-down {
+  display: none !important;
+}
+
+/* 在比特定屏幕大的设备上隐藏 */
+.lavandula-hidden-xs-up {
+  display: none !important;
+}
+@media (min-width: @screen-sm-min) {
+  .lavandula-hidden-sm-up {
+    display: none !important;
+  }
+}
+@media (min-width: @screen-md-min) {
+  .lavandula-hidden-md-up {
+    display: none !important;
+  }
+}
+@media (min-width: @screen-lg-min) {
+  .lavandula-hidden-lg-up {
+    display: none !important;
+  }
+}
+@media (min-width: @screen-xl-min) {
+  .lavandula-hidden-xl-up {
+    display: none !important;
+  }
+}

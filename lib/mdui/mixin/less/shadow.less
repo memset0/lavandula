@@ -1,0 +1,16 @@
+// 阴影
+.lavandula-shadow(@depth) {
+  @shadow: 'shadow-depth-@{depth}';
+  box-shadow: @@shadow;
+}
+
+// hover 时添加阴影
+.lavandula-hoverable(@depth: 8) {
+  will-change: box-shadow;
+  transition: box-shadow .25s @animation-curve-default;
+
+  &:hover,
+  &:focus {
+    .lavandula-shadow(@depth);
+  }
+}

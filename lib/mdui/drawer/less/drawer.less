@@ -1,0 +1,176 @@
+/**
+ * =============================================================================
+ * ************   Drawer 抽屉栏导航   ************
+ * =============================================================================
+ */
+
+/* DOM 加载完后再添加 transition */
+body.lavandula-loaded {
+  transition: padding .3s @animation-curve-linear-out-slow-in;
+}
+body.lavandula-loaded .lavandula-drawer {
+  transition: all .3s @animation-curve-linear-out-slow-in;
+}
+
+/* 抽屉栏外层，默认出现在左侧且隐藏 */
+.lavandula-drawer {
+  box-sizing: border-box;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: @z-index-drawer;
+  will-change: transform;
+  margin: 0;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  top: 0;
+
+  // 手机端宽度为 100% - 56px，最大为 280px
+  width: calc(~"100% - 56px");
+  max-width: @drawer-width-xs;
+
+  // 隐藏时不显示阴影
+  @media (max-width: @screen-sm-max) {
+    &:not(.lavandula-drawer-open) {
+      box-shadow: none !important;
+    }
+  }
+
+  // 平板端宽度为 100% - 64px，最大为 320px
+  @media (min-width: @screen-sm-min) {
+    width: calc(~"100% - 64px");
+    max-width: @drawer-width-sm;
+  }
+
+  // 桌面端宽度
+  @media (min-width: @screen-md-min) {
+    width: @drawer-width-md;
+    max-width: none;
+
+    // 隐藏时不显示阴影
+    &.lavandula-drawer-close {
+      box-shadow: none !important;
+    }
+  }
+}
+
+/* 出现在右侧的抽屉栏 */
+.lavandula-drawer-right {
+  left: auto;
+  right: 0;
+}
+
+/* 平板上的样式 */
+@media (max-width: @screen-sm-max) {
+  .lavandula-drawer {
+    /* 默认隐藏 */
+    transform: translateX(-@drawer-width-sm - 10);
+
+    /* 始终有背景和阴影 */
+    background-color: #fff;
+    .lavandula-shadow(16);
+  }
+
+  .lavandula-drawer-right {
+    /* 右侧 drawer 也默认隐藏 */
+    transform: translateX(@drawer-width-sm + 10);
+  }
+}
+
+/* 手机上的样式 */
+@media (max-width: @screen-xs-max) {
+  .lavandula-drawer {
+    transform: translateX(-@drawer-width-xs - 10);
+  }
+
+  .lavandula-drawer-right {
+    transform: translateX(@drawer-width-xs + 10);
+  }
+}
+
+/* 强制隐藏抽屉栏 */
+._drawer_close(@drawer-width) {
+  .lavandula-drawer-close {
+    transform: translateX(-@drawer-width - 10);
+    &.lavandula-drawer-right {
+      transform: translateX(@drawer-width + 10);
+    }
+  }
+}
+
+._drawer_close(@drawer-width-xs);
+
+@media (min-width: @screen-sm-min) {
+  ._drawer_close(@drawer-width-sm);
+}
+
+@media (min-width: @screen-md-min) {
+  ._drawer_close(@drawer-width-md);
+}
+
+/* 强制显示抽屉栏 */
+.lavandula-drawer-open {
+  transform: translateX(0) !important;
+}
+
+/* PC 上的样式 */
+@media (min-width: @screen-md-min) {
+  /* 使该类所在元素获得 padding-left 或 padding-right，避免被抽屉栏覆盖住页面 */
+  .lavandula-drawer-body-left {
+    padding-left: @drawer-width-md;
+  }
+  .lavandula-drawer-body-right {
+    padding-right: @drawer-width-md;
+  }
+
+  /* PC 上默认有上边距 */
+  .lavandula-drawer {
+    .lavandula-appbar-with-toolbar & {
+      top: @appbar-height-sm;
+    }
+
+    .lavandula-appbar-with-tab & {
+      top: 48px;
+    }
+
+    .lavandula-appbar-with-tab-larger & {
+      top: 72px;
+    }
+
+    .lavandula-appbar-with-toolbar.lavandula-appbar-with-tab & {
+      top: @appbar-height-sm + 48px;
+    }
+
+    .lavandula-appbar-with-toolbar.lavandula-appbar-with-tab-larger & {
+      top: @appbar-height-sm + 72px;
+    }
+  }
+}
+
+/* 抽屉栏不是透明时添加阴影 */
+.lavandula-drawer[class*="lavandula-color-"]:not(.lavandula-color-transparent) {
+  .lavandula-shadow(16);
+}
+
+/* 抽屉栏 100% 高度，覆盖在导航栏上面 */
+.lavandula-drawer-full-height {
+  top: 0 !important;
+}
+
+
+/**
+ * =============================================================================
+ * ************   Drawer dark   ************
+ * =============================================================================
+ */
+.lavandula-theme-layout-dark when (@globalLayoutDark = true) {
+
+  // 手机平板上的样式
+  @media (max-width: @screen-sm-max) {
+    .lavandula-drawer {
+      background-color: @layout-dark-color-4;
+    }
+  }
+}
