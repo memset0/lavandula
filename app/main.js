@@ -11,7 +11,7 @@ unsafeWindow.lavandula = {}
 unsafeWindow.lavandula.$ = $
 unsafeWindow.lavandula.mode = 'development'
 unsafeWindow.lavandula.mdui = (new mdui_loader()).lavandula
-unsafeWindow.lavandula.$$ = unsafeWindow.lavandula.mdui.JQ
+unsafeWindow.lavandula.mduiJQ = unsafeWindow.lavandula.mdui.JQ
 
 require('./create.js')
 require('./utils.js')
