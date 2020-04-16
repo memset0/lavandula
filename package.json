@@ -22,7 +22,6 @@
   },
   "nodemonConfig": {
     "watch": ["app/**"],
-    "exec": "npm run build" ,
-    "delay": "1000"
+    "exec": "npm run build"
   }
 }
