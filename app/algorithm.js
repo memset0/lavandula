@@ -13,53 +13,34 @@ let algorithm = lavandula.algorithm
 let int = lavandula.algorithm.int
 let poly = lavandula.algorithm.poly
 
-int.from = num => BigInt(num)
-int.fromArray = arr => {
-	let res = new Array()
-	arr.forEach(val => res.push(int.from(val)))
-	return res
+int.set_mod = mod => {
+	int.mod = parseInt(mod)
+	int.MOD = BigInt(int.mod)
 }
-int.export = num => parseInt(num)
-int.exportArray = arr => {
-	let res = new Array()
-	arr.forEach(val => res.push(int.export(val)))
-	return res
-}
-
-int.resize = (arr, except) => {
-	res = arr.slice(0, except)
-	while (res.length < except) {
-		res.push(0)
-	}
-	return int.fromArray(res)
-}
-
-int.mod = 998244353n
-int.set_mod = mod => (int.mod = int.from(mod))
+int.set_mod(998244353)
 
 int.inc = (x, y) => {
-	let res = int.from(x) + int.from(y)
+	let res = x + y
 	return res >= int.mod ? res - int.mod : res;
 }
 int.sub = (x, y) => {
-	let res = int.from(x) - int.from(y)
+	let res = x - y
 	return res < 0 ? res + int.mod : res;
 }
 int.mul = (x, y) => {
-	return int.from(x) * int.from(y) % int.mod
+	return parseInt(BigInt(x) * BigInt(y) % int.MOD)
 }
 int.pow = (a, b) => {
-	a = int.from(a)
-	b = int.from(b) % (int.mod - 1n)
-	let s = 1n;
-	for (; b; b >>= 1n, a = int.mul(a, a))
-		if (b & 1n) {
+	b = parseInt(BigInt(b) % (int.MOD - 1n))
+	let s = 1;
+	for (; b; b >>= 1, a = int.mul(a, a))
+		if (b & 1) {
 			s = int.mul(s, a)
 		}
 	return s;
 }
-int.inv = x => int.pow(x, int.mod - 2n)
-int.opp = x => (x === 0n ? 0 : int.sub(int.mod, x))
+int.inv = x => int.pow(x, int.mod - 2)
+int.opp = x => (x === 0 ? 0 : int.sub(int.mod, x))
 
 int.min = function (...arg) {
 	let res = arg[0]
@@ -67,7 +48,7 @@ int.min = function (...arg) {
 		if (arg[i] < res) {
 			res = arg[i]
 		}
-	return int.export(res)
+	return res
 }
 
 int.max = function (...arg) {
@@ -76,7 +57,16 @@ int.max = function (...arg) {
 		if (arg[i] > res) {
 			res = arg[i]
 		}
-	return int.export(res)
+	return res
+}
+
+poly.copy = arr => arr.slice()
+poly.resize = (arr, except) => {
+	res = arr.slice(0, except)
+	while (res.length < except) {
+		res.push(0)
+	}
+	return poly.copy(res)
 }
 
 int.cipolla = function (num) {
@@ -88,15 +78,15 @@ int.cipolla = function (num) {
 		]
 	}
 	do {
-		key = utils.random(int.export(int.mod))
+		key = utils.random(int.mod)
 		sqr = int.sub(int.mul(key, key), num)
-	} while (int.pow(sqr, (int.mod - 1n) >> 1n) != int.mod - 1n)
+	} while (int.pow(sqr, (int.mod - 1) >> 1) != int.mod - 1)
 	let s = [1, 0], a = [key, 1]
-	for (let b = (int.mod + 1n) >> 1n; b; b >>= 1n, a = merge(a, a))
-		if (b & 1n) {
+	for (let b = (int.mod + 1) >> 1; b; b >>= 1, a = merge(a, a))
+		if (b & 1) {
 			s = merge(s, a)
 		}
-	return int.export(int.min(s[0], int.sub(int.mod, s[0])))
+	return int.min(s[0], int.sub(int.mod, s[0]))
 }
 
 algorithm.dft = function (src) {
@@ -105,20 +95,22 @@ algorithm.dft = function (src) {
 		lim <<= 1;
 		k++;
 	}
-	let mu = new Array(lim)
-	let arr = new Array(lim)
-	let rev = new Array(lim)
+	let rev = new Array()
 	for (let i = 0; i < lim; i++) {
-		rev[i] = (rev[i >> 1] >> 1) | ((i & 1) << (k - 1))
-		arr[rev[i]] = i < src.length ? int.from(src[i]) : 0n
+		rev.push((rev[i >> 1] >> 1) | ((i & 1) << (k - 1)))
 	}
-	mu[0] = 0n
+	let mu = new Array(lim)
+	mu[0] = 0
 	for (let len = 1; len < lim; len <<= 1) {
-		mu_root = int.pow(3, (int.mod - 1n) / int.from(len << 1))
-		mu[len] = 1n
+		mu_root = int.pow(3, (int.mod - 1) / (len << 1))
+		mu[len] = 1
 		for (let i = 1; i < len; i++) {
 			mu[i + len] = int.mul(mu[i + len - 1], mu_root);
 		}
+	}
+	let arr = new Array()
+	for (let i = 0; i < lim; i++) {
+		arr.push(rev[i] < src.length ? src[rev[i]] : 0)
 	}
 	for (let len = 1; len < lim; len <<= 1)
 		for (let i = 0; i < lim; i += (len << 1))
@@ -128,7 +120,7 @@ algorithm.dft = function (src) {
 				arr[i + j] = int.inc(x, y)
 				arr[i + j + len] = int.sub(x, y)
 			}
-	return int.exportArray(arr)
+	return arr
 }
 
 algorithm.idft = function (src) {
@@ -142,7 +134,7 @@ algorithm.idft = function (src) {
 	for (let i = 0; i < arr.length; i++) {
 		arr[i] = int.mul(arr[i], inv);
 	}
-	return int.exportArray(arr)
+	return arr
 }
 
 poly.inc = function (arr, oth) {
@@ -171,89 +163,88 @@ poly.sub = function (arr, oth) {
 
 poly.mul = function (arr, oth) {
 	let len = arr.length + oth.length - 1
-	let arr_dfted = algorithm.dft(int.resize(arr, len))
-	let oth_dfted = algorithm.dft(int.resize(oth, len))
+	let arr_dfted = algorithm.dft(poly.resize(arr, len))
+	let oth_dfted = algorithm.dft(poly.resize(oth, len))
 	for (let i = 0; i < arr_dfted.length; i++) {
 		arr_dfted[i] = int.mul(arr_dfted[i], oth_dfted[i])
 	}
-	let res = int.resize(algorithm.idft(arr_dfted), len)
-	return int.exportArray(res)
+	let res = poly.resize(algorithm.idft(arr_dfted), len)
+	return res
 }
 
-poly.inv = function (src) {
-	if (src.length == 1) {
-		return [int.export(int.inv(src[0]))]
+poly.inv = function (arr) {
+	if (arr.length == 1) {
+		return [int.inv(arr[0])]
 	}
-	let arr = int.fromArray(src)
-	let oth = poly.inv(int.resize(src, (src.length + 1) >> 1))
+	let oth = poly.inv(poly.resize(arr, (arr.length + 1) >> 1))
 	let len = arr.length * 2 - 1
-	let arr_dfted = algorithm.dft(int.resize(arr, len))
-	let oth_dfted = algorithm.dft(int.resize(oth, len))
+	let arr_dfted = algorithm.dft(poly.resize(arr, len))
+	let oth_dfted = algorithm.dft(poly.resize(oth, len))
 	for (let i = 0; i < arr_dfted.length; i++) {
 		arr_dfted[i] = int.mul(oth_dfted[i], int.sub(2, int.mul(arr_dfted[i], oth_dfted[i])))
 	}
-	let res = int.resize(algorithm.idft(arr_dfted), src.length)
-	return int.exportArray(res)
+	let res = poly.resize(algorithm.idft(arr_dfted), arr.length)
+	return res
 }
 
 poly.int = function (arr) {
 	let res = new Array()
-	res.push(0n)
+	res.push(0)
 	for (let i = 0; i < arr.length - 1; i++) {
-		res.push(int.mul(int.from(arr[i]), int.inv(i + 1)))
+		res.push(int.mul(arr[i], int.inv(i + 1)))
 	}
-	return int.exportArray(res)
+	return res
 }
 
 poly.der = function (arr) {
 	let res = new Array()
 	for (let i = 1; i < arr.length; i++) {
-		res.push(int.mul(int.from(arr[i]), int.from(i)))
+		res.push(int.mul(arr[i], i))
 	}
-	res.push(0n)
-	return int.exportArray(res)
+	res.push(0)
+	return res
 }
 
 poly.ln = function (arr) {
 	let der = poly.mul(poly.der(arr), poly.inv(arr))
-	let res = poly.int(int.resize(der, arr.length))
-	return int.exportArray(res)
+	let res = poly.int(poly.resize(der, arr.length))
+	return res
 }
 
-poly.exp = function (src) {
-	if (src.length == 1) {
+poly.exp = function (arr) {
+	if (arr.length == 1) {
 		return [1]
 	}
-	let arr = poly.exp(int.resize(src, (src.length + 1) >> 1))
-	let oth = poly.ln(int.resize(arr, src.length))
-	for (let i = 0; i < src.length; i++) {
-		oth[i] = int.opp(oth[i])
+	let part1 = poly.exp(poly.resize(arr, (arr.length + 1) >> 1))
+	let part2 = poly.ln(poly.resize(part1, arr.length))
+	for (let i = 0; i < arr.length; i++) {
+		part2[i] = int.opp(part2[i])
 	}
-	oth[0] = int.inc(oth[0], 1)
-	for (let i = 0; i < src.length; i++) {
-		oth[i] = int.inc(oth[i], src[i])
+	part2[0] = int.inc(part2[0], 1)
+	for (let i = 0; i < arr.length; i++) {
+		part2[i] = int.inc(part2[i], arr[i])
 	}
-	let res = int.resize(poly.mul(arr, oth), src.length)
-	return int.exportArray(res)
+	let res = poly.resize(poly.mul(part1, part2), arr.length)
+	return res
 }
 
-poly.sqrt = function (src) {
-	if (src.length == 1) {
-		return [int.cipolla(src[0])]
+poly.sqrt = function (arr) {
+	if (arr.length == 1) {
+		return [int.cipolla(arr[0])]
 	}
-	let arr = poly.sqrt(int.resize(src, (src.length + 1) >> 1))
-	let part1 = poly.inc(int.resize(poly.mul(arr, arr), src.length), src)
-	let part2 = poly.inv(int.resize(poly.inc(arr, arr), src.length))
-	let res = int.resize(poly.mul(part1, part2), src.length)
-	return int.exportArray(res)
+	let cur = poly.sqrt(poly.resize(arr, (arr.length + 1) >> 1))
+	let part1 = poly.inc(poly.resize(poly.mul(cur, cur), arr.length), arr)
+	let part2 = poly.inv(poly.resize(poly.inc(cur, cur), arr.length))
+	let res = poly.resize(poly.mul(part1, part2), arr.length)
+	return res
 }
 
 poly.pow = function (src, b) {
 	let res = [1]
-	let arr = int.fromArray(src)
-	for (; b; b >>= 1, arr = int.resize(poly.mul(arr, arr), src.length))
+	let arr = poly.copy(src)
+	for (; b; b >>= 1, arr = poly.resize(poly.mul(arr, arr), src.length))
 		if (b & 1) {
-			res = int.resize(poly.mul(res, arr), src.length)
+			res = poly.resize(poly.mul(res, arr), src.length)
 		}
 	return res
 }
@@ -263,10 +254,10 @@ poly.challenge = function (arr, k) {
 	let part2 = poly.exp(poly.int(poly.inv(poly.sqrt(arr))))
 	let part3 = poly.inc(poly.ln(poly.sub(part1, part2)), [1])
 	let part4 = poly.der(poly.pow(part3, k))
-	return int.exportArray(int.resize(part4, arr.length - 1))
+	return poly.resize(part4, arr.length - 1)
 }
 
 if (require.main == module) {
 	// debugger goes here...
-	console.log(poly.challenge([1,9,2,6,0,8,1,7],19260817))
+	console.log(poly.challenge([1, 9, 2, 6, 0, 8, 1, 7], 19260817))
 }
