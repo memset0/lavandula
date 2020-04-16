@@ -131,7 +131,7 @@ poly.inv = function (src) {
 poly.int = function (arr) {
 	let res = new Array()
 	res.push(0n)
-	for (let i = 0; i < arr.length - 2; i++) {
+	for (let i = 0; i < arr.length - 1; i++) {
 		res.push(int.mul(int.from(arr[i]), int.inv(i + 1)))
 	}
 	return int.exportArray(res)
@@ -139,7 +139,7 @@ poly.int = function (arr) {
 
 poly.der = function (arr) {
 	let res = new Array()
-	for (let i = 1; i < arr.length - 1; i++) {
+	for (let i = 1; i < arr.length; i++) {
 		res.push(int.mul(int.from(arr[i]), int.from(i)))
 	}
 	res.push(0n)
