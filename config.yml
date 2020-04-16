@@ -28,14 +28,14 @@ tampermonkey:
     - https://codeforc.es/contest/*
     - https://codeforc.es/gym/*
   require:
-    - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/jquery.min.js
-    - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/lodash.min.js
-    - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/low.min.js
-    - https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/highlight.min.js
-    - https://cdn.jsdelivr.net/gh/memset0/lowdb-adapter-greasemonkey/GreasemonkeyAsync.js
+    - https://raw.githubusercontent.com/memset0/lavandula/master/lib/jquery.min.js
+    - https://raw.githubusercontent.com/memset0/lavandula/master/lib/lodash.min.js
+    - https://raw.githubusercontent.com/memset0/lavandula/master/lib/low.min.js
+    - https://raw.githubusercontent.com/memset0/lavandula/master/lib/highlight.min.js
+    - https://raw.githubusercontent.com/memset0/lowdb-adapter-greasemonkey/master/GreasemonkeyAsync.js
   resource:
-    - mdui-css https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/mdui/mdui.min.css
-    - mdui-js https://cdn.jsdelivr.net/gh/memset0/lavandula/lib/mdui/mdui.min.js
+    - mdui-css https://raw.githubusercontent.com/memset0/lavandula/master/lib/mdui/mdui.min.css
+    - mdui-js https://raw.githubusercontent.com/memset0/lavandula/master/lib/mdui/mdui.min.js
   grant:
     - unsafeWindow
     - GM.setValue
