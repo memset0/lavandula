@@ -1,70 +1,41 @@
 const BaseTool = require('./base.js')
 
-const availableUrlList = [ // unused
-	'uoj.ac',
-	'loj.ac',
-	'duck.ac',
-	'floj.tech',
-	'vjudge.net',
-	'*.github.io',
-	'www.luogu.org',
-	'codeforces.com',
-	'acm.nflsoj.com',
-	'www.cometoj.com',
-	'www.cnblogs.com',
-	'oi-wiki.org',
-	'ioihw.duck-ac.cn',
-	'www.luogu.com.cn',
-	'oi-archive.memset0.cn',
-]
+const h = lavandula.hyperscript
+const c = lavandula.create
 
 function stringifyLatex($e) {
 	console.log('[lavandula] stringify latex', $e)
 	// MathJax
-	// $e.find("script[type='math/tex; mode=display']").each(function () {
-	// 	this.outerHTML =
-	// 		' <span style="display:block;margin:auto;width:80%;padding:20px">$$' +
-	// 		$.trim(this.innerHTML) +
-	// 		'$$</span> '
-	// })
 	$e.find("script[type='math/tex; mode=display']").each(function () {
 		let frame = $(`#${$(this).attr('id')}-Frame`).parent().remove().prop('outerHTML')
 		let data = btoa(encodeURIComponent(frame + this.outerHTML))
 		let text = $.trim(this.innerHTML)
-		this.outerHTML = lavandula.create.element('span', {
-			class: "lavandula-mathjax-display",
-			"lavandula-latex-data": data
-		}).text('$$' + text + '$$')
-			.prop("outerHTML")
+		this.outerHTML = $(
+			h('span.lavandula-mathjax-display', '$$' + text + '$$')
+		).attr("lavandula-latex-data", data).prop('outerHTML')
 	})
 	$e.find("script[type='math/tex']").each(function () {
 		let frame = $(`#${$(this).attr('id')}-Frame`).remove().prop('outerHTML')
 		let data = btoa(encodeURIComponent(frame + this.outerHTML))
 		let text = $.trim(this.innerHTML)
-		this.outerHTML = lavandula.create.element('span', {
-			class: "lavandula-mathjax",
-			"lavandula-latex-data": data
-		}).text('$' + text + '$')
-			.prop("outerHTML")
+		this.outerHTML = $(
+			h('span.lavandula-mathjax', '$' + text + '$')
+		).attr("lavandula-latex-data", data).prop('outerHTML')
 	})
 	// KaTeX
 	$e.find("span.katex-display").each(function () {
 		let data = btoa(encodeURIComponent(this.outerHTML))
 		let text = $(this).find('.katex-mathml annotation').text().trim()
-		this.outerHTML = lavandula.create.element('span', {
-			class: "lavandula-katex-display",
-			"lavandula-latex-data": data
-		}).text('$$' + text + '$$')
-			.prop("outerHTML")
+		this.outerHTML = $(
+			h('span.lavandula-mathjax-display', '$$' + text + '$$')
+		).attr("lavandula-latex-data", data).prop('outerHTML')
 	})
 	$e.find("span.katex").each(function () {
 		let data = btoa(encodeURIComponent(this.outerHTML))
 		let text = $(this).find('.katex-mathml annotation').text().trim()
-		this.outerHTML = lavandula.create.element('span', {
-			class: "lavandula-katex",
-			"lavandula-latex-data": data
-		}).text('$' + text + '$')
-			.prop("outerHTML")
+		this.outerHTML = $(
+			h('span.lavandula-mathjax', '$' + text + '$')
+		).attr("lavandula-latex-data", data).prop('outerHTML')
 	})
 }
 
@@ -94,9 +65,8 @@ class StringifyLatex extends BaseTool {
 		}
 	}
 	create($e) {
-		this.$button = lavandula.create.element('button', { class: 'lavandula-btn lavandula-btn-block' })
+		this.$button = $(c.block_button('文本化 LaTeX 公式'))
 			.appendTo(lavandula.panel.$buttons)
-			.text('文本化 LaTeX 公式')
 			.click(() => { this.click() })
 	}
 	constructor() {
