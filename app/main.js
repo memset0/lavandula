@@ -2,9 +2,16 @@ import css from './style/main.less'
 
 GM_addStyle(GM_getResourceText('mdui-css'))
 
+function _mdui_loader() {
+	window = unsafeWindow
+	eval(GM_getResourceText('mdui-js'))
+}
+const _mdui = new _mdui_loader()
+
 $(document).ready(function () {
 	unsafeWindow.lavandula = {
 		mode: 'development',
+		mdui: _mdui.lavandula,
 		tools: new (require('./tools.js'))(),
 		panel: new (require('./panel.js'))(),
 		reader: new (require('./reader.js'))(),
