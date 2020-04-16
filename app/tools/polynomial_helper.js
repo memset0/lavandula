@@ -1,6 +1,7 @@
 const BaseTool = require('./base.js')
 
 const h = lavandula.hyperscript
+const c = lavandula.create
 
 class PolynomialHelper extends BaseTool {
 	static isAvailable() { return true }
@@ -15,12 +16,12 @@ class PolynomialHelper extends BaseTool {
 	}
 
 	create() {
-		this.$button = lavandula.create.block_button('多项式小助手')
+		this.$button = $(c.block_button('多项式小助手'))
 			.appendTo(lavandula.panel.$buttons)
 			.click(() => { this.dialog() })
-		this.$html = lavandula.create.element('div', { id: this.prefix + 'body' })
-			.append(lavandula.create.textarea('Array 1', null, null, this.prefix + 'array1', () => { console.log('1') }))
-			.append(lavandula.create.textarea('Array 2', null, null, this.prefix + 'array2', () => { console.log('1') }))
+		this.$html = $(h(`div#${this.prefix}body`))
+			.append(c.textarea('Array 1', null, null, this.prefix + 'array1', () => { console.log('1') }))
+			.append(c.textarea('Array 2', null, null, this.prefix + 'array2', () => { console.log('1') }))
 			.append(h('br'))
 		Object.keys(this.data).forEach(key => {
 			this.$html
