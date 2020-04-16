@@ -1,5 +1,6 @@
 lavandula.utils = {};
 lavandula.create = {};
+lavandula.algorithm = {};
 
 (function () {
 	let create = lavandula.create
@@ -100,4 +101,87 @@ lavandula.create = {};
 	utils.random_range = (l, r) => (l + random(r - l))
 	utils.random_hash = () => utils.md5(Date() + Math.random() + 114514 + 'Menci TQL!')
 
+})();
+
+(function () {
+	let utils = lavandula.utils
+	let algorithm = lavandula.algorithm
+	
+	algorithm.fpow = function (a, b, mod = 998244353) {
+		let s = 1;
+		for (; b; b >>= 1, a = a * a % mod) {
+			if (b & 1) {
+				s = s * a % mod;
+			}
+		}
+		return s;
+	}
+	
+	algorithm.resize = function (arr, except) {
+		res = arr.slice(0, except)
+		while (res.length < except) {
+			res.push(0)
+		}
+		return res
+	}
+	
+	algorithm.dft = function (src, mod = 998244353) {
+		let lim = 1, k = 0
+		while (lim < src.length) {
+			lim <<= 1;
+			k++;
+		}
+		mu = new Array(lim)
+		arr = new Array(lim)
+		rev = new Array(lim)
+		for (let i = 0; i < lim; i++) {
+			rev[i] = (rev[i >> 1] >> 1) | ((i & 1) << (k - 1))
+			arr[rev[i]] = i < src.length ? src[i] : 0
+		}
+		mu[0] = 0
+		for (let len = 1; len < lim; len <<= 1) {
+			mu_root = algorithm.fpow(3, (mod - 1) / (len << 1), mod)
+			mu[len] = 1
+			for (let i = 1; i < len; i++) {
+				mu[i + len] = mu[i + len - 1] * mu_root % mod;
+			}
+		}
+		for (let len = 1; len < lim; len <<= 1)
+		for (let i = 0; i < lim; i += (len << 1))
+		for (let j = 0; j < len; j++) {
+			let x = arr[i + j]
+			let y = arr[i + j + len] * mu[j + len] % mod
+			let inc = x + y
+			let sub = x - y
+			arr[i + j] = inc >= mod ? inc - mod : inc;
+			arr[i + j + len] = sub < 0 ? sub + mod : sub;
+		}
+		return arr
+	}
+	
+	algorithm.idft = function (src, mod = 998244353) {
+		let arr = algorithm.dft(src, mod)
+		let inv = algorithm.fpow(arr.length, mod - 2, mod)
+		for (let i = 1; i < arr.length; i++)
+		if (i < (arr.length - i)) {
+			utils.swap(arr[i], arr[arr.length - i])
+		}
+		for (let i = 0; i < arr.length; i++) {
+			arr[i] = arr[i] * inv % mod;
+		}
+		return arr
+	}
+	
+	algorithm.poly = {}
+	algorithm.poly.mul = function (arr, oth, mod = 998244353) {
+		let len = arr.length + oth.length
+		let f = algorithm.dft(algorithm.resize(arr, len))
+		let g = algorithm.dft(algorithm.resize(oth, len))
+		console.log(f)
+		console.log(g)
+		for (let i = 0; i < f.length; i++) {
+			f[i] = f[i] * g[i] % mod
+		}
+		return algorithm.resize(algorithm.idft(f), len)
+	}
 })();
