@@ -16,6 +16,7 @@ unsafeWindow.lavandula.$$ = unsafeWindow.lavandula.mdui.JQ
 
 require('./create.js')
 require('./utils.js')
+require('./algorithm.js')
 unsafeWindow.lavandula.tools = new (require('./tools.js'))()
 unsafeWindow.lavandula.panel = new (require('./panel.js'))()
 unsafeWindow.lavandula.reader = new (require('./reader.js'))()
