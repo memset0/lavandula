@@ -56,6 +56,44 @@ int.pow = (a, b) => {
 int.inv = x => int.pow(x, int.mod - 2n)
 int.opp = x => (x === 0n ? 0 : int.sub(int.mod, x))
 
+int.min = function(...arg) {
+	let res = arg[0]
+	for (let i = 0; i < arg.length; i++)
+		if (arg[i] < res) {
+			res=arg[i]
+		}
+	return res
+}
+
+int.max = function(...arg) {
+	let res = arg[0]
+	for (let i = 0; i < arg.length; i++)
+		if (arg[i] > res) {
+			res=arg[i]
+		}
+	return res
+}
+
+int.cipolla = function (num) {
+	let key = null, sqr = null
+	function merge(a, b) {
+		return [
+			int.inc(int.mul(a[0], b[0]), int.mul(int.mul(a[1], b[1]), sqr)),
+			int.inc(int.mul(a[0], b[1]), int.mul(a[1], b[0]))
+		]
+	}
+	do {
+		key = utils.random(int.export(int.mod))
+		sqr = int.sub(int.mul(key, key), num)
+	} while (int.pow(sqr, (int.mod - 1n) >> 1n) != int.mod - 1n)
+	let s = [1, 0], a = [key, 1]
+	for (let b = (int.mod + 1n) >> 1n; b; b >>= 1n, a = merge(a, a))
+		if (b & 1n) {
+			s = merge(s, a)
+		}
+	return int.export(int.min(s[0], int.sub(int.mod, s[0])))
+}
+
 algorithm.dft = function (src) {
 	let lim = 1, k = 0
 	while (lim < src.length) {
