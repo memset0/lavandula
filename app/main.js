@@ -3,8 +3,7 @@ import css from './style/main.less'
 GM_addStyle(GM_getResourceText('mdui-css'))
 
 function mdui_loader() {
-	this.window = unsafeWindow
-	this.lavandula = {}
+	this.window = window
 	eval(GM_getResourceText('mdui-js'))
 }
 
