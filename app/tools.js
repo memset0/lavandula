@@ -10,6 +10,7 @@ class Tools {
 	}
 	constructor() {
 		this.toolLib = {
+			favorites: require('./tools/favorites.js'),
 			stringify_latex: require('./tools/stringify_latex.js'),
 			codeforces_links: require('./tools/codeforces_links.js'),
 		}
