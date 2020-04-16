@@ -127,3 +127,27 @@ poly.inv = function (src) {
 	let res = int.resize(algorithm.idft(arr_dfted), src.length)
 	return int.exportArray(res)
 }
+
+poly.int = function (arr) {
+	let res = new Array()
+	res.push(0n)
+	for (let i = 0; i < arr.length - 2; i++) {
+		res.push(int.mul(int.from(arr[i]), int.inv(i + 1)))
+	}
+	return int.exportArray(res)
+}
+
+poly.der = function (arr) {
+	let res = new Array()
+	for (let i = 1; i < arr.length - 1; i++) {
+		res.push(int.mul(int.from(arr[i]), int.from(i)))
+	}
+	res.push(0n)
+	return int.exportArray(res)
+}
+
+poly.ln = function (arr) {
+	let der = poly.mul(poly.der(arr), poly.inv(arr))
+	let res = poly.int(int.resize(der, arr.length))
+	return int.exportArray(res)
+}
