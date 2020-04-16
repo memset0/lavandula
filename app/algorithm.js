@@ -111,3 +111,19 @@ poly.mul = function (arr, oth) {
 	let res = int.resize(algorithm.idft(arr_dfted), len)
 	return int.exportArray(res)
 }
+
+poly.inv = function (src) {
+	if (src.length == 1) {
+		return [int.inv(src[0])]
+	}
+	let arr = int.fromArray(src)
+	let oth = poly.inv(int.resize(src, (src.length + 1) >> 1))
+	let len = arr.length * 2 - 1
+	let arr_dfted = algorithm.dft(int.resize(arr, len))
+	let oth_dfted = algorithm.dft(int.resize(oth, len))
+	for (let i = 0; i < arr_dfted.length; i++) {
+		arr_dfted[i] = int.mul(oth_dfted[i], int.sub(2, int.mul(arr_dfted[i], oth_dfted[i])))
+	}
+	let res = int.resize(algorithm.idft(arr_dfted), src.length)
+	return int.exportArray(res)
+}
