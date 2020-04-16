@@ -54,6 +54,7 @@ int.pow = (a, b) => {
 	return s;
 }
 int.inv = x => int.pow(x, int.mod - 2n)
+int.opp = x => (x === 0n ? 0 : int.sub(int.mod, x))
 
 algorithm.dft = function (src) {
 	let lim = 1, k = 0
@@ -149,5 +150,22 @@ poly.der = function (arr) {
 poly.ln = function (arr) {
 	let der = poly.mul(poly.der(arr), poly.inv(arr))
 	let res = poly.int(int.resize(der, arr.length))
+	return int.exportArray(res)
+}
+
+poly.exp = function (src) {
+	if (src.length == 1) {
+		return [1]
+	}
+	let arr = poly.exp(int.resize(src, (src.length + 1) >> 1))
+	let oth = poly.ln(int.resize(arr, src.length))
+	for (let i = 0; i < src.length; i++) {
+		oth[i] = int.opp(oth[i])
+	}
+	oth[0] = int.inc(oth[0], 1)
+	for (let i = 0; i < src.length; i++) {
+		oth[i] = int.inc(oth[i], src[i])
+	}
+	let res = int.resize(poly.mul(arr, oth), src.length)
 	return int.exportArray(res)
 }
