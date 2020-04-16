@@ -37,10 +37,8 @@ class Yhx12243Reader extends BaseReader {
 			.each(function () {
 				$(this).html($('<div/>').text($(this).text()).html())
 			})
+		MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName('lavandula-typo')[0]])
 		super.renderHighlight($e)
-		$(lavandula.reader.selector.typo).ready(function () {
-			MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName('lavandula-typo')[0]]);
-		})
 	}
 	panelLinks() {
 		return lavandula.create.panel_links('链接', links)
@@ -61,6 +59,7 @@ class Yhx12243Reader extends BaseReader {
 			author_link: 'https://yhx-12243.github.io/OI-transit',
 			content: $('body').html(),
 		}
+		this.data.content = lavandula.utils.stringify_mathjax(this.data.content)
 	}
 }
 
