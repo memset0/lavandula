@@ -248,6 +248,25 @@ poly.sqrt = function (src) {
 	return int.exportArray(res)
 }
 
+poly.pow = function (src, b) {
+	let res = [1]
+	let arr = int.fromArray(src)
+	for (; b; b >>= 1, arr = int.resize(poly.mul(arr, arr), src.length))
+		if (b & 1) {
+			res = int.resize(poly.mul(res, arr), src.length)
+		}
+	return res
+}
+
+poly.challenge = function (arr, k) {
+	let part1 = poly.inc(arr, [int.sub(2, arr[0])])
+	let part2 = poly.exp(poly.int(poly.inv(poly.sqrt(arr))))
+	let part3 = poly.inc(poly.ln(poly.sub(part1, part2)), [1])
+	let part4 = poly.der(poly.pow(part3, k))
+	return int.exportArray(int.resize(part4, arr.length - 1))
+}
+
 if (require.main == module) {
 	// debugger goes here...
+	console.log(poly.challenge([1,9,2,6,0,8,1,7],19260817))
 }
