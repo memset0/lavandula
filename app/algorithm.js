@@ -60,15 +60,6 @@ int.max = function (...arg) {
 	return res
 }
 
-poly.copy = arr => arr.slice()
-poly.resize = (arr, except) => {
-	res = arr.slice(0, except)
-	while (res.length < except) {
-		res.push(0)
-	}
-	return poly.copy(res)
-}
-
 int.cipolla = function (num) {
 	let key = null, sqr = null
 	function merge(a, b) {
@@ -89,7 +80,24 @@ int.cipolla = function (num) {
 	return int.min(s[0], int.sub(int.mod, s[0]))
 }
 
-algorithm.dft = function (src) {
+poly.from = arr => {
+	let res = new Array()
+	arr.forEach(val => {
+		res.push(parseInt(BigInt(val) % int.MOD))
+	})
+	return res
+}
+
+poly.copy = arr => arr.slice()
+poly.resize = (arr, except) => {
+	res = arr.slice(0, except)
+	while (res.length < except) {
+		res.push(0)
+	}
+	return poly.copy(res)
+}
+
+poly.dft = function (src) {
 	let lim = 1, k = 0
 	while (lim < src.length) {
 		lim <<= 1;
@@ -123,8 +131,8 @@ algorithm.dft = function (src) {
 	return arr
 }
 
-algorithm.idft = function (src) {
-	let arr = algorithm.dft(src)
+poly.idft = function (src) {
+	let arr = poly.dft(src)
 	let inv = int.inv(arr.length)
 	for (let i = 1, j = arr.length - 1; i < j; i++, j--) {
 		let tmp = arr[i]
@@ -163,12 +171,12 @@ poly.sub = function (arr, oth) {
 
 poly.mul = function (arr, oth) {
 	let len = arr.length + oth.length - 1
-	let arr_dfted = algorithm.dft(poly.resize(arr, len))
-	let oth_dfted = algorithm.dft(poly.resize(oth, len))
+	let arr_dfted = poly.dft(poly.resize(arr, len))
+	let oth_dfted = poly.dft(poly.resize(oth, len))
 	for (let i = 0; i < arr_dfted.length; i++) {
 		arr_dfted[i] = int.mul(arr_dfted[i], oth_dfted[i])
 	}
-	let res = poly.resize(algorithm.idft(arr_dfted), len)
+	let res = poly.resize(poly.idft(arr_dfted), len)
 	return res
 }
 
@@ -178,12 +186,12 @@ poly.inv = function (arr) {
 	}
 	let oth = poly.inv(poly.resize(arr, (arr.length + 1) >> 1))
 	let len = arr.length * 2 - 1
-	let arr_dfted = algorithm.dft(poly.resize(arr, len))
-	let oth_dfted = algorithm.dft(poly.resize(oth, len))
+	let arr_dfted = poly.dft(poly.resize(arr, len))
+	let oth_dfted = poly.dft(poly.resize(oth, len))
 	for (let i = 0; i < arr_dfted.length; i++) {
 		arr_dfted[i] = int.mul(oth_dfted[i], int.sub(2, int.mul(arr_dfted[i], oth_dfted[i])))
 	}
-	let res = poly.resize(algorithm.idft(arr_dfted), arr.length)
+	let res = poly.resize(poly.idft(arr_dfted), arr.length)
 	return res
 }
 

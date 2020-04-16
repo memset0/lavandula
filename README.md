@@ -44,6 +44,9 @@ mem0 这么想着，于是 `README.md` 多了下面几行
   - 再次点击可以变回 LaTeX 公式
 - CodeForces 小助手
   - 帮你在 CodeForces 的各个页面中快速跳转
+- 多项式小助手
+  - 多项式全家桶放在 `lavandula.algorithm.poly` 里（
+  - 也可以直接点击打开弹出窗口来算（
   
 <br>
 

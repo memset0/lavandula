@@ -94,15 +94,10 @@ class StringifyLatex extends BaseTool {
 		}
 	}
 	create($e) {
-		this.ele = lavandula.create.element('div', {
-			id: 'lavandula-tools-stringify-latex',
-			class: 'lavandula-panel-card'
-		}).appendTo($e)
-		this.button = lavandula.create.element('button', {
-			class: 'lavandula-btn lavandula-btn-block'
-		}).text('文本化 LaTeX 公式')
-			.appendTo(this.ele)
-		this.button.click(this.click)
+		this.$button = lavandula.create.element('button', { class: 'lavandula-btn lavandula-btn-block' })
+			.appendTo(lavandula.panel.$buttons)
+			.text('文本化 LaTeX 公式')
+			.click(() => { this.click() })
 	}
 	constructor() {
 		super()

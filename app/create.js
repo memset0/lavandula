@@ -1,9 +1,22 @@
 lavandula.create = {}
 
 let create = lavandula.create
+let $$ = lavandula.mduiJQ
 
-create.element = function (tag, attr = {}) {
+create.$ = create.element = function (tag, attr = {}) {
 	return $(`<${tag}/>`).attr(attr)
+}
+
+create.button = function (text) {
+	return $(`
+		<button class="lavandula-btn">${text}</button>
+	`)
+}
+
+create.block_button = function (text) {
+	return $(`
+		<button class="lavandula-btn lavandula-btn-block">${text}</button>
+	`)
 }
 
 create.chip = function (text, icon = '') {
@@ -32,6 +45,12 @@ create.checkbox = function (id, checked = false, text = '') {
 	`)
 }
 
+create.code = function (code, id = null) {
+	return $(`
+		<pre><code id="${id ? id : ''}">${code}</code></pre>
+	`)
+}
+
 create.icon = function (icon) {
 	return $(`
 		<i class="lavandula-icon material-icons">${icon}</i>
@@ -46,10 +65,31 @@ create.icon_button = function (icon) {
 	`)
 }
 
+create.textarea = function (label, text = null, icon = null, id = null) {
+	let $textarea = $(`
+		<div class="lavandula-textfield lavandula-textfield-floating-label">
+		</div>
+	`)
+	if (icon) {
+		$textarea.append($(`
+			<i class="lavandula-icon material-icons">${icon}</i>
+		`))
+	}
+	if (label) {
+		$textarea.append($(`
+			<label class="lavandula-textfield-label">${label}</label>
+		`))
+	}
+	$textarea.append($(`
+		<textarea class="lavandula-textfield-input" id="${id ? id : ''}">${text ? text : ''}</textarea>
+	`))
+	return $textarea
+}
+
 create.table = function (id, keys, dataset) {
 	let $table = $(`
 		<div class="lavandula-table-fluid" id="${id}">
-			<table class="lavandula-table mdui-table-hoverable">
+			<table class="lavandula-table lavandula-table-hoverable">
 				<thead></thead>
 				<tbody></tbody>
 			</table>
@@ -63,7 +103,7 @@ create.table = function (id, keys, dataset) {
 		$tr = $('<tr/>').appendTo($tbody)
 		keys.forEach(key => $tr.append($('<td/>').text(data[key])))
 	})
-	lavandula.mdui.mutation('#' + id)
+	lavandula.mduiJQ('#' + id).mutation()
 	return $table
 }
 
