@@ -38,6 +38,9 @@ class Yhx12243Reader extends BaseReader {
 				$(this).html($('<div/>').text($(this).text()).html())
 			})
 		super.renderHighlight($e)
+		$(lavandula.reader.selector.typo).ready(function () {
+			MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName('lavandula-typo')[0]]);
+		})
 	}
 	panelLinks() {
 		return lavandula.create.panel_links('链接', links)
