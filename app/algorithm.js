@@ -1,3 +1,8 @@
+if (require.main == module) {
+	lavandula = {}
+	require('./utils.js')
+}
+
 lavandula.algorithm = {
 	int: {},
 	poly: {}
@@ -56,22 +61,22 @@ int.pow = (a, b) => {
 int.inv = x => int.pow(x, int.mod - 2n)
 int.opp = x => (x === 0n ? 0 : int.sub(int.mod, x))
 
-int.min = function(...arg) {
+int.min = function (...arg) {
 	let res = arg[0]
 	for (let i = 0; i < arg.length; i++)
 		if (arg[i] < res) {
-			res=arg[i]
+			res = arg[i]
 		}
-	return res
+	return int.export(res)
 }
 
-int.max = function(...arg) {
+int.max = function (...arg) {
 	let res = arg[0]
 	for (let i = 0; i < arg.length; i++)
 		if (arg[i] > res) {
-			res=arg[i]
+			res = arg[i]
 		}
-	return res
+	return int.export(res)
 }
 
 int.cipolla = function (num) {
@@ -140,6 +145,30 @@ algorithm.idft = function (src) {
 	return int.exportArray(arr)
 }
 
+poly.inc = function (arr, oth) {
+	let res = new Array()
+	let len = int.max(arr.length, oth.length)
+	for (let i = 0; i < len; i++) {
+		let val = 0
+		if (i < arr.length) val = int.inc(val, arr[i])
+		if (i < oth.length) val = int.inc(val, oth[i])
+		res.push(val)
+	}
+	return res
+}
+
+poly.sub = function (arr, oth) {
+	let res = new Array()
+	let len = int.max(arr.length, oth.length)
+	for (let i = 0; i < len; i++) {
+		let val = 0
+		if (i < arr.length) val = int.inc(val, arr[i])
+		if (i < oth.length) val = int.sub(val, oth[i])
+		res.push(val)
+	}
+	return res
+}
+
 poly.mul = function (arr, oth) {
 	let len = arr.length + oth.length - 1
 	let arr_dfted = algorithm.dft(int.resize(arr, len))
@@ -206,4 +235,19 @@ poly.exp = function (src) {
 	}
 	let res = int.resize(poly.mul(arr, oth), src.length)
 	return int.exportArray(res)
+}
+
+poly.sqrt = function (src) {
+	if (src.length == 1) {
+		return [int.cipolla(src[0])]
+	}
+	let arr = poly.sqrt(int.resize(src, (src.length + 1) >> 1))
+	let part1 = poly.inc(int.resize(poly.mul(arr, arr), src.length), src)
+	let part2 = poly.inv(int.resize(poly.inc(arr, arr), src.length))
+	let res = int.resize(poly.mul(part1, part2), src.length)
+	return int.exportArray(res)
+}
+
+if (require.main == module) {
+	// debugger goes here...
 }
