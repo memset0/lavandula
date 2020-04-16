@@ -8,19 +8,24 @@ function mdui_loader() {
 }
 
 unsafeWindow.lavandula = {}
+
 unsafeWindow.lavandula.$ = $
 unsafeWindow.lavandula.mode = 'development'
+
 unsafeWindow.lavandula.mdui = (new mdui_loader()).lavandula
 unsafeWindow.lavandula.mduiJQ = unsafeWindow.lavandula.mdui.JQ
 
-require('./create.js')
-require('./utils.js')
-require('./algorithm.js')
+unsafeWindow.lavandula.hyperscript = require('hyperscript')
+unsafeWindow.lavandula.dom2hscript = require('dom2hscript')
 
-unsafeWindow.lavandula.panel = require('./panel.js')
-unsafeWindow.lavandula.reader = require('./reader.js')
-unsafeWindow.lavandula.button = require('./button.js')
-unsafeWindow.lavandula.tools = require('./tools.js')
+require('./create')
+require('./utils')
+require('./algorithm')
+
+unsafeWindow.lavandula.panel = require('./panel')
+unsafeWindow.lavandula.reader = require('./reader')
+unsafeWindow.lavandula.button = require('./button')
+unsafeWindow.lavandula.tools = require('./tools')
 
 $(document).ready(function () {
 	if (lavandula.reader.loaded) {

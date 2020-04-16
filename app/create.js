@@ -1,129 +1,47 @@
 lavandula.create = {}
 
 let create = lavandula.create
-let $$ = lavandula.mduiJQ
+let h = lavandula.hyperscript
 
-create.$ = create.element = function (tag, attr = {}) {
-	return $(`<${tag}/>`).attr(attr)
-}
+create.element = (tag, attr = {}) => $(`<${tag}/>`).attr(attr)
+create.$ = (...argv) => $(h(...argv))
 
-create.button = function (text) {
-	return $(`
-		<button class="lavandula-btn">${text}</button>
-	`)
-}
+create.icon = icon => $(h('i.lavandula-icon.material-icons', icon))
+create.button = text => $(h('button.lavandula-btn', text))
+create.block_button = text => $(h('button.lavandula-btn.lavandula-btn-block', text))
 
-create.block_button = function (text) {
-	return $(`
-		<button class="lavandula-btn lavandula-btn-block">${text}</button>
-	`)
-}
+create.icon_button = icon => $(
+	h('button.lavandula-btn.lavandula-btn-icon',
+		h('i.lavandula-icon.material-icons', icon)))
 
-create.chip = function (text, icon = '') {
-	let $chip = $(`
-		<div class="lavandula-chip">
-			<span class="lavandula-chip-title">${text}</span>
-		</div>
-	`)
-	if (icon) {
-		$chip.prepend($(`
-			<span class="lavandula-chip-icon">
-				<i class="lavandula-icon material-icons">${icon}</i>
-			</span>
-		`))
-	}
-	return $chip
-}
+create.chip = (text, icon = '') => $(
+	h('div.lavandula-chip', icon ?
+		h('span.lavandula-chip-icon',
+			h('i.lavandula-icon.material-icons', icon)) : null,
+		h('span.lavandula-chip-title', text)))
 
-create.checkbox = function (id, checked = false, text = '') {
-	return $(`
-		<label class="lavandula-checkbox">
-			${text}
-			<input type="checkbox" ${checked ? 'checked' : ''} id="${id}" />
-			<i class="lavandula-checkbox-icon"></i>
-		</label>
-	`)
-}
+create.textarea = (label, text = null, icon = null, id = null) => $(
+	h('div.lavandula-textfield.lavandula-textfield-floating-label', icon ?
+		h('i.lavandula-icon.material-icons', icon) : undefined, label ?
+		h('label.lavandula-textfield-label', label) : undefined,
+		h('textarea.lavandula-textfield-input', { id: id }, text)))
 
-create.code = function (code, id = null) {
-	return $(`
-		<pre><code id="${id ? id : ''}">${code}</code></pre>
-	`)
-}
+create.table = (keySet, dataSet) => $(
+	h('div.lavandula-table-fluid',
+		h('table.lavandula-table.lavandula-table-hoverable',
+			h('thead',
+				h('tr', keySet.map(key =>
+					h('td', key)))),
+			h('tbody', dataSet.map(data =>
+				h('tr', keySet.map(key =>
+					h('td', data[key]))))))))
 
-create.icon = function (icon) {
-	return $(`
-		<i class="lavandula-icon material-icons">${icon}</i>
-	`)
-}
+create.panel = (title, $content) => $(
+	h('div.lavandula-panel-card',
+		h('div.lavandula-panel-card-title', title),
+		h('div.lavandula-panel-card-content', $($content)[0])))
 
-create.icon_button = function (icon) {
-	return $(`
-		<button class="lavandula-btn lavandula-btn-icon">
-			<i class="lavandula-icon material-icons">${icon}</i>
-		</button>
-	`)
-}
-
-create.textarea = function (label, text = null, icon = null, id = null) {
-	let $textarea = $(`
-		<div class="lavandula-textfield lavandula-textfield-floating-label">
-		</div>
-	`)
-	if (icon) {
-		$textarea.append($(`
-			<i class="lavandula-icon material-icons">${icon}</i>
-		`))
-	}
-	if (label) {
-		$textarea.append($(`
-			<label class="lavandula-textfield-label">${label}</label>
-		`))
-	}
-	$textarea.append($(`
-		<textarea class="lavandula-textfield-input" id="${id ? id : ''}">${text ? text : ''}</textarea>
-	`))
-	return $textarea
-}
-
-create.table = function (id, keys, dataset) {
-	let $table = $(`
-		<div class="lavandula-table-fluid" id="${id}">
-			<table class="lavandula-table lavandula-table-hoverable">
-				<thead></thead>
-				<tbody></tbody>
-			</table>
-		</div>
-	`)
-	let $thead = $table.find('thead')
-	$tr = $('<tr/>').appendTo($thead)
-	keys.forEach(key => $tr.append($('<td/>').text(key)))
-	let $tbody = $table.find('tbody')
-	dataset.forEach(data => {
-		$tr = $('<tr/>').appendTo($tbody)
-		keys.forEach(key => $tr.append($('<td/>').text(data[key])))
-	})
-	lavandula.mduiJQ('#' + id).mutation()
-	return $table
-}
-
-create.panel = function (title, $content) {
-	let $panel = $(`
-		<div class="lavandula-panel-card">
-			<div class="lavandula-panel-card-title">${title}</div>
-			<div class="lavandula-panel-card-content"></div>
-		</div>
-	`)
-	$panel.children('.lavandula-panel-card-content').append($content)
-	return $panel
-}
-
-create.panel_links = function (title, links) {
-	$content = $('<ul/>')
-	links.forEach(link => {
-		$content.append($(`
-			<li><a href="${link.href}" target="_blank">${link.text}</a></li>
-		`))
-	})
-	return create.panel(title, $content)
-}
+create.panel_links = (title, links) => create.panel(title, $(
+	h('ul', links.map(link =>
+		h('li',
+			h('a', link.text, { href: link.href, target: '_blank' }))))))

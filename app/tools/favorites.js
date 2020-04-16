@@ -41,7 +41,7 @@ class FavoritesTool extends BaseTool {
 		this.list()
 			.then(res => {
 				let $html = lavandula.create.element('div')
-					.append(lavandula.create.table('lavandula-favorites-table', ['url'], res))
+					.append(lavandula.create.table(['url'], res).attr('id', 'lavandula-favorites-table'))
 				lavandula.mdui.dialog({
 					title: '收藏夹',
 					content: $html.html(),
