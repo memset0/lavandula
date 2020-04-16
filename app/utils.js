@@ -1,4 +1,4 @@
-lavandula.untils = {};
+lavandula.utils = {};
 lavandula.create = {};
 
 (function () {
@@ -40,7 +40,7 @@ lavandula.create = {};
 		`)
 	}
 
-	create.icon_button = function(icon) {
+	create.icon_button = function (icon) {
 		return $(`
 			<button class="lavandula-btn lavandula-btn-icon">
 				<i class="lavandula-icon material-icons">${icon}</i>
@@ -80,7 +80,7 @@ lavandula.create = {};
 		return $panel
 	}
 
-	create.panel_links = function(title, links) {
+	create.panel_links = function (title, links) {
 		$content = $('<ul/>')
 		links.forEach(link => {
 			$content.append($(`
@@ -89,4 +89,15 @@ lavandula.create = {};
 		})
 		return create.panel(title, $content)
 	}
-})()
+})();
+
+(function () {
+	let utils = lavandula.utils
+
+	utils.md5 = require('./lib/md5.js')
+	utils.swap = (a, b) => { b = [a, a = b][0] }
+	utils.random = (l) => Math.floor(Math.random() * l)
+	utils.random_range = (l, r) => (l + random(r - l))
+	utils.random_hash = () => utils.md5(Date() + Math.random() + 114514 + 'Menci TQL!')
+
+})();
