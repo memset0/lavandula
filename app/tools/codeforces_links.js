@@ -1,5 +1,4 @@
 const BaseTool = require('./base.js')
-const { createLinksPanelElement } = require('../utils.js')
 
 function matchUrl() {
 	const regExpGroup = [
@@ -44,7 +43,7 @@ class CodeforcesLinks extends BaseTool {
 	}
 	create($e) {
 		[this.round, this.problem] = this.match()
-		this.ele = createLinksPanelElement('CodeForces Links', this.links(this.round, this.problem))
+		this.ele = lavandula.create.panel_links('CodeForces Links', this.links(this.round, this.problem))
 			.appendTo($e)
 	}
 	constructor() {

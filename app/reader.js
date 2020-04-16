@@ -29,6 +29,11 @@ class Reader {
 			yhx12243: require('./methods/reader/yhx12243.js'),
 			codeforces: require('./methods/reader/codeforces.js'),
 		}
+		this.selector = {
+			title: '#lavandula-reader .lavandula-title',
+			subtitle: '#lavandula-reader .lavandula-subtitle',
+			typo: '#lavandula-reader .lavandula-typo',
+		}
 		this.load()
 	}
 }

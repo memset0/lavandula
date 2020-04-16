@@ -22,38 +22,37 @@ class CodeforcesReader extends BaseReader {
 	}
 	render($e) {
 		super.render($e)
-		$('#lavandula-reader .lavandula-typo')
-			.ready(function () {
-				let $content = $('#lavandula-reader .lavandula-typo')
-				$content.addClass('lavandula-codeforces')
-				$('div#pageContent .problem-statement > div')
-					.each(function (index) {
-						if (1 <= index && index <= 5) {
-							$(this).appendTo($content)
-							$(this).children('.section-title').remove()
+		$(lavandula.reader.selector.typo).ready(function () {
+			let $content = $(lavandula.reader.selector.typo)
+			$content.addClass('lavandula-codeforces')
+			$('div#pageContent .problem-statement > div')
+				.each(function (index) {
+					if (1 <= index && index <= 5) {
+						$(this).appendTo($content)
+						$(this).children('.section-title').remove()
+					}
+					if (2 <= index && index <= 5) {
+						const text = {
+							2: '输入格式',
+							3: '输出格式',
+							4: '样例',
+							5: '数据范围和备注'
 						}
-						if (2 <= index && index <= 5) {
-							const text = {
-								2: '输入格式',
-								3: '输出格式',
-								4: '样例',
-								5: '数据范围和备注'
-							}
-							lavandula.create.element('h3')
-								.text(text[index])
-								.prependTo($(this))
-						}
-						if (index == 4) {
-							$(this).find('.sample-test .input')
-								.addClass('lavandula-codeforces-input')
-							$(this).find('.sample-test .output')
-								.addClass('lavandula-codeforces-output')
-							$(this).find('.sample-test .input-output-copier')
-								.addClass('lavandula-btn')
-								.addClass('lavandula-codeforces-copier')
-						}
-					})
-			})
+						lavandula.create.element('h3')
+							.text(text[index])
+							.prependTo($(this))
+					}
+					if (index == 4) {
+						$(this).find('.sample-test .input')
+							.addClass('lavandula-codeforces-input')
+						$(this).find('.sample-test .output')
+							.addClass('lavandula-codeforces-output')
+						$(this).find('.sample-test .input-output-copier')
+							.addClass('lavandula-btn')
+							.addClass('lavandula-codeforces-copier')
+					}
+				})
+		})
 	}
 	constructor() {
 		super()
