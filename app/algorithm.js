@@ -114,7 +114,7 @@ poly.mul = function (arr, oth) {
 
 poly.inv = function (src) {
 	if (src.length == 1) {
-		return [int.inv(src[0])]
+		return [int.export(int.inv(src[0]))]
 	}
 	let arr = int.fromArray(src)
 	let oth = poly.inv(int.resize(src, (src.length + 1) >> 1))
