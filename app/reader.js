@@ -38,4 +38,4 @@ class Reader {
 	}
 }
 
-module.exports = Reader
+module.exports = new Reader()

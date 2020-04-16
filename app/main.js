@@ -16,10 +16,11 @@ unsafeWindow.lavandula.$$ = unsafeWindow.lavandula.mdui.JQ
 require('./create.js')
 require('./utils.js')
 require('./algorithm.js')
-unsafeWindow.lavandula.tools = new (require('./tools.js'))()
-unsafeWindow.lavandula.panel = new (require('./panel.js'))()
-unsafeWindow.lavandula.reader = new (require('./reader.js'))()
-unsafeWindow.lavandula.button = new (require('./button.js'))()
+
+unsafeWindow.lavandula.panel = require('./panel.js')
+unsafeWindow.lavandula.reader = require('./reader.js')
+unsafeWindow.lavandula.button = require('./button.js')
+unsafeWindow.lavandula.tools = require('./tools.js')
 
 $(document).ready(function () {
 	if (lavandula.reader.loaded) {

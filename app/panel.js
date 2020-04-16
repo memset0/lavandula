@@ -37,4 +37,4 @@ class Panel {
 	}
 }
 
-module.exports = Panel
+module.exports = new Panel()

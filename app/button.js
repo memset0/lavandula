@@ -15,4 +15,4 @@ class Button {
 	}
 }
 
-module.exports = Button
+module.exports = new Button()

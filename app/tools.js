@@ -16,4 +16,4 @@ class Tools {
 	}
 }
 
-module.exports = Tools
+module.exports = new Tools()
