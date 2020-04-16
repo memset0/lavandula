@@ -13,14 +13,10 @@ utils.stringify_mathjax = function (html, inline_symbol = ['$', '$'], display_sy
 	this.$.find(".MathJax, .MathJax_Preview, .MathJax_Display, .MathJax_CHTML, .MathJax_SVG")
 		.remove()
 	this.$.find("script[type='math/tex; mode=display']").each(function () {
-		this.outerHTML = lavandula.create.element('span', { class: "lavandula-mathjax-display" })
-			.text(display_symbol[0] + $.trim(this.innerHTML) + display_symbol[1])
-			.prop("outerHTML")
+		this.outerHTML = ' ' + display_symbol[0] + $.trim(this.innerHTML) + display_symbol[1] + ' '
 	})
 	this.$.find("script[type='math/tex']").each(function () {
-		this.outerHTML = lavandula.create.element('span', { class: "lavandula-mathjax" })
-			.text(inline_symbol[0] + $.trim(this.innerHTML) + inline_symbol[1])
-			.prop("outerHTML")
+		this.outerHTML = ' ' + inline_symbol[0] + $.trim(this.innerHTML) + inline_symbol[1] + ' '
 	})
 	return this.$.html()
 }
