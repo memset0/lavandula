@@ -4,7 +4,6 @@ let create = lavandula.create
 let h = lavandula.hyperscript
 
 create.element = (tag, attr = {}) => $(`<${tag}/>`).attr(attr)
-create.$ = (...argv) => $(h(...argv))
 
 create.icon = icon => $(h('i.lavandula-icon.material-icons', icon))
 create.button = text => $(h('button.lavandula-btn', text))
@@ -14,11 +13,11 @@ create.icon_button = icon => $(
 	h('button.lavandula-btn.lavandula-btn-icon',
 		h('i.lavandula-icon.material-icons', icon)))
 
-create.chip = (text, icon = '') => $(
+create.chip = (text, icon = '') => 
 	h('div.lavandula-chip', icon ?
 		h('span.lavandula-chip-icon',
 			h('i.lavandula-icon.material-icons', icon)) : null,
-		h('span.lavandula-chip-title', text)))
+		h('span.lavandula-chip-title', text))
 
 create.textarea = (label, text = null, icon = null, id = null) => $(
 	h('div.lavandula-textfield.lavandula-textfield-floating-label', icon ?

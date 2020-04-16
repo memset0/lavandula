@@ -1,5 +1,6 @@
 const BaseTool = require('./base.js')
-const h = require('hyperscript')
+
+const h = lavandula.hyperscript
 
 class PolynomialHelper extends BaseTool {
 	static isAvailable() { return true }

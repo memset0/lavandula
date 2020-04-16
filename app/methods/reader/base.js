@@ -1,49 +1,39 @@
+const c = lavandula.create
+const h = lavandula.hyperscript
+
 class BaseReader {
 	static isAvailable() {
 		return false
 	}
 	render($e) {
-		let $container = lavandula.create.element('div', { class: 'lavandula-container' })
-			.appendTo($e)
-		let $content = lavandula.create.element('div', { class: 'lavandula-content' })
-			.appendTo($container)
-		let $title = lavandula.create.element('div', { class: 'lavandula-title' })
-			.appendTo($content)
+		$e.append(
+			h('div.lavandula-container',
+				h('div.lavandula-content', [
+					h('div.lavandula-title'),
+					h('div.lavandula-subtitle'),
+					h('div.lavandula-typo'),
+				])))
+		let $title = $e.find('div.lavandula-title')
+		let $subtitle = $e.find('div.lavandula-subtitle')
+		let $typo = $e.find('div.lavandula-typo')
 		if (this.data.title) {
 			$title.text(this.data.title)
 		}
-		let $subtitle = lavandula.create.element('div', { class: 'lavandula-subtitle' })
-			.appendTo($content)
 		if (this.data.author) {
-			if (this.data.author_link) {
-				lavandula.create.element('a', {
-					href: this.data.author_link,
-					target: '_blank',
-				}).appendTo($subtitle)
-					.html(lavandula.create.chip(this.data.author, 'person'))
-			} else {
-				lavandula.create.chip(this.data.author, 'person')
-					.appendTo($subtitle)
-			}
+			$subtitle.append(this.data.author_link ?
+				h('a', { href: this.data.author_link, target: '_blank' },
+					c.chip(this.data.author, 'person')) :
+				c.chip(this.data.author, 'person'))
 		}
 		if (this.data.time) {
-			lavandula.create.chip(this.data.time, 'date_range')
-				.appendTo($subtitle)
+			$subtitle.append(c.chip(this.data.time, 'date_range'))
 		}
 		if (this.data.tag) {
-			this.data.tag.forEach(tag => {
-				lavandula.create.chip(tag)
-					.appendTo($subtitle)
-			})
+			$subtitle.append(this.data.tag.map(tag => c.chip(tag)))
 		}
 		if (this.data.icon_tag) {
-			this.data.icon_tag.forEach(tag => {
-				lavandula.create.chip(tag.text, tag.icon)
-					.appendTo($subtitle)
-			})
+			$subtitle.append(this.data.icon_tag.map(tag => c.chip(tag.text, tag.icon)))
 		}
-		let $typo = lavandula.create.element('div', { class: 'lavandula-typo' })
-			.appendTo($content)
 		if (this.data.content) {
 			$typo.html(this.data.content)
 		}
@@ -53,18 +43,12 @@ class BaseReader {
 	renderHighlight($e) {
 		$e.find("pre.lavandula-hljs code").each(function () {
 			hljs.highlightBlock(this)
-			let array = new Array
 			let counter = 0
-			$(this).html().trim().split('\n').forEach((value) => {
-				array.push('<span class="lavandula-line">' +
-					'<span class="lavandula-line-number">' +
-					(++counter) +
-					'</span>' +
-					value +
-					'</span>'
-				)
-			})
-			$(this).html(array.join('\n'));
+			this.innerHTML = this.innerHTML.trim().split('\n').map(value => {
+				let e = h('span.lavandula-line')
+				e.innerHTML = h('span.lavandula-line-number', ++counter).outerHTML + value
+				return e.outerHTML
+			}).join('\n')
 		});
 	}
 	constructor() {
