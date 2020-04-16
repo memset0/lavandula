@@ -8,8 +8,8 @@ function mdui_loader() {
 	eval(GM_getResourceText('mdui-js'))
 }
 
-unsafeWindow.$ = $
 unsafeWindow.lavandula = {}
+unsafeWindow.lavandula.$ = $
 unsafeWindow.lavandula.mode = 'development'
 unsafeWindow.lavandula.mdui = (new mdui_loader()).lavandula
 
@@ -19,15 +19,6 @@ unsafeWindow.lavandula.tools = new (require('./tools.js'))()
 unsafeWindow.lavandula.panel = new (require('./panel.js'))()
 unsafeWindow.lavandula.reader = new (require('./reader.js'))()
 unsafeWindow.lavandula.button = new (require('./button.js'))()
-
-if (lavandula.mode == 'development') {
-	unsafeWindow.lavandula = Object.assign(unsafeWindow.lavandula, {
-		GM_getValue: GM.getValue,
-		GM_setValue: GM.setValue,
-		GM_listValues: GM.listValues,
-		GM_deleteValue: GM.deleteValue,
-	})
-}
 
 $(document).ready(function () {
 	if (lavandula.reader.loaded) {
