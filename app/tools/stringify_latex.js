@@ -1,5 +1,4 @@
 const BaseTool = require('./base.js')
-const { createElement } = require('../utils.js')
 
 const availableUrlList = [ // unused
 	'uoj.ac',
@@ -32,7 +31,7 @@ function stringifyLatex($e) {
 		let frame = $(`#${$(this).attr('id')}-Frame`).parent().remove().prop('outerHTML')
 		let data = btoa(encodeURIComponent(frame + this.outerHTML))
 		let text = $.trim(this.innerHTML)
-		this.outerHTML = createElement('span', {
+		this.outerHTML = lavandula.create.element('span', {
 			class: "lavandula-mathjax-display",
 			"lavandula-latex-data": data
 		}).text('$$' + text + '$$')
@@ -42,7 +41,7 @@ function stringifyLatex($e) {
 		let frame = $(`#${$(this).attr('id')}-Frame`).remove().prop('outerHTML')
 		let data = btoa(encodeURIComponent(frame + this.outerHTML))
 		let text = $.trim(this.innerHTML)
-		this.outerHTML = createElement('span', {
+		this.outerHTML = lavandula.create.element('span', {
 			class: "lavandula-mathjax",
 			"lavandula-latex-data": data
 		}).text('$' + text + '$')
@@ -52,7 +51,7 @@ function stringifyLatex($e) {
 	$e.find("span.katex-display").each(function () {
 		let data = btoa(encodeURIComponent(this.outerHTML))
 		let text = $(this).find('.katex-mathml annotation').text().trim()
-		this.outerHTML = createElement('span', {
+		this.outerHTML = lavandula.create.element('span', {
 			class: "lavandula-katex-display",
 			"lavandula-latex-data": data
 		}).text('$$' + text + '$$')
@@ -61,7 +60,7 @@ function stringifyLatex($e) {
 	$e.find("span.katex").each(function () {
 		let data = btoa(encodeURIComponent(this.outerHTML))
 		let text = $(this).find('.katex-mathml annotation').text().trim()
-		this.outerHTML = createElement('span', {
+		this.outerHTML = lavandula.create.element('span', {
 			class: "lavandula-katex",
 			"lavandula-latex-data": data
 		}).text('$' + text + '$')
@@ -84,17 +83,7 @@ function parseLatex($e) {
 }
 
 class StringifyLatex extends BaseTool {
-	// static isAvailable() {
-	// 	let flag = false
-	// 	availableUrlList.forEach(function (url) {
-	// 		flag |= location.href.startsWith('http://' + url)
-	// 		flag |= location.href.startsWith('https://' + url)
-	// 	})
-	// 	return flag
-	// }
-	static isAvailable() {
-		return true
-	}
+	static isAvailable() { return true }
 	click() {
 		if (this.enable) {
 			this.enable = false
@@ -105,11 +94,11 @@ class StringifyLatex extends BaseTool {
 		}
 	}
 	create($e) {
-		this.ele = createElement('div', {
+		this.ele = lavandula.create.element('div', {
 			id: 'lavandula-tools-stringify-latex',
 			class: 'lavandula-panel-card'
 		}).appendTo($e)
-		this.button = createElement('button', {
+		this.button = lavandula.create.element('button', {
 			class: 'lavandula-btn lavandula-btn-block'
 		}).text('文本化 LaTeX 公式')
 			.appendTo(this.ele)

@@ -1,5 +1,4 @@
 const BaseReader = require('./base.js')
-const { createElement } = require('../../utils.js')
 
 function matchUrl() {
 	const regExpGroup = [
@@ -40,7 +39,7 @@ class CodeforcesReader extends BaseReader {
 								4: '样例',
 								5: '数据范围和备注'
 							}
-							createElement('h3')
+							lavandula.create.element('h3')
 								.text(text[index])
 								.prependTo($(this))
 						}

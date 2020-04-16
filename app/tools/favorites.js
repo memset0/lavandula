@@ -1,12 +1,4 @@
 const BaseTool = require('./base.js')
-const {
-	createElement,
-	createCheckbox,
-	createIconButton,
-	createTable,
-	createPanel
-} = require('../utils.js')
-
 const adapter = new GreasemonkeyAsync('lavandula.tools.favorites')
 
 class FavoritesTool extends BaseTool {
@@ -48,8 +40,8 @@ class FavoritesTool extends BaseTool {
 	openPanel() {
 		this.list()
 			.then(res => {
-				let $html = createElement('div')
-					.append(createTable('lavandula-favorites-table', ['url'], res))
+				let $html = lavandula.create.element('div')
+					.append(lavandula.create.table('lavandula-favorites-table', ['url'], res))
 				lavandula.mdui.dialog({
 					title: '收藏夹',
 					content: $html.html(),
@@ -57,25 +49,25 @@ class FavoritesTool extends BaseTool {
 			})
 	}
 	create($e) {
-		this.$content = createPanel('收藏')
+		this.$content = lavandula.create.panel('收藏')
 			.appendTo($e)
 			.children('.lavandula-panel-card-content')
-		this.$btnGroup = createElement('div')
+		this.$btnGroup = lavandula.create.element('div')
 			.appendTo(this.$content)
 		this.query({ url: window.location.href }).then(res => {
 			// extra button
-			this.$extraButton = createIconButton('menu')
+			this.$extraButton = lavandula.create.icon_button('menu')
 				.appendTo(this.$btnGroup)
 				.click(() => { this.openPanel() })
 			// add button
-			this.$addButton = createIconButton(res.length ? 'star' : 'star_border')
+			this.$addButton = lavandula.create.icon_button(res.length ? 'star' : 'star_border')
 				.appendTo(this.$btnGroup)
 				.click(() => { this.toggleStar() })
 			// checkboxes
 			// let data = added ? res[0] : { color: [] }
 			// const colorList = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
 			// colorList.forEach(color => {
-			// 	createCheckbox('lavandula-favorite-tag-' + color, data.color.indexOf(color) != -1)
+			// 	lavandula.create.checkbox('lavandula-favorite-tag-' + color, data.color.indexOf(color) != -1)
 			// 		.appendTo(this.$btnGroup)
 			// })
 		})

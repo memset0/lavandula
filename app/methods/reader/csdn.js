@@ -1,5 +1,4 @@
 const BaseReader = require('./base.js')
-const { createLinksPanelElement } = require('../../utils.js')
 
 class CsdnReader extends BaseReader {
 	static isAvailable() {
@@ -29,7 +28,7 @@ class CsdnReader extends BaseReader {
 				text: $(this).find('.title.oneline').text().trim(),
 			})
 		})
-		return createLinksPanelElement('分类', links)
+		return lavandula.create.panel_links('分类', links)
 	}
 	panelArchive() {
 		let links = new Array()
@@ -41,7 +40,7 @@ class CsdnReader extends BaseReader {
 				text: $e.text().trim(),
 			})
 		})
-		return createLinksPanelElement('归档', links)
+		return lavandula.create.panel_links('归档', links)
 	}
 	renderPanel($e) {
 		super.renderPanel($e)

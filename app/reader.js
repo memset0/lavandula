@@ -1,5 +1,3 @@
-const { createElement } = require('./utils.js')
-
 class Reader {
 	toggle() {
 		if (this.loaded) {
@@ -16,7 +14,7 @@ class Reader {
 		})
 	}
 	create() {
-		this.ele = createElement('div', {
+		this.ele = lavandula.create.element('div', {
 			id: 'lavandula-reader',
 			class: 'lavandula-body lavandula-hide',
 		})

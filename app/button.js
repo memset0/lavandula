@@ -1,8 +1,6 @@
-const { createElement } = require('./utils.js')
-
 class Button {
 	create() {
-		this.ele = createElement('div', {
+		this.ele = lavandula.create.element('div', {
 			id: 'lavandula-toggle-button',
 			class: 'lavandula-body',
 			onclick: 'lavandula.panel.toggle(); lavandula.reader.toggle()',
@@ -14,7 +12,6 @@ class Button {
 		$('lavandula-toggle-button').remove()
 	}
 	constructor() {
-		
 	}
 }
 

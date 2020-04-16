@@ -1,11 +1,9 @@
-const { createElement } = require('./utils.js')
-
 class Panel {
 	toggle() {
 		this.ele.toggleClass('lavandula-hide')
 	}
 	create() {
-		this.ele = createElement('div', {
+		this.ele = lavandula.create.element('div', {
 			id: 'lavandula-panel',
 			class: 'lavandula-body lavandula-hide'
 		})
@@ -16,12 +14,12 @@ class Panel {
 				</div>
 			</div>
 		`).appendTo(this.ele)
-		createElement('div', { id: 'lavandula-panel-tools' })
+		lavandula.create.element('div', { id: 'lavandula-panel-tools' })
 			.appendTo(this.ele)
 			.each(function () {
 				lavandula.tools.render($(this))
 			})
-		createElement('div', { id: 'lavandula-panel-reader' })
+		lavandula.create.element('div', { id: 'lavandula-panel-reader' })
 			.appendTo(this.ele)
 			.each(function () {
 				if (lavandula.reader.reader) {

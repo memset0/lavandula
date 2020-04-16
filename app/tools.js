@@ -1,5 +1,3 @@
-const { createElement } = require('./utils.js')
-
 class Tools {
 	render($e) {
 		Object.values(this.toolLib).forEach(Tool => {

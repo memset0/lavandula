@@ -1,5 +1,4 @@
 const BaseReader = require('./base.js')
-const { createLinksPanelElement } = require('../../utils.js')
 
 const links = [
 	{ text: '做题记录', href: 'https://yhx-12243.github.io/OI-transit/index.html' },
@@ -41,10 +40,10 @@ class Yhx12243Reader extends BaseReader {
 		super.renderHighlight($e)
 	}
 	panelLinks() {
-		return createLinksPanelElement('链接', links)
+		return lavandula.create.panel_links('链接', links)
 	}
 	panelOJ() {
-		return createLinksPanelElement('OJ', OJLinks)
+		return lavandula.create.panel_links('OJ', OJLinks)
 	}
 	renderPanel($e) {
 		super.renderPanel($e)
