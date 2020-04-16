@@ -61,9 +61,9 @@ algorithm.dft = function (src) {
 		lim <<= 1;
 		k++;
 	}
-	mu = new Array(lim)
-	arr = new Array(lim)
-	rev = new Array(lim)
+	let mu = new Array(lim)
+	let arr = new Array(lim)
+	let rev = new Array(lim)
 	for (let i = 0; i < lim; i++) {
 		rev[i] = (rev[i >> 1] >> 1) | ((i & 1) << (k - 1))
 		arr[rev[i]] = i < src.length ? int.from(src[i]) : 0n
