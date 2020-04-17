@@ -35,7 +35,7 @@ class Yhx12243Reader extends BaseReader {
 		$e.find('pre code')
 			.attr('class', '')
 			.each(function () {
-				$(this).html($('<div/>').text($(this).text()).html())
+				$(this).html(lavandula.utils.decode($(this).text()))
 			})
 		MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName('lavandula-typo')[0]])
 		super.renderHighlight($e)

@@ -1,26 +1,19 @@
+const h = lavandula.hyperscript
+
 class Reader {
 	toggle() {
-		if (this.loaded) {
-			this.ele.toggleClass('lavandula-hide')
+		if (this.lib) {
+			this.$.toggleClass('lavandula-hide')
 		}
 	}
-	load() {
-		this.loaded = false
-		Object.values(this.readerLib).forEach(Reader => {
-			if (Reader.isAvailable()) {
-				this.reader = new Reader()
-				this.loaded = true
-			}
-		})
+
+	render() {
+		this.rendered = true
+		this.lib.render(this.$)
+		this.lib.renderPanel(this.$panel)
+		lavandula.mdui.mutation()
 	}
-	create() {
-		this.ele = lavandula.create.element('div', {
-			id: 'lavandula-reader',
-			class: 'lavandula-body lavandula-hide',
-		})
-		this.reader.render(this.ele)
-		return this.ele
-	}
+
 	constructor() {
 		this.readerLib = {
 			csdn: require('./methods/reader/csdn.js'),
@@ -34,7 +27,17 @@ class Reader {
 			subtitle: '#lavandula-reader .lavandula-subtitle',
 			typo: '#lavandula-reader .lavandula-typo',
 		}
-		this.load()
+
+		this.$ = $(
+			h('div#lavandula-reader.lavandula-body.lavandula-hide'))
+		this.$panel = lavandula.panel.$reader
+
+		Object.keys(this.readerLib).forEach(key => {
+			const Reader = this.readerLib[key]
+			if (Reader.isAvailable()) {
+				this.lib = new Reader()
+			}
+		})
 	}
 }
 

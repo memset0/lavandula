@@ -1,17 +1,16 @@
+const h = lavandula.hyperscript
+
 class Button {
-	create() {
-		this.ele = lavandula.create.element('div', {
-			id: 'lavandula-toggle-button',
-			class: 'lavandula-body',
-			onclick: 'lavandula.panel.toggle(); lavandula.reader.toggle()',
-		})
-		this.ele.append(this.ele)
-		return this.ele
-	}
-	remove() {
-		$('lavandula-toggle-button').remove()
-	}
 	constructor() {
+		this.$ = $(
+			h('div#lavandula-toggle-button.lavandula-body'))
+			.click(() => {
+				lavandula.panel.toggle()
+				lavandula.reader.toggle()
+				if (!lavandula.reader.rendered) {
+					lavandula.reader.render()
+				}
+			})
 	}
 }
 

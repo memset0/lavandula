@@ -3,10 +3,14 @@ lavandula.utils = {}
 let utils = lavandula.utils
 
 utils.md5 = require('md5')
+
 utils.swap = (a, b) => { [b, a] = [a, b] }
+
 utils.random = (l) => Math.floor(Math.random() * l)
 utils.random_range = (l, r) => (l + random(r - l))
 utils.random_hash = () => utils.md5(Date() + Math.random() + 114514 + 'Menci TQL!')
+
+utils.decode = (text) => $('<qyzcute/>').text(text).html()
 
 utils.stringify_mathjax = function (html, inline_symbol = ['$', '$'], display_symbol = ['$$', '$$']) {
 	this.$ = $('<qyzcute>' + html + '</qyzcute>')

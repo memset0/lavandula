@@ -10,7 +10,7 @@ class ZyblogReader extends BaseReader {
 			.attr('class', 'lavandula-hljs')
 			.each(function () {
 				let code = ''
-				$(this).find('code').each(function() {
+				$(this).find('code').each(function () {
 					code += $(this).text() + '\n'
 				})
 				code = $('<div/>').text(code).html()
@@ -20,14 +20,15 @@ class ZyblogReader extends BaseReader {
 	}
 	constructor() {
 		super()
-		let content_ele = $('div#wmd-preview').clone()
-		let title_ele = content_ele.children('h1').first().remove()
-		let tags_ele = content_ele.children('p').first().remove()
+		let $content = $('div#wmd-preview').clone()
+		let $title = $content.children('h1').first().remove()
+		let $tag = $content.children('p').first().remove()
 		this.data = {
-			title: title_ele.text(),
+			title: $title.text(),
 			author: $('div#reader-full-topInfo code:first-child').text().replace('@', ''),
-			content: content_ele.html(),
+			content: $content.html(),
 			time: $('div#reader-full-topInfo code:nth-child(2)').text(),
+			tag: Array.from($tag.children('code').map(function () { return $(this).text() })),
 		}
 	}
 }
