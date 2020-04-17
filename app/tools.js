@@ -8,16 +8,13 @@ class Tools {
 			codeforces_links: require('./tools/codeforces_links'),
 		}
 
-		this.$ = lavandula.panel.$tools
-
 		Object.keys(this.toolLib).forEach(key => {
 			const Tool = this.toolLib[key]
 			if (Tool.isAvailable()) {
 				this.lib[key] = new Tool()
-				this.lib[key].create(this.$)
 			}
 		})
 	}
 }
 
-module.exports = new Tools()
+module.exports = Tools

@@ -20,6 +20,7 @@
 @theme-background: linear-gradient(to top, #b3bcff 0%, #fbc2eb 100%);
 
 @panel-width: 300px;
+@extra-panel-width: 900px;
 
 .lavandula-body {
 	&, *, &:after, *:after, &:before, *:before {
@@ -172,4 +173,24 @@
 			}
 		}
 	}
+}
+
+.lavandula-extra-panel {
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+	z-index: 114514 - 250;
+	position: fixed;
+	top: 0;
+	left: @panel-width;
+	width: @extra-panel-width;
+	height: 100%;
+	transition: 0.5s ease-out;
+	background: #fafafa;
+	padding: 20px;
+	overflow-y: scroll;
+	.lavandula-shadow-6();
+	&.lavandula-hide {
+		left: (@panel-width + @extra-panel-width + 25px) * -1;
+	}		
 }

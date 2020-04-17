@@ -25,14 +25,19 @@ require('./create')
 require('./utils')
 require('./algorithm')
 
-unsafeWindow.lavandula.panel = require('./panel')
-unsafeWindow.lavandula.reader = require('./reader')
-unsafeWindow.lavandula.tools = require('./tools')
-unsafeWindow.lavandula.button = require('./button')
+unsafeWindow.lavandula.button = new (require('./button'))
+
+unsafeWindow.lavandula.panel = new (require('./panel'))
+unsafeWindow.lavandula.extra_panel = new Array()
+
+unsafeWindow.lavandula.reader = new (require('./reader'))
+
+unsafeWindow.lavandula.tools = new (require('./tools'))
 
 lavandula.$.append(lavandula.reader.$)
 lavandula.$.append(lavandula.panel.$)
 lavandula.$.append(lavandula.button.$)
+lavandula.$.append(lavandula.extra_panel.map(o => o.$))
 lavandula.mdui.mutation()
 
 if (lavandula.mode == 'development' && lavandula.reader.lib) {

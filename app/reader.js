@@ -1,11 +1,8 @@
 const h = lavandula.hyperscript
 
 class Reader {
-	toggle() {
-		if (this.lib) {
-			this.$.toggleClass('lavandula-hide')
-		}
-	}
+	hide() { this.$.addClass('lavandula-hide') }
+	show() { this.$.removeClass('lavandula-hide') }
 
 	render() {
 		this.rendered = true
@@ -41,4 +38,4 @@ class Reader {
 	}
 }
 
-module.exports = new Reader()
+module.exports = Reader

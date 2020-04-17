@@ -41,12 +41,11 @@ class CodeforcesLinks extends BaseTool {
 			{ text: '注册这场比赛的 Virtual participation', href: `https://codeforces.com/contestRegistration/${round}/virtual/true` },
 		]
 	}
-	create($e) {
-		[this.round, this.problem] = this.match()
-		$e.append(lavandula.create.panel_links('CodeForces Links', this.links(this.round, this.problem)))
-	}
 	constructor() {
 		super()
+		[this.round, this.problem] = this.match()
+
+		this.$ = $(lavandula.create.panel_links('CodeForces Links', this.links(this.round, this.problem))).appendTo($e)
 	}
 }
 

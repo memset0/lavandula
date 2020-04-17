@@ -58,20 +58,20 @@ class StringifyLatex extends BaseTool {
 	click() {
 		if (this.enable) {
 			this.enable = false
-			parseLatex($('body'))
+			parseLatex(this.$global)
 		} else {
 			this.enable = true
-			stringifyLatex($('body'))
+			stringifyLatex(this.$global)
 		}
 	}
-	create($e) {
+	constructor($e) {
+		super()
+		this.enable = false
+
+		this.$global = $('body')
 		this.$button = $(c.block_button('文本化 LaTeX 公式'))
 			.appendTo(lavandula.panel.$buttons)
 			.click(() => { this.click() })
-	}
-	constructor() {
-		super()
-		this.enable = false
 	}
 }
 

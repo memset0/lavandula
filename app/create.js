@@ -22,7 +22,7 @@ create.chip = (text, icon = '') =>
       h('i.lavandula-icon.material-icons', icon)) : null,
     h('span.lavandula-chip-title', text))
 
-create.textarea = (label, text = null, icon = null, id = null) =>
+create.textarea = (label, text = undefined, icon = undefined, id = undefined) =>
   h('div.lavandula-textfield.lavandula-textfield-floating-label', icon ?
     h('i.lavandula-icon.material-icons', icon) : undefined, label ?
     h('label.lavandula-textfield-label', label) : undefined,
@@ -33,7 +33,7 @@ create.table = (keySet, dataSet) =>
     h('table.lavandula-table.lavandula-table-hoverable',
       h('thead',
         h('tr', keySet.map(key =>
-          h('td', key)))),
+          h('th', key)))),
       h('tbody', dataSet.map(data =>
         h('tr', keySet.map(key =>
           h('td', data[key])))))))

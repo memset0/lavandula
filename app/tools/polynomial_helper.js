@@ -15,24 +15,6 @@ class PolynomialHelper extends BaseTool {
 		})
 	}
 
-	create() {
-		this.$button = $(c.block_button('多项式小助手'))
-			.appendTo(lavandula.panel.$buttons)
-			.click(() => { this.dialog() })
-		this.$html = $(h(`div#${this.prefix}body`))
-			.append(c.textarea('Array 1', null, null, this.prefix + 'array1', () => { console.log('1') }))
-			.append(c.textarea('Array 2', null, null, this.prefix + 'array2', () => { console.log('1') }))
-			.append(h('br'))
-		Object.keys(this.data).forEach(key => {
-			this.$html
-				.append(
-					h('p', this.data[key].text))
-				.append(
-					h('pre',
-						h('code', this.empty, { id: `${this.prefix}result-${key}` })))
-		})
-	}
-
 	dialog() {
 		lavandula.mdui.dialog({
 			title: '多项式小助手',
@@ -42,7 +24,7 @@ class PolynomialHelper extends BaseTool {
 			.bind('input propertychange', () => { this.update() })
 	}
 
-	constructor() {
+	constructor($e) {
 		super()
 		this.prefix = 'lavandula-polynomial-'
 		this.poly = lavandula.algorithm.poly
@@ -94,6 +76,22 @@ class PolynomialHelper extends BaseTool {
 			// 	func: (a, b) => (a.length && b.length == 1 ? this.poly.challenge(a, b[0]).join(' ') : this.empty)
 			// },
 		}
+
+		this.$button = $(c.block_button('多项式小助手'))
+			.appendTo(lavandula.panel.$buttons)
+			.click(() => { this.dialog() })
+		this.$html = $(
+			h(`div#${this.prefix}body`, [
+				c.textarea('Array 1', null, null, this.prefix + 'array1', () => { console.log('1') }),
+				c.textarea('Array 2', null, null, this.prefix + 'array2', () => { console.log('1') }),
+				h('br'),
+				Object.keys(this.data).map(key =>
+					h(`div#${this.prefix}display-${key}`, [
+						h('p', this.data[key].text),
+						h('pre',
+							h('code', this.empty, { id: `${this.prefix}result-${key}` })),
+					])
+				)]))
 	}
 }
 

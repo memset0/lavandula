@@ -2,9 +2,8 @@ const c = lavandula.create
 const h = lavandula.hyperscript
 
 class Panel {
-	toggle() {
-		this.$.toggleClass('lavandula-hide')
-	}
+	hide() { this.$.addClass('lavandula-hide') }
+	show() { this.$.removeClass('lavandula-hide') }
 	
 	constructor() {
 		this.$ = $(
@@ -22,4 +21,4 @@ class Panel {
 	}
 }
 
-module.exports = new Panel()
+module.exports = Panel
