@@ -7,7 +7,7 @@ class Button {
 			.click(() => {
 				lavandula.panel.toggle()
 				lavandula.reader.toggle()
-				if (!lavandula.reader.rendered) {
+				if (!lavandula.reader.rendered && lavandula.reader.lib) {
 					lavandula.reader.render()
 				}
 			})
