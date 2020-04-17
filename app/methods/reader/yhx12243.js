@@ -54,7 +54,7 @@ class Yhx12243Reader extends BaseReader {
 			title: $('title').text(),
 			author: 'yhx-12243',
 			author_link: 'https://yhx-12243.github.io/OI-transit',
-			content: lavandula.utils.stringify_mathjax($('body').html()),
+			content: lavandula.utils. stringifyMathjax($('body').html()),
 		}
 	}
 }

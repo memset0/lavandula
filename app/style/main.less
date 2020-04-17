@@ -1,6 +1,10 @@
 @import "mdui.less";
 @import 'solarized.less';
 
+@import 'methods/code.less';
+@import 'methods/latex.less';
+@import 'methods/codeforces.less';
+
 @theme-color: #3f51b5;
 @theme-font: Lato,
 	-apple-system,
@@ -17,12 +21,11 @@
 
 @panel-width: 300px;
 
-.lavandula-base-style {
-	z-index: 114514;
+.lavandula-body {
 	&, *, &:after, *:after, &:before, *:before {
 		box-sizing: border-box;
 	}
-	&, div, p, h1, h2, h3, h4, h5, h6 {
+	&, div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, tr {
 		font-family: @theme-font;
 	}
 	::-webkit-scrollbar {
@@ -43,45 +46,8 @@
 	}
 }
 
-.lavandula-katex-display,
-.lavandula-mathjax-display {
-	display: block;
-	width: 100%;
-	text-align: center;
-	margin-top: 20px;
-	margin-bottom: 20px;
-}
-
-.lavandula-codeforces {
-	.lavandula-codeforces-input,
-	.lavandula-codeforces-output {
-		.lavandula-card();
-		margin-bottom: 20px;
-		@line-height: 20px;
-		@padding: 12px;
-		.title {
-			background: @theme-color;
-			color: #fff;
-			padding: @padding;
-			font-weight: 500;
-			font-size: 16px;
-			line-height: @line-height;
-		}
-		pre {
-			margin-bottom: 0px;
-			border: none;
-		}
-		.lavandula-codeforces-copier {
-			color: #fff !important;
-			margin: @padding * -1;
-			height: @line-height + @padding * 2;
-			line-height: @line-height + @padding * 2;
-		}
-	}
-}
-
 #lavandula-toggle-button {
-	.lavandula-base-style();
+	z-index: 114514 - 100;
 	@padding: 32px;
 	@width: 32px;
 	position: fixed;
@@ -95,7 +61,10 @@
 }
 
 #lavandula-panel {
-	.lavandula-base-style();
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
+  z-index: 114514 - 200;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -157,7 +126,7 @@
 }
 
 #lavandula-reader {
-	.lavandula-base-style();
+	z-index: 114514 - 300;
 	position: fixed;
 	top: 0;
 	right: 0;

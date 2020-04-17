@@ -1,0 +1,30 @@
+.lavandula-hljs{
+	.lavandula-code-buttons {
+		a, a:hover, a:focus {
+			color: inherit !important;
+			text-decoration: none !important;
+			&:before {
+				transform: scaleX(0) !important;
+			}
+		}
+		@size: 24px;
+		.lavandula-btn {
+			width: @size !important;
+			min-width: @size !important;
+			height: @size !important;
+			line-height: @size !important;
+			.lavandula-icon {
+				width: @size * 2 / 3 !important;
+				min-width: @size * 2 / 3 !important;
+				height: @size * 2 / 3 !important;
+				font-size: @size * 2 / 3 !important;
+				line-height: @size * 2 / 3 !important;
+				transform: translate(@size / -3,@size / -3) !important;
+			}
+		}
+		position: absolute;
+		right: 8px;
+		top: 8px;
+	}
+	position: relative;
+}
