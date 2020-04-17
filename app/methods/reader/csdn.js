@@ -4,10 +4,13 @@ class CsdnReader extends BaseReader {
 	static isAvailable() {
 		return /^https:\/\/blog\.csdn\.net\/[a-zA-Z0-9_]+\/article\/details/.exec(location.href)
 	}
+
 	render($e) {
 		super.render($e)
-		$e.find('.prettyprint .pre-numbering').remove()
-		$e.find('.prettyprint .hljs-button.signin').remove()
+		$e.find('.prettyprint .pre-numbering')
+			.remove()
+		$e.find('.prettyprint .hljs-button.signin')
+			.remove()
 		$e.find('pre code')
 			.attr('style', '')
 			.attr('class', '')
@@ -20,6 +23,7 @@ class CsdnReader extends BaseReader {
 			.attr('class', 'lavandula-hljs')
 		super.renderHighlight($e)
 	}
+
 	panelCategory() {
 		let links = new Array()
 		$('div#asideCategory div.aside-content ul li a').each(function () {
@@ -30,6 +34,7 @@ class CsdnReader extends BaseReader {
 		})
 		return lavandula.create.panel_links('分类', links)
 	}
+
 	panelArchive() {
 		let links = new Array()
 		$('div#asideArchive ul.archive-list li a').each(function () {
@@ -42,11 +47,13 @@ class CsdnReader extends BaseReader {
 		})
 		return lavandula.create.panel_links('归档', links)
 	}
+
 	renderPanel($e) {
 		super.renderPanel($e)
 		$e.append(this.panelCategory())
-		$e.append(this.panelArchive())
+			.append(this.panelArchive())
 	}
+
 	constructor() {
 		super()
 		this.data = {

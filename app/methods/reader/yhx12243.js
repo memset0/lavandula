@@ -28,6 +28,7 @@ class Yhx12243Reader extends BaseReader {
 	static isAvailable() {
 		return /^https:\/\/yhx-12243\.github\.io\/OI\-transit\/records\//.exec(location.href)
 	}
+
 	render($e) {
 		super.render($e)
 		$e.find('pre')
@@ -40,26 +41,21 @@ class Yhx12243Reader extends BaseReader {
 		MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName('lavandula-typo')[0]])
 		super.renderHighlight($e)
 	}
-	panelLinks() {
-		return lavandula.create.panel_links('链接', links)
-	}
-	panelOJ() {
-		return lavandula.create.panel_links('OJ', OJLinks)
-	}
+
 	renderPanel($e) {
 		super.renderPanel($e)
-		$e.append(this.panelLinks())
-		$e.append(this.panelOJ())
+		$e.append(lavandula.create.panel_links('链接', links))
+			.append(lavandula.create.panel_links('OJ', OJLinks))
 	}
+
 	constructor() {
 		super()
 		this.data = {
 			title: $('title').text(),
 			author: 'yhx-12243',
 			author_link: 'https://yhx-12243.github.io/OI-transit',
-			content: $('body').html(),
+			content: lavandula.utils.stringify_mathjax($('body').html()),
 		}
-		this.data.content = lavandula.utils.stringify_mathjax(this.data.content)
 	}
 }
 

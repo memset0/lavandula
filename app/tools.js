@@ -2,10 +2,10 @@ class Tools {
 	constructor() {
 		this.lib = {}
 		this.toolLib = {
-			favorites: require('./tools/favorites.js'),
-			polynomial_helper: require('./tools/polynomial_helper.js'),
-			stringify_latex: require('./tools/stringify_latex.js'),
-			codeforces_links: require('./tools/codeforces_links.js'),
+			favorites: require('./tools/favorites'),
+			polynomial_helper: require('./tools/polynomial_helper'),
+			stringify_latex: require('./tools/stringify_latex'),
+			codeforces_links: require('./tools/codeforces_links'),
 		}
 
 		this.$ = lavandula.panel.$tools

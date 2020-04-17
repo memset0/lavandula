@@ -4,6 +4,7 @@ class CnblogsReader extends BaseReader {
 	static isAvailable() {
 		return /^https:\/\/www\.cnblogs\.com\/[a-zA-Z0-9_]+\/p/.exec(location.href)
 	}
+
 	render($e) {
 		super.render($e)
 		$e.find('div.cnblogs_Highlighter')
@@ -23,6 +24,7 @@ class CnblogsReader extends BaseReader {
 			.attr('class', 'lavandula-hljs')
 		super.renderHighlight($e)
 	}
+	
 	constructor() {
 		super()
 		this.data = {

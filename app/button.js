@@ -3,7 +3,7 @@ const h = lavandula.hyperscript
 class Button {
 	constructor() {
 		this.$ = $(
-			h('div#lavandula-toggle-button.lavandula-body'))
+			h('div#lavandula-toggle-button'))
 			.click(() => {
 				lavandula.panel.toggle()
 				lavandula.reader.toggle()

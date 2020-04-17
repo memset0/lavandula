@@ -2,9 +2,8 @@ const c = lavandula.create
 const h = lavandula.hyperscript
 
 class BaseReader {
-	static isAvailable() {
-		return false
-	}
+	static isAvailable() { return false }
+
 	render($e) {
 		$e.append(
 			h('div.lavandula-container',
@@ -38,8 +37,10 @@ class BaseReader {
 			$typo.html(this.data.content)
 		}
 	}
+
 	renderPanel($e) {
 	}
+
 	renderHighlight($e) {
 		$e.find("pre.lavandula-hljs code").each(function () {
 			hljs.highlightBlock(this)
@@ -51,6 +52,7 @@ class BaseReader {
 			}).join('\n')
 		});
 	}
+	
 	constructor() {
 	}
 }

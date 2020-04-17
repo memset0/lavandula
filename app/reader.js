@@ -16,11 +16,11 @@ class Reader {
 
 	constructor() {
 		this.readerLib = {
-			csdn: require('./methods/reader/csdn.js'),
-			cnblogs: require('./methods/reader/cnblogs.js'),
-			zybuluo: require('./methods/reader/zybuluo.js'),
-			yhx12243: require('./methods/reader/yhx12243.js'),
-			codeforces: require('./methods/reader/codeforces.js'),
+			csdn: require('./methods/reader/csdn'),
+			cnblogs: require('./methods/reader/cnblogs'),
+			zybuluo: require('./methods/reader/zybuluo'),
+			yhx12243: require('./methods/reader/yhx12243'),
+			codeforces: require('./methods/reader/codeforces'),
 		}
 		this.selector = {
 			title: '#lavandula-reader .lavandula-title',
@@ -29,7 +29,7 @@ class Reader {
 		}
 
 		this.$ = $(
-			h('div#lavandula-reader.lavandula-body.lavandula-hide'))
+			h('div#lavandula-reader.lavandula-hide'))
 		this.$panel = lavandula.panel.$reader
 
 		Object.keys(this.readerLib).forEach(key => {

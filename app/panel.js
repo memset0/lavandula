@@ -8,7 +8,7 @@ class Panel {
 	
 	constructor() {
 		this.$ = $(
-			h('div#lavandula-panel.lavandula-body.lavandula-hide'))
+			h('div#lavandula-panel.lavandula-hide'))
 			.append(this.$info = $(
 				h('div#lavandula-panel-info.lavandula-panel-card',
 					h('div.lavandula-card-primary',

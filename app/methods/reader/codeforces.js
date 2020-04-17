@@ -17,9 +17,8 @@ function matchUrl() {
 }
 
 class CodeforcesReader extends BaseReader {
-	static isAvailable() {
-		return matchUrl()
-	}
+	static isAvailable() { return matchUrl() }
+
 	render($e) {
 		super.render($e)
 		$(lavandula.reader.selector.typo).ready(function () {
@@ -54,8 +53,10 @@ class CodeforcesReader extends BaseReader {
 				})
 		})
 	}
+
 	constructor() {
 		super()
+
 		let $header = $('div#pageContent .problem-statement .header').clone()
 		$header.find('.property-title').remove()
 		this.config = Object.assign(matchUrl().groups, {
@@ -64,7 +65,7 @@ class CodeforcesReader extends BaseReader {
 			input_file: $header.find('.input-file').text().replace('standard input', 'stdin'),
 			output_file: $header.find('.output-file').text().replace('standard output', 'stdout'),
 		})
-		console.log(this.config)
+
 		this.data = {
 			title: `CF${this.config.round}${this.config.problem} ${$header.find('.title').text().split('. ')[1]}`,
 			tag: [

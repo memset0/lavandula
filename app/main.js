@@ -19,7 +19,7 @@ unsafeWindow.lavandula.mduiJQ = unsafeWindow.lavandula.mdui.JQ
 unsafeWindow.lavandula.hyperscript = require('hyperscript')
 unsafeWindow.lavandula.dom2hscript = require('dom2hscript')
 
-unsafeWindow.lavandula.$ = $(lavandula.hyperscript('div#lavandula-body')).appendTo('body')
+unsafeWindow.lavandula.$ = $(lavandula.hyperscript('div.lavandula-body')).appendTo('body')
 
 require('./create')
 require('./utils')
@@ -35,6 +35,6 @@ lavandula.$.append(lavandula.panel.$)
 lavandula.$.append(lavandula.button.$)
 lavandula.mdui.mutation()
 
-// if (lavandula.mode == 'development' && lavandula.reader.lib) {
-// 	lavandula.button.$.click()
-// }
+if (lavandula.mode == 'development' && lavandula.reader.lib) {
+	lavandula.button.$.click()
+}
