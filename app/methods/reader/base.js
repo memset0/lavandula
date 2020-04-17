@@ -47,8 +47,9 @@ class BaseReader {
 
 	renderHighlight($e) {
 		$e.find("pre.lavandula-hljs code").each(function () {
+			let code = lavandula.utils.encode($(this).text().replace(/\t/g, '    '))
+			this.innerHTML = code
 			hljs.highlightBlock(this)
-			let code = $(this).text()
 			let blob = lavandula.utils.blob(code)
 
 			let counter = 0

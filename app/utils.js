@@ -12,7 +12,7 @@ utils.random = (l) => Math.floor(Math.random() * l)
 utils.random_range = (l, r) => (l + random(r - l))
 utils.random_hash = () => utils.md5(Date() + Math.random() + 114514 + 'Menci TQL!')
 
-utils.decode = (text) => $('<qyzcute/>').text(text).html()
+utils.encode = (text) => $('<qyzcute/>').text(text).html()
 
 utils.blob = function (text) {
 	return URL.createObjectURL(new Blob([text]))

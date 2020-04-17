@@ -1,4 +1,35 @@
-.lavandula-hljs{
+.lavandula-hljs {
+	@line-height: 22px !important;
+	line-height: @line-height;
+	code {
+		line-height: @line-height;
+		font-size: 14px !important;
+		span {
+			line-height: @line-height;
+			font-size: 14px !important;
+			font-family: Consolas, Courier, 'Courier New', monospace !important;
+		}
+	}
+	.lavandula-line {
+		display: inline-block;
+		line-height: @line-height;
+		height: @line-height;
+		white-space: pre;
+		width: 100%;
+		&:hover {
+			background: #f0e7d4;
+		}
+	}
+	.lavandula-line-number {
+		width: 48px;
+		padding-right: 16px;
+		text-align: right;
+		display: inline-block;
+		color: #967734
+	}
+}
+
+.lavandula-hljs {
 	.lavandula-code-buttons {
 		a, a:hover, a:focus {
 			color: inherit !important;
