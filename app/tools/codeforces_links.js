@@ -45,7 +45,8 @@ class CodeforcesLinks extends BaseTool {
 		super()
 		[this.round, this.problem] = this.match()
 
-		this.$ = $(lavandula.create.panel_links('CodeForces Links', this.links(this.round, this.problem))).appendTo($e)
+		this.$ = $(lavandula.create.panel_links('CodeForces Links', this.links(this.round, this.problem)))
+			.appendTo(lavandula.panel.$tools)
 	}
 }
 
