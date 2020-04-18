@@ -11,7 +11,8 @@ unsafeWindow.lavandula = {}
 
 unsafeWindow.lavandula.mode = 'development'
 
-unsafeWindow.lavandula.Jquery = $
+unsafeWindow.lavandula.jquery = $
+unsafeWindow.lavandula.lodash = _
 
 unsafeWindow.lavandula.mdui = (new mdui_loader()).lavandula
 unsafeWindow.lavandula.mduiJQ = unsafeWindow.lavandula.mdui.JQ

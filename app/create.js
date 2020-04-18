@@ -28,6 +28,11 @@ create.textarea = (label, text = undefined, icon = undefined, id = undefined) =>
     h('label.lavandula-textfield-label', label) : undefined,
     h('textarea.lavandula-textfield-input', { id: id }, text))
 
+create.checkbox = (text = undefined) =>
+  h('label.lavandula-checkbox',
+    h('input', { type: 'checkbox' }),
+    h('i.lavandula-checkbox-icon'), text)
+
 create.table = (keySet, dataSet) =>
   h('div.lavandula-table-fluid',
     h('table.lavandula-table.lavandula-table-hoverable',
