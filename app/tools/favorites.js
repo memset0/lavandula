@@ -128,6 +128,7 @@ class FavoritesTool extends BaseTool {
 		this.$buttons = {
 			menu: $(c.icon_button('menu')).click(() => { this.render(), this.panel.toggle() }),
 			star: $(c.icon_button('star_border')),
+			import: $(c.icon_button('edit')),
 			export_down: $(c.icon_button('file_download')).click(() => { this.export().then(data => lavandula.utils.downloadText(data)) }),
 			export_copy: $(c.icon_button('content_copy')).click(() => { this.export().then(data => lavandula.utils.copyText(data)) }),
 			refresh: $(c.icon_button('refresh')).click(() => this.render()),
@@ -135,7 +136,9 @@ class FavoritesTool extends BaseTool {
 		this.$colors = ['red', 'orange', 'amber', 'green', 'indigo', 'purple']
 			.map(color => $(h('span.lavandula-checkbox-btn.lavandula-theme-accent-' + color, c.checkbox())))
 		this.$title = $(c.textarea('title', undefined, undefined, this.prefix + 'title'))
-		this.$title.children('textarea').val($('title').text().trim())
+		this.$title.children('textarea').val(lavandula.reader.lib ?
+			lavandula.reader.lib.data.title :
+			$('title').text().trim())
 
 		this.$table = this.table([])
 
