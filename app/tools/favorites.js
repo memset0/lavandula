@@ -82,7 +82,7 @@ class FavoritesTool extends BaseTool {
 
 		return $(
 			h('div.lavandula-table-fluid',
-				h('table.lavandula-table.lavandula-table-hoverable',
+				h('table.lavandula-table.lavandula-table-hoverable#lavandula-favorites-table',
 					h('thead',
 						h('tr', head.map(o => h('th', o)))),
 					h('tbody', body.map(line =>
