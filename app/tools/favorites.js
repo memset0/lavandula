@@ -65,7 +65,7 @@ class FavoritesTool extends BaseTool {
 		return {
 			url: window.location.href,
 			title: this.$title.children('textarea').val(),
-			color: _.compact(this.$colors.map(($color, index) => $color.find('input')[0].checked ? index : null)),
+			color: _.compact(this.$colors.map(($color, index) => $color.find('input')[0].checked ? index + 1 : null)),
 		}
 	}
 
@@ -100,7 +100,7 @@ class FavoritesTool extends BaseTool {
 			if (star) {
 				let color = loc.color || []
 				this.$colors.forEach(($color, index) => {
-					$color.find('input')[0].checked = color.indexOf(index) == -1 ? false : true
+					$color.find('input')[0].checked = color.indexOf(index + 1) == -1 ? false : true
 				})
 
 				if (loc.title) {
@@ -130,6 +130,7 @@ class FavoritesTool extends BaseTool {
 			star: $(c.icon_button('star_border')),
 			export_down: $(c.icon_button('file_download')).click(() => { this.export().then(data => lavandula.utils.downloadText(data)) }),
 			export_copy: $(c.icon_button('content_copy')).click(() => { this.export().then(data => lavandula.utils.copyText(data)) }),
+			refresh: $(c.icon_button('refresh')).click(() => this.render()),
 		}
 		this.$colors = ['red', 'orange', 'amber', 'green', 'indigo', 'purple']
 			.map(color => $(h('span.lavandula-checkbox-btn.lavandula-theme-accent-' + color, c.checkbox())))
