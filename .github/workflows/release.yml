@@ -16,11 +16,13 @@ jobs:
     - name: Get the version
       id: get_version
       run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: Rename file
+      run: mv dist/user.js lavandula-${{ steps.get_version.outputs.VERSION }}.js
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
         draft: true
-        files: dist/user.js
+        files: lavandula-${{ steps.get_version.outputs.VERSION }}.js
         name: ${{ steps.get_version.outputs.VERSION }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
