@@ -13,7 +13,6 @@ class BaseReader {
 					h('div.lavandula-typo'),
 				])))
 
-
 		let $title = $e.find('div.lavandula-title')
 		if (this.data.title) {
 			$title.text(this.data.title)
