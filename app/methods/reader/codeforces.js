@@ -60,7 +60,7 @@ class CodeforcesReader extends BaseReader {
 		let $header = $('div#pageContent .problem-statement .header').clone()
 		$header.find('.property-title').remove()
 		this.config = Object.assign(matchUrl().groups, {
-			time_limit: $header.find('.time-limit').text().replace(' second', 's'),
+			time_limit: $header.find('.time-limit').text().replace(/(seconds|second)/, 's'),
 			memory_limit: $header.find('.memory-limit').text().replace(' megabytes', 'MiB'),
 			input_file: $header.find('.input-file').text().replace('standard input', 'stdin'),
 			output_file: $header.find('.output-file').text().replace('standard output', 'stdout'),
