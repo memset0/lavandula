@@ -1,0 +1,28 @@
+name: "Release"
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: |
+        mkdir dist
+        npm install
+        npm run build
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - name: Rename file
+      run: mv dist/user.js lavandula-${{ steps.get_version.outputs.VERSION }}.js
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      with:
+        draft: true
+        files: lavandula-${{ steps.get_version.outputs.VERSION }}.js
+        name: ${{ steps.get_version.outputs.VERSION }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
